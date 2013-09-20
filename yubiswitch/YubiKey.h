@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface YubiKey : NSObject
+@interface YubiKey : NSObject {
+    bool isEnabled;
+}
 
 -(void)findDevice;
 -(void)enable;

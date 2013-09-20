@@ -20,8 +20,16 @@
         <customObject id="420" customClass="NSFontManager"/>
         <menu id="q3r-KV-BX4">
             <items>
-                <menuItem title="Enable YubiKey for 15s" keyEquivalent="y" id="dKb-aU-97k"/>
-                <menuItem title="Quit YubiSwitch" keyEquivalent="q" id="Qnx-jI-LPb"/>
+                <menuItem title="Enable YubiKey for 15s" keyEquivalent="y" id="dKb-aU-97k">
+                    <connections>
+                        <action selector="toggle:" target="494" id="LLD-CQ-Jz5"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Quit YubiSwitch" keyEquivalent="q" id="Qnx-jI-LPb">
+                    <connections>
+                        <action selector="quit:" target="494" id="kFN-Da-mfL"/>
+                    </connections>
+                </menuItem>
             </items>
         </menu>
     </objects>

@@ -16,10 +16,13 @@
 }
 
 -(void)enable {
-    
+    NSLog(@"enable");
+    isEnabled = true;
 }
 
 -(void)disable {
-    
+    NSLog(@"disabled");
+    isEnabled = false;
 }
+
 @end
