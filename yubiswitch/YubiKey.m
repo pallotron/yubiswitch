@@ -10,19 +10,21 @@
 
 @implementation YubiKey
 
--(void)findDevice {
-    // idVendor=0x1050
-    // idProduct=0x0010
+-(id)init {
+    if (self = [super init]) {
+        idVendor = 0x1050;
+        idProduct = 0x0010;
+    }
+    return self;
+    
 }
 
 -(void)enable {
     NSLog(@"enable");
-    isEnabled = true;
 }
 
 -(void)disable {
     NSLog(@"disabled");
-    isEnabled = false;
 }
 
 @end

@@ -20,7 +20,7 @@
         <customObject id="420" customClass="NSFontManager"/>
         <menu id="q3r-KV-BX4">
             <items>
-                <menuItem title="Enable YubiKey for 15s" keyEquivalent="y" id="dKb-aU-97k">
+                <menuItem title="Enable YubiKey" keyEquivalent="y" id="dKb-aU-97k">
                     <connections>
                         <action selector="toggle:" target="494" id="LLD-CQ-Jz5"/>
                     </connections>

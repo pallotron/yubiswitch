@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#include <IOKit/usb/IOUSBLib.h>
 
 @interface YubiKey : NSObject {
-    bool isEnabled;
+    int idVendor;
+    int idProduct;
 }
 
--(void)findDevice;
+-(id)init;
 -(void)enable;
 -(void)disable;
 

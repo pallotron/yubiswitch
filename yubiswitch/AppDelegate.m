@@ -33,11 +33,14 @@
         [statusItem setToolTip:(@"Yubikey disabled")];
         [statusItem setImage:[NSImage imageNamed:@"ico_disabled"]];
         isEnabled = false;
+        [[statusMenu itemAtIndex:0] setTitle:(@"Enable YubiKey")];
     } else {
         [yk enable];
         [statusItem setToolTip:(@"Yubikey enabled")];
         [statusItem setImage:[NSImage imageNamed:@"ico_enabled"]];
         isEnabled = true;
+        [[statusMenu itemAtIndex:0] setTitle:(@"Disable YubiKey")];
+
     }
 }
 
