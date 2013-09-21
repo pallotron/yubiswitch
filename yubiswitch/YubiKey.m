@@ -18,7 +18,7 @@
     return self;
 }
 
--(void)raiseAlertWindow:(NSString*) message {
+-(void)raiseAlertWindowAndQuit:(NSString*) message {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"Quit"];
     [alert setAlertStyle:NSWarningAlertStyle];
@@ -52,7 +52,7 @@
                                  matchingDictionary, &iterator);
     usbRef = IOIteratorNext(iterator);
     if (usbRef == 0) {
-        [self raiseAlertWindow:@"Can'f find yubiKey. Check if it's plugged in "
+        [self raiseAlertWindowAndQuit:@"Can'f find yubiKey. Check if it's plugged in "
          "then launch me again"];
     }
     // TODO: deal with multiple retries?
@@ -76,7 +76,7 @@
         
     } else if ( ret == kIOReturnExclusiveAccess) {}
     else {
-        [self raiseAlertWindow:@"Can't open Yubikey device!"];
+        [self raiseAlertWindowAndQuit:@"Can't open Yubikey device!"];
     }
     UInt8 config = 0;
     if ([action isEqualToString:@"enable"]) {
