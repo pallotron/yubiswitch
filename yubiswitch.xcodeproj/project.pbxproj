@@ -20,6 +20,7 @@
 		59E5CF3917EC2A9000898135 /* yubiswitchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E5CF3817EC2A9000898135 /* yubiswitchTests.m */; };
 		59E5CF4417EC472400898135 /* YubiKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E5CF4317EC472400898135 /* YubiKey.m */; };
 		59EC128A17ECFAFD00B3C3A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 59EC128917ECFAFD00B3C3A6 /* README.md */; };
+		59EC128C17ECFEFE00B3C3A6 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59EC128B17ECFEFE00B3C3A6 /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		59E5CF4217EC472400898135 /* YubiKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YubiKey.h; sourceTree = "<group>"; };
 		59E5CF4317EC472400898135 /* YubiKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YubiKey.m; sourceTree = "<group>"; };
 		59EC128917ECFAFD00B3C3A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		59EC128B17ECFEFE00B3C3A6 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59EC128C17ECFEFE00B3C3A6 /* IOKit.framework in Frameworks */,
 				59E5CF0F17EC2A9000898135 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +105,7 @@
 		59E5CF0D17EC2A9000898135 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				59EC128B17ECFEFE00B3C3A6 /* IOKit.framework */,
 				59E5CF0E17EC2A9000898135 /* Cocoa.framework */,
 				59E5CF2D17EC2A9000898135 /* XCTest.framework */,
 				59E5CF1017EC2A9000898135 /* Other Frameworks */,
@@ -207,6 +211,7 @@
 		59E5CF0317EC2A9000898135 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = "";
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Angelo Failla";
 				TargetAttributes = {

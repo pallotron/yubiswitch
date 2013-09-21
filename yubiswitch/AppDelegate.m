@@ -14,6 +14,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     NSLog(@"test");
+    yk = [[YubiKey alloc] init];
+    [yk disable];
 }
 
 -(void)awakeFromNib {
@@ -24,7 +26,6 @@
     [statusItem setImage:[NSImage imageNamed:@"ico_disabled"]];
     [statusItem setToolTip:@"YubiKey disabled"];
     isEnabled = false;
-    yk = [[YubiKey alloc] init];
 }
 
 -(IBAction)toggle:(id)sender {
