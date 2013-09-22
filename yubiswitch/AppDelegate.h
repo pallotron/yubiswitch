@@ -16,11 +16,13 @@
     NSStatusItem * statusItem;
     bool isEnabled;
     YubiKey* yk;
+    NSUserNotification *notification;
 }
 
 
 @property (assign) IBOutlet NSWindow *window;
 -(IBAction)toggle:(id)sender;
 -(IBAction)quit:(id)sender;
+-(void)notify:(NSString *)msg;
 
 @end

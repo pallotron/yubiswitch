@@ -11,7 +11,7 @@
 @implementation AppDelegate
 @synthesize window;
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+-(void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     yk = [[YubiKey alloc] init];
     [yk disable];
 }
@@ -46,12 +46,20 @@
     RegisterEventHotKey(16, cmdKey, hotKeyID,
                         GetApplicationEventTarget(), 0,
                         &hotKeyRef);
+    notification = [[NSUserNotification alloc] init];
+}
+
+-(void)notify:(NSString *)msg {
+    notification.title = msg;
+    [[NSUserNotificationCenter defaultUserNotificationCenter]
+     deliverNotification:notification];
 }
 
 OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,
                        EventRef anEvent, void *userData) {
     AppDelegate *a;
-    // convert void * to AppDelegate pointer and then use the Objective-C method
+    // convert void pointer to AppDelegate pointer and then use the
+    // Objective-C method
     a = (__bridge AppDelegate *) userData;
     [a toggle:NULL];
     return noErr;
@@ -64,18 +72,20 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,
         [statusItem setImage:[NSImage imageNamed:@"ico_disabled"]];
         isEnabled = false;
         [[statusMenu itemAtIndex:0] setTitle:(@"Enable YubiKey")];
+        [self notify:@"Yubikey disabled"];
     } else {
         [yk enable];
         [statusItem setToolTip:(@"Yubikey enabled")];
         [statusItem setImage:[NSImage imageNamed:@"ico_enabled"]];
         isEnabled = true;
         [[statusMenu itemAtIndex:0] setTitle:(@"Disable YubiKey")];
-
+        [self notify:@"Yubikey enabled"];
     }
 }
 
 -(IBAction)quit:(id)sender {
     [yk enable];
+    [self notify:@"Yubikey enabled"];
     [[NSApplication sharedApplication] terminate:self];
 }
 
