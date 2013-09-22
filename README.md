@@ -23,10 +23,9 @@ Notification Centre. 10.8.x and above would do it.
 TODO and future plans
 =====================
 
-* Support multiple yubikeys
-* Support multiple models (not only idVendor 0x1050 and idProduct 0x0010)
 * Feature: lock computer when yubikey is removed
-* Make hotkey configurable via configuration window
+* Make hotkey configurable via configuration window, currently it's static and
+it is cmd-Y
 
 Credits
 =======
