@@ -3,7 +3,7 @@
     {
       "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "icon-4.png",
+      "filename" : "appicon-16.png",
       "scale" : "1x"
     },
     {
@@ -14,7 +14,7 @@
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "icon-2.png",
+      "filename" : "appicon-32.png",
       "scale" : "1x"
     },
     {
@@ -25,7 +25,7 @@
     {
       "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "icon-3.png",
+      "filename" : "appicon-128.png",
       "scale" : "1x"
     },
     {
@@ -36,7 +36,7 @@
     {
       "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "icon-1.png",
+      "filename" : "appicon-256.png",
       "scale" : "1x"
     },
     {
@@ -45,9 +45,8 @@
       "scale" : "2x"
     },
     {
-      "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "icon.png",
+      "size" : "512x512",
       "scale" : "1x"
     },
     {
