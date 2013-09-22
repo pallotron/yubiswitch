@@ -42,6 +42,7 @@
      */
     InstallApplicationEventHandler(&hotKeyHandler, 1, &eventType,
                                    (__bridge void *) self, NULL);
+    // register cmd-Y global hotkey
     RegisterEventHotKey(16, cmdKey, hotKeyID,
                         GetApplicationEventTarget(), 0,
                         &hotKeyRef);
