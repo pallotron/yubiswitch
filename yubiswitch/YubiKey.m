@@ -52,8 +52,8 @@
                                  matchingDictionary, &iterator);
     usbRef = IOIteratorNext(iterator);
     if (usbRef == 0) {
-        [self raiseAlertWindowAndQuit:@"Can'f find yubiKey. Check if it's plugged in "
-         "then launch me again"];
+        [self raiseAlertWindowAndQuit:@"Can'f find yubiKey. "
+         "Check if it's plugged in then launch me again"];
     }
     // TODO: deal with multiple retries?
     IOObjectRelease(iterator);
