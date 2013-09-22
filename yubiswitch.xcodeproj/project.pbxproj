@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		59E5CF0F17EC2A9000898135 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E5CF0E17EC2A9000898135 /* Cocoa.framework */; };
+		59C0616C17EED6AB00D3EE79 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C0616B17EED6AB00D3EE79 /* Carbon.framework */; };
+		59C0616D17EED74400D3EE79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E5CF0E17EC2A9000898135 /* Cocoa.framework */; };
 		59E5CF1917EC2A9000898135 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59E5CF1717EC2A9000898135 /* InfoPlist.strings */; };
 		59E5CF1B17EC2A9000898135 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E5CF1A17EC2A9000898135 /* main.m */; };
 		59E5CF1F17EC2A9000898135 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 59E5CF1D17EC2A9000898135 /* Credits.rtf */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		59C0616B17EED6AB00D3EE79 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		59E5CF0B17EC2A9000898135 /* yubiswitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yubiswitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E5CF0E17EC2A9000898135 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		59E5CF1117EC2A9000898135 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -64,8 +66,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59C0616D17EED74400D3EE79 /* Cocoa.framework in Frameworks */,
+				59C0616C17EED6AB00D3EE79 /* Carbon.framework in Frameworks */,
 				59EC128C17ECFEFE00B3C3A6 /* IOKit.framework in Frameworks */,
-				59E5CF0F17EC2A9000898135 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +108,7 @@
 		59E5CF0D17EC2A9000898135 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				59C0616B17EED6AB00D3EE79 /* Carbon.framework */,
 				59EC128B17ECFEFE00B3C3A6 /* IOKit.framework */,
 				59E5CF0E17EC2A9000898135 /* Cocoa.framework */,
 				59E5CF2D17EC2A9000898135 /* XCTest.framework */,

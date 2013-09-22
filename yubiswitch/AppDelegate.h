@@ -7,6 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Carbon/Carbon.h>
+
 #import "YubiKey.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
@@ -15,6 +17,7 @@
     bool isEnabled;
     YubiKey* yk;
 }
+
 
 @property (assign) IBOutlet NSWindow *window;
 -(IBAction)toggle:(id)sender;
