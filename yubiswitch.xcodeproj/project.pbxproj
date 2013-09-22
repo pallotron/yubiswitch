@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		594DCCE717EF99D400D9C2E2 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 594DCCE617EF99D400D9C2E2 /* LICENSE */; };
 		59C0616C17EED6AB00D3EE79 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C0616B17EED6AB00D3EE79 /* Carbon.framework */; };
 		59C0616D17EED74400D3EE79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E5CF0E17EC2A9000898135 /* Cocoa.framework */; };
 		59E5CF1917EC2A9000898135 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59E5CF1717EC2A9000898135 /* InfoPlist.strings */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		594DCCE617EF99D400D9C2E2 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		59C0616B17EED6AB00D3EE79 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		59E5CF0B17EC2A9000898135 /* yubiswitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yubiswitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E5CF0E17EC2A9000898135 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				59EC128917ECFAFD00B3C3A6 /* README.md */,
+				594DCCE617EF99D400D9C2E2 /* LICENSE */,
 				59E5CF1417EC2A9000898135 /* yubiswitch */,
 				59E5CF3217EC2A9000898135 /* yubiswitchTests */,
 				59E5CF0D17EC2A9000898135 /* Frameworks */,
@@ -248,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				594DCCE717EF99D400D9C2E2 /* LICENSE in Resources */,
 				59E5CF1917EC2A9000898135 /* InfoPlist.strings in Resources */,
 				59E5CF2717EC2A9000898135 /* Images.xcassets in Resources */,
 				59EC128A17ECFAFD00B3C3A6 /* README.md in Resources */,

@@ -1,10 +1,23 @@
-//
 //  AppDelegate.m
 //  yubiswitch
-//
-//  Created by Angelo Failla on 9/20/13.
-//  Copyright (c) 2013 Angelo Failla. All rights reserved.
-//
+
+/*
+ yubiswitch - enable/disable yubikey
+ Copyright (C) 2013  Angelo "pallotron" Failla <pallotron@freaknet.org>
+ 
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #import "AppDelegate.h"
 
@@ -14,6 +27,8 @@
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     yk = [[YubiKey alloc] init];
     [yk disable];
+    notification = [[NSUserNotification alloc] init];
+    [self notify:@"YubiKey disabled"];
 }
 
 -(void)awakeFromNib {
@@ -46,7 +61,6 @@
     RegisterEventHotKey(16, cmdKey, hotKeyID,
                         GetApplicationEventTarget(), 0,
                         &hotKeyRef);
-    notification = [[NSUserNotification alloc] init];
 }
 
 -(void)notify:(NSString *)msg {
@@ -68,14 +82,14 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,
 -(IBAction)toggle:(id)sender {
     if (isEnabled == true) {
         [yk disable];
-        [statusItem setToolTip:(@"Yubikey disabled")];
+        [statusItem setToolTip:(@"YubiKey disabled")];
         [statusItem setImage:[NSImage imageNamed:@"ico_disabled"]];
         isEnabled = false;
         [[statusMenu itemAtIndex:0] setTitle:(@"Enable YubiKey")];
         [self notify:@"Yubikey disabled"];
     } else {
         [yk enable];
-        [statusItem setToolTip:(@"Yubikey enabled")];
+        [statusItem setToolTip:(@"YubiKey enabled")];
         [statusItem setImage:[NSImage imageNamed:@"ico_enabled"]];
         isEnabled = true;
         [[statusMenu itemAtIndex:0] setTitle:(@"Disable YubiKey")];
@@ -85,7 +99,7 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,
 
 -(IBAction)quit:(id)sender {
     [yk enable];
-    [self notify:@"Yubikey enabled"];
+    [self notify:@"YubiKey enabled"];
     [[NSApplication sharedApplication] terminate:self];
 }
 

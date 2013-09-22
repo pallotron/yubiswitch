@@ -29,7 +29,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2013 Angelo Failla. All rights reserved.</string>
+	<string>Copyright (C) 2013  Angelo "pallotron" Failla &lt;pallotron@freaknet.org&gt; -- GNUGPL v3</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
