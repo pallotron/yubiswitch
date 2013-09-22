@@ -20,7 +20,6 @@ your finger tip.
 TODO and future plans
 =====================
 
-* Implement notifications windows when yubikey status gets toggled (on and off).
 * Support multiple yubikeys
 * Support multiple models (not only idVendor 0x1050 and idProduct 0x0010)
 * Feature: lock computer when yubikey is removed.
