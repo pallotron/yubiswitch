@@ -31,7 +31,7 @@ it is cmd-Y
 Credits
 =======
 
-Credits to Anton Tolchanov, he originally wrote this in Python using PyObjC
-bridge. I decided to port this into Objective-C when I found out that Carbon
-Event Manager libs have been removed from Python3.
+Credits to Anton Tolchanov (@knyar), he originally wrote this in Python using
+PyObjC bridge. I decided to port this into Objective-C when I found out that
+Carbon Event Manager libs have been removed from Python3.
 See http://docs.python.org/2/library/carbon.html
