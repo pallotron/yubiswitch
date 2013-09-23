@@ -20,12 +20,28 @@
         <customObject id="420" customClass="NSFontManager"/>
         <menu id="q3r-KV-BX4">
             <items>
-                <menuItem title="Enable YubiKey" keyEquivalent="y" id="dKb-aU-97k">
+                <menuItem title="Enable YubiKey" id="dKb-aU-97k">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="toggle:" target="494" id="LLD-CQ-Jz5"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Quit YubiSwitch" keyEquivalent="q" id="Qnx-jI-LPb">
+                <menuItem title="Unplugging YubiKey locks computer" enabled="NO" id="JMl-Ij-uOI">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Preferences..." id="ZbY-4K-DDd">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="aPh-QD-f9O"/>
+                <menuItem title="About YubiSwitch" id="5yW-Sr-JES">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="about:" target="494" id="BRL-QF-OOU"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="N9q-X6-4OB"/>
+                <menuItem title="Quit YubiSwitch" id="Qnx-jI-LPb">
+                    <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                     <connections>
                         <action selector="quit:" target="494" id="kFN-Da-mfL"/>
                     </connections>

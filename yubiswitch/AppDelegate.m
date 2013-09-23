@@ -20,6 +20,7 @@
  */
 
 #import "AppDelegate.h"
+#import "AboutWindowController.h"
 
 @implementation AppDelegate
 @synthesize window;
@@ -29,6 +30,8 @@
     [yk disable];
     notification = [[NSUserNotification alloc] init];
     [self notify:@"YubiKey disabled"];
+    aboutwc = [[AboutWindowController alloc]
+               initWithWindowNibName:@"AboutWindowController"];
 }
 
 -(void)awakeFromNib {
@@ -85,16 +88,23 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,
         [statusItem setToolTip:(@"YubiKey disabled")];
         [statusItem setImage:[NSImage imageNamed:@"ico_disabled"]];
         isEnabled = false;
-        [[statusMenu itemAtIndex:0] setTitle:(@"Enable YubiKey")];
-        [self notify:@"Yubikey disabled"];
+        [[statusMenu itemAtIndex:0] setState:0];
+        [self notify:@"YubiKey disabled"];
     } else {
         [yk enable];
         [statusItem setToolTip:(@"YubiKey enabled")];
         [statusItem setImage:[NSImage imageNamed:@"ico_enabled"]];
         isEnabled = true;
-        [[statusMenu itemAtIndex:0] setTitle:(@"Disable YubiKey")];
-        [self notify:@"Yubikey enabled"];
+        [[statusMenu itemAtIndex:0] setState:1];
+        [self notify:@"YubiKey enabled"];
     }
+}
+
+-(IBAction)about:(id)sender {
+    [[aboutwc window] makeKeyAndOrderFront:self];
+    [[aboutwc window] setOrderedIndex:0];
+    [NSApp activateIgnoringOtherApps:YES];
+    [aboutwc showWindow:self];
 }
 
 -(IBAction)quit:(id)sender {

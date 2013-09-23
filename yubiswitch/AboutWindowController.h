@@ -1,4 +1,4 @@
-//  AppDelegate.h
+//  AboutWindowController.h
 //  yubiswitch
 
 /*
@@ -19,25 +19,9 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 #import <Cocoa/Cocoa.h>
-#import <Carbon/Carbon.h>
 
-#import "YubiKey.h"
-#import "AboutWindowController.h"
-
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
-    IBOutlet NSMenu *statusMenu;
-    NSStatusItem * statusItem;
-    bool isEnabled;
-    YubiKey* yk;
-    NSUserNotification *notification;
-    AboutWindowController* aboutwc;
-}
-
-@property (assign) IBOutlet NSWindow *window;
--(IBAction)toggle:(id)sender;
--(IBAction)quit:(id)sender;
--(IBAction)about:(id)sender;
--(void)notify:(NSString *)msg;
+@interface AboutWindowController : NSWindowController
 
 @end

@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		593B4E0917F09362003195DE /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 593B4E0717F09362003195DE /* AboutWindowController.m */; };
+		593B4E0A17F09362003195DE /* AboutWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 593B4E0817F09362003195DE /* AboutWindowController.xib */; };
 		594DCCE717EF99D400D9C2E2 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 594DCCE617EF99D400D9C2E2 /* LICENSE */; };
 		59C0616C17EED6AB00D3EE79 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C0616B17EED6AB00D3EE79 /* Carbon.framework */; };
 		59C0616D17EED74400D3EE79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E5CF0E17EC2A9000898135 /* Cocoa.framework */; };
 		59E5CF1917EC2A9000898135 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59E5CF1717EC2A9000898135 /* InfoPlist.strings */; };
 		59E5CF1B17EC2A9000898135 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E5CF1A17EC2A9000898135 /* main.m */; };
-		59E5CF1F17EC2A9000898135 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 59E5CF1D17EC2A9000898135 /* Credits.rtf */; };
 		59E5CF2217EC2A9000898135 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E5CF2117EC2A9000898135 /* AppDelegate.m */; };
 		59E5CF2517EC2A9000898135 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59E5CF2317EC2A9000898135 /* MainMenu.xib */; };
 		59E5CF2717EC2A9000898135 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59E5CF2617EC2A9000898135 /* Images.xcassets */; };
@@ -36,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		593B4E0617F09362003195DE /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWindowController.h; sourceTree = "<group>"; };
+		593B4E0717F09362003195DE /* AboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutWindowController.m; sourceTree = "<group>"; };
+		593B4E0817F09362003195DE /* AboutWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutWindowController.xib; sourceTree = "<group>"; };
 		594DCCE617EF99D400D9C2E2 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		59C0616B17EED6AB00D3EE79 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		59E5CF0B17EC2A9000898135 /* yubiswitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yubiswitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,7 +51,6 @@
 		59E5CF1817EC2A9000898135 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		59E5CF1A17EC2A9000898135 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		59E5CF1C17EC2A9000898135 /* yubiswitch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yubiswitch-Prefix.pch"; sourceTree = "<group>"; };
-		59E5CF1E17EC2A9000898135 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		59E5CF2017EC2A9000898135 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		59E5CF2117EC2A9000898135 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		59E5CF2417EC2A9000898135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -133,11 +136,14 @@
 		59E5CF1417EC2A9000898135 /* yubiswitch */ = {
 			isa = PBXGroup;
 			children = (
+				593B4E0617F09362003195DE /* AboutWindowController.h */,
+				593B4E0717F09362003195DE /* AboutWindowController.m */,
+				593B4E0817F09362003195DE /* AboutWindowController.xib */,
 				59E5CF2017EC2A9000898135 /* AppDelegate.h */,
 				59E5CF2117EC2A9000898135 /* AppDelegate.m */,
-				59E5CF2317EC2A9000898135 /* MainMenu.xib */,
 				59E5CF4217EC472400898135 /* YubiKey.h */,
 				59E5CF4317EC472400898135 /* YubiKey.m */,
+				59E5CF2317EC2A9000898135 /* MainMenu.xib */,
 				59E5CF2617EC2A9000898135 /* Images.xcassets */,
 				59E5CF1517EC2A9000898135 /* Supporting Files */,
 			);
@@ -151,7 +157,6 @@
 				59E5CF1717EC2A9000898135 /* InfoPlist.strings */,
 				59E5CF1A17EC2A9000898135 /* main.m */,
 				59E5CF1C17EC2A9000898135 /* yubiswitch-Prefix.pch */,
-				59E5CF1D17EC2A9000898135 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -253,9 +258,9 @@
 			files = (
 				594DCCE717EF99D400D9C2E2 /* LICENSE in Resources */,
 				59E5CF1917EC2A9000898135 /* InfoPlist.strings in Resources */,
+				593B4E0A17F09362003195DE /* AboutWindowController.xib in Resources */,
 				59E5CF2717EC2A9000898135 /* Images.xcassets in Resources */,
 				59EC128A17ECFAFD00B3C3A6 /* README.md in Resources */,
-				59E5CF1F17EC2A9000898135 /* Credits.rtf in Resources */,
 				59E5CF2517EC2A9000898135 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				59E5CF2217EC2A9000898135 /* AppDelegate.m in Sources */,
+				593B4E0917F09362003195DE /* AboutWindowController.m in Sources */,
 				59E5CF4417EC472400898135 /* YubiKey.m in Sources */,
 				59E5CF1B17EC2A9000898135 /* main.m in Sources */,
 			);
@@ -306,14 +312,6 @@
 				59E5CF1817EC2A9000898135 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		59E5CF1D17EC2A9000898135 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				59E5CF1E17EC2A9000898135 /* en */,
-			);
-			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 		59E5CF2317EC2A9000898135 /* MainMenu.xib */ = {

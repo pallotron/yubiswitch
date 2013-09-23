@@ -1,4 +1,4 @@
-//  AppDelegate.h
+//  AboutWindowController.m
 //  yubiswitch
 
 /*
@@ -19,25 +19,29 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Cocoa/Cocoa.h>
-#import <Carbon/Carbon.h>
-
-#import "YubiKey.h"
 #import "AboutWindowController.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
-    IBOutlet NSMenu *statusMenu;
-    NSStatusItem * statusItem;
-    bool isEnabled;
-    YubiKey* yk;
-    NSUserNotification *notification;
-    AboutWindowController* aboutwc;
+@interface AboutWindowController ()
+
+@end
+
+@implementation AboutWindowController
+
+- (id)initWithWindow:(NSWindow *)window
+{
+    self = [super initWithWindow:window];
+    if (self) {
+        [self.window makeKeyAndOrderFront:self];
+        [self.window setOrderedIndex:0];
+    }
+    return self;
 }
 
-@property (assign) IBOutlet NSWindow *window;
--(IBAction)toggle:(id)sender;
--(IBAction)quit:(id)sender;
--(IBAction)about:(id)sender;
--(void)notify:(NSString *)msg;
+- (void)windowDidLoad
+{
+    [super windowDidLoad];
+    // Implement this method to handle any initialization after your window
+    // controller's window has been loaded from its nib file.
+}
 
 @end

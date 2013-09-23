@@ -26,6 +26,7 @@ TODO and future plans
 * Feature: lock computer when yubikey is removed
 * Make hotkey configurable via configuration window, currently it's static and
 it is cmd-Y
+* Support more yubikeys nano on multiple USB slots
 
 Credits
 =======
