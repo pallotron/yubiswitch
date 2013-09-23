@@ -28,13 +28,6 @@ TODO and future plans
 it is cmd-Y
 * Support more yubikeys nano on multiple USB slots
 
-Create DMG
-==========
-
-* Compile release app bundle in Xcode
-* `cd dmg/ && bash createdmg.sh`
-* Get the file at `/tmp/yubiswitch_$VERSION.dmg` and distribute
-
 Credits
 =======
 
