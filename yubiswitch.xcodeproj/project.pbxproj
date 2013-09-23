@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		593B4E0917F09362003195DE /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 593B4E0717F09362003195DE /* AboutWindowController.m */; };
 		593B4E0A17F09362003195DE /* AboutWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 593B4E0817F09362003195DE /* AboutWindowController.xib */; };
+		593B4E0E17F0A2BD003195DE /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 593B4E0C17F0A2BD003195DE /* PreferencesController.m */; };
+		593B4E0F17F0A2BD003195DE /* PreferencesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 593B4E0D17F0A2BD003195DE /* PreferencesController.xib */; };
 		594DCCE717EF99D400D9C2E2 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 594DCCE617EF99D400D9C2E2 /* LICENSE */; };
 		59C0616C17EED6AB00D3EE79 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C0616B17EED6AB00D3EE79 /* Carbon.framework */; };
 		59C0616D17EED74400D3EE79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E5CF0E17EC2A9000898135 /* Cocoa.framework */; };
@@ -40,6 +42,9 @@
 		593B4E0617F09362003195DE /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWindowController.h; sourceTree = "<group>"; };
 		593B4E0717F09362003195DE /* AboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutWindowController.m; sourceTree = "<group>"; };
 		593B4E0817F09362003195DE /* AboutWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutWindowController.xib; sourceTree = "<group>"; };
+		593B4E0B17F0A2BD003195DE /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
+		593B4E0C17F0A2BD003195DE /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
+		593B4E0D17F0A2BD003195DE /* PreferencesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesController.xib; sourceTree = "<group>"; };
 		594DCCE617EF99D400D9C2E2 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		59C0616B17EED6AB00D3EE79 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		59E5CF0B17EC2A9000898135 /* yubiswitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yubiswitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,11 +144,14 @@
 				593B4E0617F09362003195DE /* AboutWindowController.h */,
 				593B4E0717F09362003195DE /* AboutWindowController.m */,
 				593B4E0817F09362003195DE /* AboutWindowController.xib */,
+				593B4E0B17F0A2BD003195DE /* PreferencesController.h */,
+				593B4E0C17F0A2BD003195DE /* PreferencesController.m */,
+				593B4E0D17F0A2BD003195DE /* PreferencesController.xib */,
 				59E5CF2017EC2A9000898135 /* AppDelegate.h */,
 				59E5CF2117EC2A9000898135 /* AppDelegate.m */,
+				59E5CF2317EC2A9000898135 /* MainMenu.xib */,
 				59E5CF4217EC472400898135 /* YubiKey.h */,
 				59E5CF4317EC472400898135 /* YubiKey.m */,
-				59E5CF2317EC2A9000898135 /* MainMenu.xib */,
 				59E5CF2617EC2A9000898135 /* Images.xcassets */,
 				59E5CF1517EC2A9000898135 /* Supporting Files */,
 			);
@@ -260,6 +268,7 @@
 				59E5CF1917EC2A9000898135 /* InfoPlist.strings in Resources */,
 				593B4E0A17F09362003195DE /* AboutWindowController.xib in Resources */,
 				59E5CF2717EC2A9000898135 /* Images.xcassets in Resources */,
+				593B4E0F17F0A2BD003195DE /* PreferencesController.xib in Resources */,
 				59EC128A17ECFAFD00B3C3A6 /* README.md in Resources */,
 				59E5CF2517EC2A9000898135 /* MainMenu.xib in Resources */,
 			);
@@ -280,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				593B4E0E17F0A2BD003195DE /* PreferencesController.m in Sources */,
 				59E5CF2217EC2A9000898135 /* AppDelegate.m in Sources */,
 				593B4E0917F09362003195DE /* AboutWindowController.m in Sources */,
 				59E5CF4417EC472400898135 /* YubiKey.m in Sources */,
