@@ -32,8 +32,8 @@
 
 -(void)findDevice;
 -(id)init;
--(void)action:(NSString *)action;
--(void)enable;
--(void)disable;
+-(BOOL)action:(NSString *)action;
+-(BOOL)enable;
+-(BOOL)disable;
 
 @end

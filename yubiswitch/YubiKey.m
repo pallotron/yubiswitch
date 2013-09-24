@@ -32,13 +32,12 @@
     return self;
 }
 
--(void)raiseAlertWindowAndQuit:(NSString*) message {
+-(void)raiseAlertWindow:(NSString*) message {
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:@"Quit"];
+    [alert addButtonWithTitle:@"OK"];
     [alert setAlertStyle:NSWarningAlertStyle];
     [alert setMessageText:message];
     [alert runModal];
-    [[NSApplication sharedApplication] terminate:self];
 }
 
 -(void)findDevice {
@@ -66,8 +65,10 @@
                                  matchingDictionary, &iterator);
     usbRef = IOIteratorNext(iterator);
     if (usbRef == 0) {
-        [self raiseAlertWindowAndQuit:@"Can'f find yubiKey. "
-         "Check if it's plugged in then launch me again"];
+        [self raiseAlertWindow:@"Can't find YubiKey. "
+         "Check if it's plugged in then retry."];
+        usbDevice = NULL;
+        return;
     }
     // TODO: deal with multiple retries?
     IOObjectRelease(iterator);
@@ -83,31 +84,43 @@
     (*plugin)->Release(plugin);
 }
 
--(void)action:(NSString *)action {
-    IOReturn ret;
-    ret = (*usbDevice)->USBDeviceOpen(usbDevice);
-    if (ret == kIOReturnSuccess) {
-        
-    } else if ( ret == kIOReturnExclusiveAccess) {}
-    else {
-        [self raiseAlertWindowAndQuit:@"Can't open Yubikey device!"];
+-(BOOL)action:(NSString *)action {
+    if (usbDevice == NULL) {
+        [self findDevice];
     }
-    UInt8 config = 0;
-    if ([action isEqualToString:@"enable"]) {
-        config = 1;
-    } else if ([action isEqualToString:@"disable"]) {
-        config = 0;
+    if (usbDevice != NULL) {
+        IOReturn ret;
+        ret = (*usbDevice)->USBDeviceOpen(usbDevice);
+        if (ret == kIOReturnSuccess) {
+            
+        } else if ( ret == kIOReturnExclusiveAccess) {}
+        else {
+            [self raiseAlertWindow:@"Can't open Yubikey device! Check if"
+             " it's pluggin then retry."];
+            (*usbDevice)->USBDeviceClose(usbDevice);
+            usbDevice = NULL;
+            return FALSE;
+        }
+        UInt8 config = 0;
+        if ([action isEqualToString:@"enable"]) {
+            config = 1;
+        } else if ([action isEqualToString:@"disable"]) {
+            config = 0;
+        }
+        (*usbDevice)->SetConfiguration(usbDevice, config);
+        (*usbDevice)->USBDeviceClose(usbDevice);
+    } else {
+        return FALSE;
     }
-    (*usbDevice)->SetConfiguration(usbDevice, config);
-    (*usbDevice)->USBDeviceClose(usbDevice);
+    return TRUE;
 }
 
--(void)enable {
-    [self action:@"enable"];
+-(BOOL)enable {
+    return [self action:@"enable"];
 }
 
--(void)disable {
-    [self action:@"disable"];
+-(BOOL)disable {
+    return [self action:@"disable"];
 }
 
 @end

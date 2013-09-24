@@ -83,20 +83,25 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,
 }
 
 -(IBAction)toggle:(id)sender {
+    BOOL res;
     if (isEnabled == true) {
-        [yk disable];
-        [statusItem setToolTip:(@"YubiKey disabled")];
-        [statusItem setImage:[NSImage imageNamed:@"ico_disabled"]];
-        isEnabled = false;
-        [[statusMenu itemAtIndex:0] setState:0];
-        [self notify:@"YubiKey disabled"];
+        res = [yk disable];
+        if (res == TRUE) {
+            [statusItem setToolTip:(@"YubiKey disabled")];
+            [statusItem setImage:[NSImage imageNamed:@"ico_disabled"]];
+            isEnabled = false;
+            [[statusMenu itemAtIndex:0] setState:0];
+            [self notify:@"YubiKey disabled"];
+        }
     } else {
-        [yk enable];
-        [statusItem setToolTip:(@"YubiKey enabled")];
-        [statusItem setImage:[NSImage imageNamed:@"ico_enabled"]];
-        isEnabled = true;
-        [[statusMenu itemAtIndex:0] setState:1];
-        [self notify:@"YubiKey enabled"];
+        res = [yk enable];
+        if (res == TRUE) {
+            [statusItem setToolTip:(@"YubiKey enabled")];
+            [statusItem setImage:[NSImage imageNamed:@"ico_enabled"]];
+            isEnabled = true;
+            [[statusMenu itemAtIndex:0] setState:1];
+            [self notify:@"YubiKey enabled"];
+        }
     }
 }
 
