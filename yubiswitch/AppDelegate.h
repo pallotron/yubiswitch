@@ -24,6 +24,7 @@
 
 #import "YubiKey.h"
 #import "AboutWindowController.h"
+#import "PreferencesController.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet NSMenu *statusMenu;
@@ -32,12 +33,14 @@
     YubiKey* yk;
     NSUserNotification *notification;
     AboutWindowController* aboutwc;
+    PreferencesController* prefwc;
 }
 
 @property (assign) IBOutlet NSWindow *window;
 -(IBAction)toggle:(id)sender;
 -(IBAction)quit:(id)sender;
 -(IBAction)about:(id)sender;
+-(IBAction)pref:(id)sender;
 -(void)notify:(NSString *)msg;
 
 @end

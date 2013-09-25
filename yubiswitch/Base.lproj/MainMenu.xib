@@ -31,6 +31,9 @@
                 </menuItem>
                 <menuItem title="Preferences..." id="ZbY-4K-DDd">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="pref:" target="494" id="NoJ-2P-EAm"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="aPh-QD-f9O"/>
                 <menuItem title="About YubiSwitch" id="5yW-Sr-JES">

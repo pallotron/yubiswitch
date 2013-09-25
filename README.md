@@ -23,10 +23,13 @@ Notification Centre. 10.8.x and above would do it.
 TODO and future plans
 =====================
 
-* Feature: lock computer when yubikey is removed
+* Feature: lock computer when yubikey is removed (use
+IOServiceAddMatchingNotification in IOKit?)
 * Make hotkey configurable via configuration window, currently it's static and
 it is cmd-Y
 * Support more yubikeys nano on multiple USB slots
+* Use NSNotificationCenter to notify other classes (ie AppDelegate and YubiKey)
+when user preferences are changed
 
 Create DMG
 ==========

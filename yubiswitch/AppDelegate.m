@@ -22,8 +22,28 @@
 #import "AppDelegate.h"
 #import "AboutWindowController.h"
 
+// This is the main class, responsible for the status bar icon and general
+// application behavior
+
 @implementation AppDelegate
 @synthesize window;
+
+-(id)init {
+    self = [super init];
+    if (self) {
+        // Set default values for preferences, load it from
+        // DefaultPreferences.plist file
+        NSString *defaultPrefsFile = [[NSBundle mainBundle]
+                                     pathForResource:@"DefaultPreferences"
+                                     ofType:@"plist"];
+        NSDictionary
+            *defaultPrefs = [NSDictionary
+                             dictionaryWithContentsOfFile:defaultPrefsFile];
+        
+        [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPrefs];
+    }
+    return self;
+}
 
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     yk = [[YubiKey alloc] init];
@@ -32,6 +52,8 @@
     [self notify:@"YubiKey disabled"];
     aboutwc = [[AboutWindowController alloc]
                initWithWindowNibName:@"AboutWindowController"];
+    prefwc = [[PreferencesController alloc]
+              initWithWindowNibName:@"PreferencesController"];
 }
 
 -(void)awakeFromNib {
@@ -110,6 +132,13 @@ OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,
     [[aboutwc window] setOrderedIndex:0];
     [NSApp activateIgnoringOtherApps:YES];
     [aboutwc showWindow:self];
+}
+
+-(IBAction)pref:(id)sender {
+    [[prefwc window] makeKeyAndOrderFront:self];
+    [[prefwc window] setOrderedIndex:0];
+    [NSApp activateIgnoringOtherApps:YES];
+    [prefwc showWindow:self];
 }
 
 -(IBAction)quit:(id)sender {

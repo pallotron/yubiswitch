@@ -21,6 +21,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PreferencesController : NSWindowController
+@interface PreferencesController : NSWindowController {
+    NSUserDefaultsController *controller;
+}
+
+-(IBAction)OKButton:(id)sender;
+-(IBAction)CancelButton:(id)sender;
+-(IBAction)SetDefaultsButton:(id)sender;
 
 @end

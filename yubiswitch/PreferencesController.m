@@ -32,8 +32,35 @@
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
+        controller = [NSUserDefaultsController sharedUserDefaultsController];
+        NSString *defaultPrefsFile = [[NSBundle mainBundle]
+                                      pathForResource:@"DefaultPreferences"
+                                      ofType:@"plist"];
+        NSDictionary *defaultPrefs = [NSDictionary
+                                dictionaryWithContentsOfFile:defaultPrefsFile];
+        
+        [controller setInitialValues:defaultPrefs];
+        [controller setAppliesImmediately:FALSE];
     }
     return self;
+}
+
+-(IBAction)SetDefaultsButton:(id)sender {
+    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults]
+     removePersistentDomainForName:domainName];
+    [controller revertToInitialValues:self];
+}
+
+-(IBAction)OKButton:(id)sender {
+    [controller save:self];
+    // TODO: notify YubiKey and AppDelegate classes
+    [[self window] close];
+}
+
+-(IBAction)CancelButton:(id)sender {
+    // TODO: notify YubiKey and AppDelegate classes
+    [[self window] close];
 }
 
 - (void)windowDidLoad

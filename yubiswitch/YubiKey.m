@@ -20,9 +20,14 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 #import "YubiKey.h"
 
+// This class is responsible for communicating with the USB device.
+
 @implementation YubiKey
+
+// TODO: http://stackoverflow.com/questions/11628195/iokit-device-adding-removal-notifications-only-fire-once/16488337#16488337
 
 -(id)init {
     if (self = [super init]) {
@@ -43,8 +48,14 @@
 -(void)findDevice {
     
     CFMutableDictionaryRef matchingDictionary = NULL;
-    SInt32 idVendor = 0x1050;
-    SInt32 idProduct = 0x0010;
+    NSString* value = [[NSUserDefaults standardUserDefaults]
+                       stringForKey:@"hotKeyVendorID"];
+    unsigned int idVendor = 0;
+    [[NSScanner scannerWithString:value] scanHexInt:&idVendor];
+    unsigned int idProduct = 0;
+    value = [[NSUserDefaults standardUserDefaults]
+             stringForKey:@"hotKeyProductID"];
+    [[NSScanner scannerWithString:value] scanHexInt:&idProduct];
     io_iterator_t iterator = 0;
     io_service_t usbRef;
     SInt32 score;
