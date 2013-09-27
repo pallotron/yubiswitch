@@ -24,7 +24,6 @@
 
 @interface PreferencesController : NSWindowController {
     NSUserDefaultsController *controller;
-    SRRecorderControl *SRrecorder;
 }
 
 -(IBAction)OKButton:(id)sender;

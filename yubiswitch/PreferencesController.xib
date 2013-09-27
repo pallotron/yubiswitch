@@ -213,16 +213,13 @@ Gw
                             <action selector="SetDefaultsButton:" target="-1" id="h4K-jI-o4O"/>
                         </connections>
                     </button>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n1l-J2-d5p" customClass="SRRecorderControl">
-                        <rect key="frame" x="270" y="27" width="96" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </customView>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="eUL-Mx-8k1" id="kbg-Aq-4gW"/>
             </connections>
         </window>
+        <customObject id="Dvl-EH-hYO" customClass="PreferencesController"/>
         <userDefaultsController representsSharedInstance="YES" id="eUL-Mx-8k1">
             <connections>
                 <outlet property="window" destination="1" id="zpz-bC-Ceb"/>

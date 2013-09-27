@@ -13,60 +13,8 @@
 		593B4E0F17F0A2BD003195DE /* PreferencesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 593B4E0D17F0A2BD003195DE /* PreferencesController.xib */; };
 		594DCCE717EF99D400D9C2E2 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 594DCCE617EF99D400D9C2E2 /* LICENSE */; };
 		598AF34517F380C4008165C6 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 598AF34417F380C4008165C6 /* DefaultPreferences.plist */; };
-		599CF3A817F49D5600056670 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 599CF34B17F49D5600056670 /* .gitignore */; };
-		599CF3A917F49D5600056670 /* PTHotKey+ShortcutRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 599CF34E17F49D5600056670 /* PTHotKey+ShortcutRecorder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		599CF3AA17F49D5600056670 /* PTHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 599CF35017F49D5600056670 /* PTHotKey.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		599CF3AB17F49D5600056670 /* PTHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 599CF35217F49D5600056670 /* PTHotKeyCenter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		599CF3AC17F49D5600056670 /* PTKeyCodeTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = 599CF35417F49D5600056670 /* PTKeyCodeTranslator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		599CF3AD17F49D5600056670 /* PTKeyCombo.m in Sources */ = {isa = PBXBuildFile; fileRef = 599CF35617F49D5600056670 /* PTKeyCombo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		599CF3AE17F49D5600056670 /* PTHotKey-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 599CF35717F49D5600056670 /* PTHotKey-Info.plist */; };
-		599CF3AF17F49D5600056670 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 599CF35817F49D5600056670 /* README.md */; };
-		599CF3B017F49D5600056670 /* ShortcutRecorder.strings in Resources */ = {isa = PBXBuildFile; fileRef = 599CF35A17F49D5600056670 /* ShortcutRecorder.strings */; };
-		599CF3B117F49D5600056670 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 599CF36717F49D5600056670 /* LICENSE.txt */; };
-		599CF3B217F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF36F17F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-left.png */; };
-		599CF3B317F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37017F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-left@2x.png */; };
-		599CF3B417F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37117F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-middle.png */; };
-		599CF3B517F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37217F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-middle@2x.png */; };
-		599CF3B617F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37317F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-right.png */; };
-		599CF3B717F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37417F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-right@2x.png */; };
-		599CF3B817F49D5600056670 /* shortcut-recorder-bezel-editing-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37517F49D5600056670 /* shortcut-recorder-bezel-editing-left.png */; };
-		599CF3B917F49D5600056670 /* shortcut-recorder-bezel-editing-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37617F49D5600056670 /* shortcut-recorder-bezel-editing-left@2x.png */; };
-		599CF3BA17F49D5600056670 /* shortcut-recorder-bezel-editing-middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37717F49D5600056670 /* shortcut-recorder-bezel-editing-middle.png */; };
-		599CF3BB17F49D5600056670 /* shortcut-recorder-bezel-editing-middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37817F49D5600056670 /* shortcut-recorder-bezel-editing-middle@2x.png */; };
-		599CF3BC17F49D5600056670 /* shortcut-recorder-bezel-editing-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37917F49D5600056670 /* shortcut-recorder-bezel-editing-right.png */; };
-		599CF3BD17F49D5600056670 /* shortcut-recorder-bezel-editing-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37A17F49D5600056670 /* shortcut-recorder-bezel-editing-right@2x.png */; };
-		599CF3BE17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37B17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-left.png */; };
-		599CF3BF17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37C17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-left@2x.png */; };
-		599CF3C017F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37D17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-middle.png */; };
-		599CF3C117F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37E17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-middle@2x.png */; };
-		599CF3C217F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF37F17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-right.png */; };
-		599CF3C317F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38017F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-right@2x.png */; };
-		599CF3C417F49D5600056670 /* shortcut-recorder-bezel-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38117F49D5600056670 /* shortcut-recorder-bezel-left.png */; };
-		599CF3C517F49D5600056670 /* shortcut-recorder-bezel-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38217F49D5600056670 /* shortcut-recorder-bezel-left@2x.png */; };
-		599CF3C617F49D5600056670 /* shortcut-recorder-bezel-middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38317F49D5600056670 /* shortcut-recorder-bezel-middle.png */; };
-		599CF3C717F49D5600056670 /* shortcut-recorder-bezel-middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38417F49D5600056670 /* shortcut-recorder-bezel-middle@2x.png */; };
-		599CF3C817F49D5600056670 /* shortcut-recorder-bezel-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38517F49D5600056670 /* shortcut-recorder-bezel-right.png */; };
-		599CF3C917F49D5600056670 /* shortcut-recorder-bezel-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38617F49D5600056670 /* shortcut-recorder-bezel-right@2x.png */; };
-		599CF3CA17F49D5600056670 /* shortcut-recorder-clear-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38717F49D5600056670 /* shortcut-recorder-clear-highlighted.png */; };
-		599CF3CB17F49D5600056670 /* shortcut-recorder-clear-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38817F49D5600056670 /* shortcut-recorder-clear-highlighted@2x.png */; };
-		599CF3CC17F49D5600056670 /* shortcut-recorder-clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38917F49D5600056670 /* shortcut-recorder-clear.png */; };
-		599CF3CD17F49D5600056670 /* shortcut-recorder-clear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38A17F49D5600056670 /* shortcut-recorder-clear@2x.png */; };
-		599CF3CE17F49D5600056670 /* shortcut-recorder-snapback-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38B17F49D5600056670 /* shortcut-recorder-snapback-highlighted.png */; };
-		599CF3CF17F49D5600056670 /* shortcut-recorder-snapback-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38C17F49D5600056670 /* shortcut-recorder-snapback-highlighted@2x.png */; };
-		599CF3D017F49D5600056670 /* shortcut-recorder-snapback.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38D17F49D5600056670 /* shortcut-recorder-snapback.png */; };
-		599CF3D117F49D5600056670 /* shortcut-recorder-snapback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599CF38E17F49D5600056670 /* shortcut-recorder-snapback@2x.png */; };
-		599CF3D217F49D5600056670 /* ShortcutRecorder-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 599CF39417F49D5600056670 /* ShortcutRecorder-Info.plist */; };
-		599CF3D317F49D5600056670 /* SRCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 599CF39B17F49D5600056670 /* SRCommon.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		599CF3D417F49D5600056670 /* SRKeyCodeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 599CF39D17F49D5600056670 /* SRKeyCodeTransformer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		599CF3D517F49D5600056670 /* SRKeyEquivalentModifierMaskTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 599CF39F17F49D5600056670 /* SRKeyEquivalentModifierMaskTransformer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		599CF3D617F49D5600056670 /* SRKeyEquivalentTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 599CF3A117F49D5600056670 /* SRKeyEquivalentTransformer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		599CF3D717F49D5600056670 /* SRModifierFlagsTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 599CF3A317F49D5600056670 /* SRModifierFlagsTransformer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		599CF3D817F49D5600056670 /* SRRecorderControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 599CF3A517F49D5600056670 /* SRRecorderControl.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		599CF3D917F49D5600056670 /* SRValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 599CF3A717F49D5600056670 /* SRValidator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		599CF3E017F49D8400056670 /* PTHotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599CF3DF17F49D5600056670 /* PTHotKey.framework */; };
-		599CF3E117F49D8400056670 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599CF3DD17F49D5600056670 /* ShortcutRecorder.framework */; };
-		59C0616C17EED6AB00D3EE79 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C0616B17EED6AB00D3EE79 /* Carbon.framework */; };
 		59C0616D17EED74400D3EE79 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E5CF0E17EC2A9000898135 /* Cocoa.framework */; };
+		59CF662417F569B400A08E40 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C0616B17EED6AB00D3EE79 /* Carbon.framework */; };
 		59E5CF1917EC2A9000898135 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59E5CF1717EC2A9000898135 /* InfoPlist.strings */; };
 		59E5CF1B17EC2A9000898135 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E5CF1A17EC2A9000898135 /* main.m */; };
 		59E5CF2217EC2A9000898135 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E5CF2117EC2A9000898135 /* AppDelegate.m */; };
@@ -82,20 +30,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		599CF3DC17F49D5600056670 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 599CF39617F49D5600056670 /* ShortcutRecorder.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 939837800DA42965007F53F3;
-			remoteInfo = ShortcutRecorder.framework;
-		};
-		599CF3DE17F49D5600056670 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 599CF39617F49D5600056670 /* ShortcutRecorder.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E273122E1349EC9000A84433;
-			remoteInfo = PTHotKey.framework;
-		};
 		59E5CF3017EC2A9000898135 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 59E5CF0317EC2A9000898135 /* Project object */;
@@ -114,94 +48,6 @@
 		593B4E0D17F0A2BD003195DE /* PreferencesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesController.xib; sourceTree = "<group>"; };
 		594DCCE617EF99D400D9C2E2 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		598AF34417F380C4008165C6 /* DefaultPreferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPreferences.plist; sourceTree = "<group>"; };
-		599CF34B17F49D5600056670 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		599CF34D17F49D5600056670 /* PTHotKey+ShortcutRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PTHotKey+ShortcutRecorder.h"; sourceTree = "<group>"; };
-		599CF34E17F49D5600056670 /* PTHotKey+ShortcutRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PTHotKey+ShortcutRecorder.m"; sourceTree = "<group>"; };
-		599CF34F17F49D5600056670 /* PTHotKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHotKey.h; sourceTree = "<group>"; };
-		599CF35017F49D5600056670 /* PTHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHotKey.m; sourceTree = "<group>"; };
-		599CF35117F49D5600056670 /* PTHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHotKeyCenter.h; sourceTree = "<group>"; };
-		599CF35217F49D5600056670 /* PTHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHotKeyCenter.m; sourceTree = "<group>"; };
-		599CF35317F49D5600056670 /* PTKeyCodeTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKeyCodeTranslator.h; sourceTree = "<group>"; };
-		599CF35417F49D5600056670 /* PTKeyCodeTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKeyCodeTranslator.m; sourceTree = "<group>"; };
-		599CF35517F49D5600056670 /* PTKeyCombo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKeyCombo.h; sourceTree = "<group>"; };
-		599CF35617F49D5600056670 /* PTKeyCombo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKeyCombo.m; sourceTree = "<group>"; };
-		599CF35717F49D5600056670 /* PTHotKey-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PTHotKey-Info.plist"; sourceTree = "<group>"; };
-		599CF35817F49D5600056670 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		599CF35B17F49D5600056670 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF35C17F49D5600056670 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF35D17F49D5600056670 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF35E17F49D5600056670 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF35F17F49D5600056670 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF36017F49D5600056670 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF36117F49D5600056670 /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
-		599CF36217F49D5600056670 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF36317F49D5600056670 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF36417F49D5600056670 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF36517F49D5600056670 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF36617F49D5600056670 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF36717F49D5600056670 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		599CF36817F49D5600056670 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF36917F49D5600056670 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF36A17F49D5600056670 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF36B17F49D5600056670 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
-		599CF36C17F49D5600056670 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF36D17F49D5600056670 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF36E17F49D5600056670 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF36F17F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-blue-highlighted-left.png"; sourceTree = "<group>"; };
-		599CF37017F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-blue-highlighted-left@2x.png"; sourceTree = "<group>"; };
-		599CF37117F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-blue-highlighted-middle.png"; sourceTree = "<group>"; };
-		599CF37217F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-blue-highlighted-middle@2x.png"; sourceTree = "<group>"; };
-		599CF37317F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-blue-highlighted-right.png"; sourceTree = "<group>"; };
-		599CF37417F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-blue-highlighted-right@2x.png"; sourceTree = "<group>"; };
-		599CF37517F49D5600056670 /* shortcut-recorder-bezel-editing-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-editing-left.png"; sourceTree = "<group>"; };
-		599CF37617F49D5600056670 /* shortcut-recorder-bezel-editing-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-editing-left@2x.png"; sourceTree = "<group>"; };
-		599CF37717F49D5600056670 /* shortcut-recorder-bezel-editing-middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-editing-middle.png"; sourceTree = "<group>"; };
-		599CF37817F49D5600056670 /* shortcut-recorder-bezel-editing-middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-editing-middle@2x.png"; sourceTree = "<group>"; };
-		599CF37917F49D5600056670 /* shortcut-recorder-bezel-editing-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-editing-right.png"; sourceTree = "<group>"; };
-		599CF37A17F49D5600056670 /* shortcut-recorder-bezel-editing-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-editing-right@2x.png"; sourceTree = "<group>"; };
-		599CF37B17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-graphite-highlight-mask-left.png"; sourceTree = "<group>"; };
-		599CF37C17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-graphite-highlight-mask-left@2x.png"; sourceTree = "<group>"; };
-		599CF37D17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-graphite-highlight-mask-middle.png"; sourceTree = "<group>"; };
-		599CF37E17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-graphite-highlight-mask-middle@2x.png"; sourceTree = "<group>"; };
-		599CF37F17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-graphite-highlight-mask-right.png"; sourceTree = "<group>"; };
-		599CF38017F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-graphite-highlight-mask-right@2x.png"; sourceTree = "<group>"; };
-		599CF38117F49D5600056670 /* shortcut-recorder-bezel-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-left.png"; sourceTree = "<group>"; };
-		599CF38217F49D5600056670 /* shortcut-recorder-bezel-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-left@2x.png"; sourceTree = "<group>"; };
-		599CF38317F49D5600056670 /* shortcut-recorder-bezel-middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-middle.png"; sourceTree = "<group>"; };
-		599CF38417F49D5600056670 /* shortcut-recorder-bezel-middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-middle@2x.png"; sourceTree = "<group>"; };
-		599CF38517F49D5600056670 /* shortcut-recorder-bezel-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-right.png"; sourceTree = "<group>"; };
-		599CF38617F49D5600056670 /* shortcut-recorder-bezel-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-bezel-right@2x.png"; sourceTree = "<group>"; };
-		599CF38717F49D5600056670 /* shortcut-recorder-clear-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-clear-highlighted.png"; sourceTree = "<group>"; };
-		599CF38817F49D5600056670 /* shortcut-recorder-clear-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-clear-highlighted@2x.png"; sourceTree = "<group>"; };
-		599CF38917F49D5600056670 /* shortcut-recorder-clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-clear.png"; sourceTree = "<group>"; };
-		599CF38A17F49D5600056670 /* shortcut-recorder-clear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-clear@2x.png"; sourceTree = "<group>"; };
-		599CF38B17F49D5600056670 /* shortcut-recorder-snapback-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-snapback-highlighted.png"; sourceTree = "<group>"; };
-		599CF38C17F49D5600056670 /* shortcut-recorder-snapback-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-snapback-highlighted@2x.png"; sourceTree = "<group>"; };
-		599CF38D17F49D5600056670 /* shortcut-recorder-snapback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-snapback.png"; sourceTree = "<group>"; };
-		599CF38E17F49D5600056670 /* shortcut-recorder-snapback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shortcut-recorder-snapback@2x.png"; sourceTree = "<group>"; };
-		599CF38F17F49D5600056670 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF39017F49D5600056670 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF39117F49D5600056670 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		599CF39217F49D5600056670 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
-		599CF39317F49D5600056670 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
-		599CF39417F49D5600056670 /* ShortcutRecorder-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ShortcutRecorder-Info.plist"; sourceTree = "<group>"; };
-		599CF39517F49D5600056670 /* ShortcutRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutRecorder.h; sourceTree = "<group>"; };
-		599CF39617F49D5600056670 /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ShortcutRecorder.xcodeproj; sourceTree = "<group>"; };
-		599CF39917F49D5600056670 /* ShortcutRecorder_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutRecorder_Prefix.pch; sourceTree = "<group>"; };
-		599CF39A17F49D5600056670 /* SRCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRCommon.h; sourceTree = "<group>"; };
-		599CF39B17F49D5600056670 /* SRCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRCommon.m; sourceTree = "<group>"; };
-		599CF39C17F49D5600056670 /* SRKeyCodeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRKeyCodeTransformer.h; sourceTree = "<group>"; };
-		599CF39D17F49D5600056670 /* SRKeyCodeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRKeyCodeTransformer.m; sourceTree = "<group>"; };
-		599CF39E17F49D5600056670 /* SRKeyEquivalentModifierMaskTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRKeyEquivalentModifierMaskTransformer.h; sourceTree = "<group>"; };
-		599CF39F17F49D5600056670 /* SRKeyEquivalentModifierMaskTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRKeyEquivalentModifierMaskTransformer.m; sourceTree = "<group>"; };
-		599CF3A017F49D5600056670 /* SRKeyEquivalentTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRKeyEquivalentTransformer.h; sourceTree = "<group>"; };
-		599CF3A117F49D5600056670 /* SRKeyEquivalentTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRKeyEquivalentTransformer.m; sourceTree = "<group>"; };
-		599CF3A217F49D5600056670 /* SRModifierFlagsTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRModifierFlagsTransformer.h; sourceTree = "<group>"; };
-		599CF3A317F49D5600056670 /* SRModifierFlagsTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRModifierFlagsTransformer.m; sourceTree = "<group>"; };
-		599CF3A417F49D5600056670 /* SRRecorderControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRRecorderControl.h; sourceTree = "<group>"; };
-		599CF3A517F49D5600056670 /* SRRecorderControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRRecorderControl.m; sourceTree = "<group>"; };
-		599CF3A617F49D5600056670 /* SRValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRValidator.h; sourceTree = "<group>"; };
-		599CF3A717F49D5600056670 /* SRValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRValidator.m; sourceTree = "<group>"; };
 		59C0616B17EED6AB00D3EE79 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		59E5CF0B17EC2A9000898135 /* yubiswitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yubiswitch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59E5CF0E17EC2A9000898135 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -232,10 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				599CF3E017F49D8400056670 /* PTHotKey.framework in Frameworks */,
-				599CF3E117F49D8400056670 /* ShortcutRecorder.framework in Frameworks */,
+				59CF662417F569B400A08E40 /* Carbon.framework in Frameworks */,
 				59C0616D17EED74400D3EE79 /* Cocoa.framework in Frameworks */,
-				59C0616C17EED6AB00D3EE79 /* Carbon.framework in Frameworks */,
 				59EC128C17ECFEFE00B3C3A6 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,103 +96,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		599CF34A17F49D5600056670 /* ShortcutRecorder */ = {
-			isa = PBXGroup;
-			children = (
-				599CF34B17F49D5600056670 /* .gitignore */,
-				599CF34C17F49D5600056670 /* PTHotKey */,
-				599CF35717F49D5600056670 /* PTHotKey-Info.plist */,
-				599CF35817F49D5600056670 /* README.md */,
-				599CF35917F49D5600056670 /* Resources */,
-				599CF39417F49D5600056670 /* ShortcutRecorder-Info.plist */,
-				599CF39517F49D5600056670 /* ShortcutRecorder.h */,
-				599CF39617F49D5600056670 /* ShortcutRecorder.xcodeproj */,
-				599CF39917F49D5600056670 /* ShortcutRecorder_Prefix.pch */,
-				599CF39A17F49D5600056670 /* SRCommon.h */,
-				599CF39B17F49D5600056670 /* SRCommon.m */,
-				599CF39C17F49D5600056670 /* SRKeyCodeTransformer.h */,
-				599CF39D17F49D5600056670 /* SRKeyCodeTransformer.m */,
-				599CF39E17F49D5600056670 /* SRKeyEquivalentModifierMaskTransformer.h */,
-				599CF39F17F49D5600056670 /* SRKeyEquivalentModifierMaskTransformer.m */,
-				599CF3A017F49D5600056670 /* SRKeyEquivalentTransformer.h */,
-				599CF3A117F49D5600056670 /* SRKeyEquivalentTransformer.m */,
-				599CF3A217F49D5600056670 /* SRModifierFlagsTransformer.h */,
-				599CF3A317F49D5600056670 /* SRModifierFlagsTransformer.m */,
-				599CF3A417F49D5600056670 /* SRRecorderControl.h */,
-				599CF3A517F49D5600056670 /* SRRecorderControl.m */,
-				599CF3A617F49D5600056670 /* SRValidator.h */,
-				599CF3A717F49D5600056670 /* SRValidator.m */,
-			);
-			path = ShortcutRecorder;
-			sourceTree = SOURCE_ROOT;
-		};
-		599CF34C17F49D5600056670 /* PTHotKey */ = {
-			isa = PBXGroup;
-			children = (
-				599CF34D17F49D5600056670 /* PTHotKey+ShortcutRecorder.h */,
-				599CF34E17F49D5600056670 /* PTHotKey+ShortcutRecorder.m */,
-				599CF34F17F49D5600056670 /* PTHotKey.h */,
-				599CF35017F49D5600056670 /* PTHotKey.m */,
-				599CF35117F49D5600056670 /* PTHotKeyCenter.h */,
-				599CF35217F49D5600056670 /* PTHotKeyCenter.m */,
-				599CF35317F49D5600056670 /* PTKeyCodeTranslator.h */,
-				599CF35417F49D5600056670 /* PTKeyCodeTranslator.m */,
-				599CF35517F49D5600056670 /* PTKeyCombo.h */,
-				599CF35617F49D5600056670 /* PTKeyCombo.m */,
-			);
-			path = PTHotKey;
-			sourceTree = "<group>";
-		};
-		599CF35917F49D5600056670 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				599CF35A17F49D5600056670 /* ShortcutRecorder.strings */,
-				599CF36717F49D5600056670 /* LICENSE.txt */,
-				599CF36F17F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-left.png */,
-				599CF37017F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-left@2x.png */,
-				599CF37117F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-middle.png */,
-				599CF37217F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-middle@2x.png */,
-				599CF37317F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-right.png */,
-				599CF37417F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-right@2x.png */,
-				599CF37517F49D5600056670 /* shortcut-recorder-bezel-editing-left.png */,
-				599CF37617F49D5600056670 /* shortcut-recorder-bezel-editing-left@2x.png */,
-				599CF37717F49D5600056670 /* shortcut-recorder-bezel-editing-middle.png */,
-				599CF37817F49D5600056670 /* shortcut-recorder-bezel-editing-middle@2x.png */,
-				599CF37917F49D5600056670 /* shortcut-recorder-bezel-editing-right.png */,
-				599CF37A17F49D5600056670 /* shortcut-recorder-bezel-editing-right@2x.png */,
-				599CF37B17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-left.png */,
-				599CF37C17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-left@2x.png */,
-				599CF37D17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-middle.png */,
-				599CF37E17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-middle@2x.png */,
-				599CF37F17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-right.png */,
-				599CF38017F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-right@2x.png */,
-				599CF38117F49D5600056670 /* shortcut-recorder-bezel-left.png */,
-				599CF38217F49D5600056670 /* shortcut-recorder-bezel-left@2x.png */,
-				599CF38317F49D5600056670 /* shortcut-recorder-bezel-middle.png */,
-				599CF38417F49D5600056670 /* shortcut-recorder-bezel-middle@2x.png */,
-				599CF38517F49D5600056670 /* shortcut-recorder-bezel-right.png */,
-				599CF38617F49D5600056670 /* shortcut-recorder-bezel-right@2x.png */,
-				599CF38717F49D5600056670 /* shortcut-recorder-clear-highlighted.png */,
-				599CF38817F49D5600056670 /* shortcut-recorder-clear-highlighted@2x.png */,
-				599CF38917F49D5600056670 /* shortcut-recorder-clear.png */,
-				599CF38A17F49D5600056670 /* shortcut-recorder-clear@2x.png */,
-				599CF38B17F49D5600056670 /* shortcut-recorder-snapback-highlighted.png */,
-				599CF38C17F49D5600056670 /* shortcut-recorder-snapback-highlighted@2x.png */,
-				599CF38D17F49D5600056670 /* shortcut-recorder-snapback.png */,
-				599CF38E17F49D5600056670 /* shortcut-recorder-snapback@2x.png */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		599CF39717F49D5600056670 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				599CF3DD17F49D5600056670 /* ShortcutRecorder.framework */,
-				599CF3DF17F49D5600056670 /* PTHotKey.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		59E5CF0217EC2A9000898135 = {
 			isa = PBXGroup;
 			children = (
@@ -396,7 +143,6 @@
 		59E5CF1417EC2A9000898135 /* yubiswitch */ = {
 			isa = PBXGroup;
 			children = (
-				599CF34A17F49D5600056670 /* ShortcutRecorder */,
 				593B4E0617F09362003195DE /* AboutWindowController.h */,
 				593B4E0717F09362003195DE /* AboutWindowController.m */,
 				593B4E0817F09362003195DE /* AboutWindowController.xib */,
@@ -532,12 +278,6 @@
 			mainGroup = 59E5CF0217EC2A9000898135;
 			productRefGroup = 59E5CF0C17EC2A9000898135 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 599CF39717F49D5600056670 /* Products */;
-					ProjectRef = 599CF39617F49D5600056670 /* ShortcutRecorder.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				59E5CF0A17EC2A9000898135 /* yubiswitch */,
@@ -546,73 +286,18 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		599CF3DD17F49D5600056670 /* ShortcutRecorder.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ShortcutRecorder.framework;
-			remoteRef = 599CF3DC17F49D5600056670 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		599CF3DF17F49D5600056670 /* PTHotKey.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = PTHotKey.framework;
-			remoteRef = 599CF3DE17F49D5600056670 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		59E5CF0917EC2A9000898135 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				599CF3C217F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-right.png in Resources */,
-				599CF3B317F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-left@2x.png in Resources */,
-				599CF3D217F49D5600056670 /* ShortcutRecorder-Info.plist in Resources */,
 				594DCCE717EF99D400D9C2E2 /* LICENSE in Resources */,
 				598AF34517F380C4008165C6 /* DefaultPreferences.plist in Resources */,
-				599CF3B517F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-middle@2x.png in Resources */,
-				599CF3CD17F49D5600056670 /* shortcut-recorder-clear@2x.png in Resources */,
-				599CF3B417F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-middle.png in Resources */,
-				599CF3C517F49D5600056670 /* shortcut-recorder-bezel-left@2x.png in Resources */,
-				599CF3C917F49D5600056670 /* shortcut-recorder-bezel-right@2x.png in Resources */,
-				599CF3B617F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-right.png in Resources */,
-				599CF3C017F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-middle.png in Resources */,
-				599CF3B817F49D5600056670 /* shortcut-recorder-bezel-editing-left.png in Resources */,
-				599CF3D017F49D5600056670 /* shortcut-recorder-snapback.png in Resources */,
 				59E5CF1917EC2A9000898135 /* InfoPlist.strings in Resources */,
 				593B4E0A17F09362003195DE /* AboutWindowController.xib in Resources */,
 				59E5CF2717EC2A9000898135 /* Images.xcassets in Resources */,
-				599CF3C617F49D5600056670 /* shortcut-recorder-bezel-middle.png in Resources */,
-				599CF3BE17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-left.png in Resources */,
-				599CF3CB17F49D5600056670 /* shortcut-recorder-clear-highlighted@2x.png in Resources */,
-				599CF3B117F49D5600056670 /* LICENSE.txt in Resources */,
-				599CF3BF17F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-left@2x.png in Resources */,
 				593B4E0F17F0A2BD003195DE /* PreferencesController.xib in Resources */,
-				599CF3AE17F49D5600056670 /* PTHotKey-Info.plist in Resources */,
-				599CF3B717F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-right@2x.png in Resources */,
-				599CF3C417F49D5600056670 /* shortcut-recorder-bezel-left.png in Resources */,
-				599CF3C717F49D5600056670 /* shortcut-recorder-bezel-middle@2x.png in Resources */,
-				599CF3BB17F49D5600056670 /* shortcut-recorder-bezel-editing-middle@2x.png in Resources */,
-				599CF3CC17F49D5600056670 /* shortcut-recorder-clear.png in Resources */,
-				599CF3BD17F49D5600056670 /* shortcut-recorder-bezel-editing-right@2x.png in Resources */,
 				59EC128A17ECFAFD00B3C3A6 /* README.md in Resources */,
-				599CF3B217F49D5600056670 /* shortcut-recorder-bezel-blue-highlighted-left.png in Resources */,
-				599CF3C317F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-right@2x.png in Resources */,
-				599CF3C817F49D5600056670 /* shortcut-recorder-bezel-right.png in Resources */,
-				599CF3A817F49D5600056670 /* .gitignore in Resources */,
-				599CF3C117F49D5600056670 /* shortcut-recorder-bezel-graphite-highlight-mask-middle@2x.png in Resources */,
-				599CF3CE17F49D5600056670 /* shortcut-recorder-snapback-highlighted.png in Resources */,
-				599CF3CF17F49D5600056670 /* shortcut-recorder-snapback-highlighted@2x.png in Resources */,
-				599CF3CA17F49D5600056670 /* shortcut-recorder-clear-highlighted.png in Resources */,
-				599CF3AF17F49D5600056670 /* README.md in Resources */,
-				599CF3B017F49D5600056670 /* ShortcutRecorder.strings in Resources */,
-				599CF3D117F49D5600056670 /* shortcut-recorder-snapback@2x.png in Resources */,
-				599CF3B917F49D5600056670 /* shortcut-recorder-bezel-editing-left@2x.png in Resources */,
-				599CF3BA17F49D5600056670 /* shortcut-recorder-bezel-editing-middle.png in Resources */,
-				599CF3BC17F49D5600056670 /* shortcut-recorder-bezel-editing-right.png in Resources */,
 				59E5CF2517EC2A9000898135 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -632,23 +317,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				599CF3D917F49D5600056670 /* SRValidator.m in Sources */,
 				593B4E0E17F0A2BD003195DE /* PreferencesController.m in Sources */,
-				599CF3D717F49D5600056670 /* SRModifierFlagsTransformer.m in Sources */,
-				599CF3A917F49D5600056670 /* PTHotKey+ShortcutRecorder.m in Sources */,
-				599CF3AA17F49D5600056670 /* PTHotKey.m in Sources */,
 				59E5CF2217EC2A9000898135 /* AppDelegate.m in Sources */,
-				599CF3AB17F49D5600056670 /* PTHotKeyCenter.m in Sources */,
 				593B4E0917F09362003195DE /* AboutWindowController.m in Sources */,
-				599CF3D617F49D5600056670 /* SRKeyEquivalentTransformer.m in Sources */,
-				599CF3AD17F49D5600056670 /* PTKeyCombo.m in Sources */,
 				59E5CF4417EC472400898135 /* YubiKey.m in Sources */,
-				599CF3D817F49D5600056670 /* SRRecorderControl.m in Sources */,
-				599CF3D517F49D5600056670 /* SRKeyEquivalentModifierMaskTransformer.m in Sources */,
 				59E5CF1B17EC2A9000898135 /* main.m in Sources */,
-				599CF3D417F49D5600056670 /* SRKeyCodeTransformer.m in Sources */,
-				599CF3D317F49D5600056670 /* SRCommon.m in Sources */,
-				599CF3AC17F49D5600056670 /* PTKeyCodeTranslator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,37 +344,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		599CF35A17F49D5600056670 /* ShortcutRecorder.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				599CF35B17F49D5600056670 /* ca */,
-				599CF35C17F49D5600056670 /* cs */,
-				599CF35D17F49D5600056670 /* da */,
-				599CF35E17F49D5600056670 /* de */,
-				599CF35F17F49D5600056670 /* el */,
-				599CF36017F49D5600056670 /* en */,
-				599CF36117F49D5600056670 /* es-MX */,
-				599CF36217F49D5600056670 /* es */,
-				599CF36317F49D5600056670 /* fr */,
-				599CF36417F49D5600056670 /* it */,
-				599CF36517F49D5600056670 /* ja */,
-				599CF36617F49D5600056670 /* ko */,
-				599CF36817F49D5600056670 /* nb */,
-				599CF36917F49D5600056670 /* nl */,
-				599CF36A17F49D5600056670 /* pl */,
-				599CF36B17F49D5600056670 /* pt-BR */,
-				599CF36C17F49D5600056670 /* pt */,
-				599CF36D17F49D5600056670 /* ro */,
-				599CF36E17F49D5600056670 /* ru */,
-				599CF38F17F49D5600056670 /* sk */,
-				599CF39017F49D5600056670 /* sv */,
-				599CF39117F49D5600056670 /* th */,
-				599CF39217F49D5600056670 /* zh-Hans */,
-				599CF39317F49D5600056670 /* zh-Hant */,
-			);
-			name = ShortcutRecorder.strings;
-			sourceTree = "<group>";
-		};
 		59E5CF1717EC2A9000898135 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -806,6 +448,7 @@
 				GCC_PREFIX_HEADER = "yubiswitch/yubiswitch-Prefix.pch";
 				INFOPLIST_FILE = "yubiswitch/yubiswitch-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks ";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -820,6 +463,7 @@
 				GCC_PREFIX_HEADER = "yubiswitch/yubiswitch-Prefix.pch";
 				INFOPLIST_FILE = "yubiswitch/yubiswitch-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks ";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

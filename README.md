@@ -42,6 +42,10 @@ Dependencies
 ============
 
 * ShortcutRecorder: https://github.com/Kentzo/ShortcutRecorder
+* Add it as git submodule using command:
+
+    git submodule add git://github.com/Kentzo/ShortcutRecorder.git
+
 * See [this helpful page](https://github.com/Kentzo/ShortcutRecorder) for
 instructions on how to set up your Xcode environment
 

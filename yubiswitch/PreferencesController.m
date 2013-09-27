@@ -31,7 +31,6 @@
 {
     self = [super initWithWindow:window];
     if (self) {
-        // Initialization code here.
         controller = [NSUserDefaultsController sharedUserDefaultsController];
         NSString *defaultPrefsFile = [[NSBundle mainBundle]
                                       pathForResource:@"DefaultPreferences"
@@ -41,7 +40,6 @@
         
         [controller setInitialValues:defaultPrefs];
         [controller setAppliesImmediately:FALSE];
-        SRrecorder = [[SRRecorderControl alloc] init];
     }
     return self;
 }
@@ -55,7 +53,6 @@
 
 -(IBAction)OKButton:(id)sender {
     [controller save:self];
-    // TODO: notify YubiKey and AppDelegate classes
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"changeDefaultsPrefs" object:self];
     [[self window] close];
