@@ -33,6 +33,13 @@
     if (self = [super init]) {
         usbDevice = NULL;
         [self findDevice];
+        // Listen to notifications with name "changeDefaultsPrefs" and associate
+        // notificationReloadHandler to it, this is the mechanism used to
+        // communicate to this that UserDefaults preferences have changed,
+        // typically when user hits the OK button in the Preference window.
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self selector:@selector(notificationReloadHandler:)
+         name:@"changeDefaultsPrefs" object:nil];
     }
     return self;
 }
@@ -43,6 +50,17 @@
     [alert setAlertStyle:NSWarningAlertStyle];
     [alert setMessageText:message];
     [alert runModal];
+}
+
+-(void)notificationReloadHandler:(NSNotification *) notification {
+    if ([[notification name] isEqualToString:@"changeDefaultsPrefs"]) {
+        NSLog(@"reloading USB preferences");
+        if (usbDevice != NULL) {
+            (*usbDevice)->USBDeviceClose(usbDevice);
+            usbDevice = NULL;
+        }
+        [self findDevice];
+    }
 }
 
 -(void)findDevice {

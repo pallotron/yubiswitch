@@ -38,6 +38,13 @@ Create DMG
 * `cd dmg/ && bash createdmg.sh`
 * Get the file at `/tmp/yubiswitch_$VERSION.dmg` and distribute
 
+Dependencies
+============
+
+* ShortcutRecorder: https://github.com/Kentzo/ShortcutRecorder
+* See [this helpful page](https://github.com/Kentzo/ShortcutRecorder) for
+instructions on how to set up your Xcode environment
+
 Credits
 =======
 

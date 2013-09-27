@@ -35,5 +35,6 @@
 -(BOOL)action:(NSString *)action;
 -(BOOL)enable;
 -(BOOL)disable;
+-(void)notificationReloadHandler:(NSNotification *)notification;
 
 @end

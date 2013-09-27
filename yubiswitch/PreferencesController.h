@@ -20,9 +20,11 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "ShortcutRecorder/ShortcutRecorder.h"
 
 @interface PreferencesController : NSWindowController {
     NSUserDefaultsController *controller;
+    SRRecorderControl *SRrecorder;
 }
 
 -(IBAction)OKButton:(id)sender;

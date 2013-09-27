@@ -41,6 +41,13 @@
                              dictionaryWithContentsOfFile:defaultPrefsFile];
         
         [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPrefs];
+        // Listen to notifications with name "changeDefaultsPrefs" and associate
+        // notificationReloadHandler to it, this is the mechanism used to
+        // communicate to this that UserDefaults preferences have changed,
+        // typically when user hits the OK button in the Preference window.
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self selector:@selector(notificationReloadHandler:)
+         name:@"changeDefaultsPrefs" object:nil];
     }
     return self;
 }
@@ -48,7 +55,7 @@
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     yk = [[YubiKey alloc] init];
     [yk disable];
-    notification = [[NSUserNotification alloc] init];
+    usernotification = [[NSUserNotification alloc] init];
     [self notify:@"YubiKey disabled"];
     aboutwc = [[AboutWindowController alloc]
                initWithWindowNibName:@"AboutWindowController"];
@@ -67,12 +74,28 @@
     
     isEnabled = false;
     
-    // enable global hotkey
-    EventHotKeyRef hotKeyRef;
+    [self registerGlobalHotKey];
+}
+
+-(void)notify:(NSString *)msg {
+    usernotification.title = msg;
+    [[NSUserNotificationCenter defaultUserNotificationCenter]
+     deliverNotification:usernotification];
+}
+
+-(void)notificationReloadHandler:(NSNotification *)notification {
+    if ([[notification name] isEqualToString:@"changeDefaultsPrefs"]) {
+        NSLog(@"reloading Global Hot Key");
+        //UnregisterEventHotKey(hotKeyRef);
+        [self registerGlobalHotKey];
+    }
+}
+
+-(void)registerGlobalHotKey {
     EventHotKeyID hotKeyID;
     EventTypeSpec eventType;
-    eventType.eventClass=kEventClassKeyboard;
-    eventType.eventKind=kEventHotKeyPressed;
+    eventType.eventClass = kEventClassKeyboard;
+    eventType.eventKind = kEventHotKeyPressed;
     hotKeyID.signature = 'ybk1';
     hotKeyID.id = 1;
     /* Given that hotKeyHandler is a C function in the Carbon domain and
@@ -82,16 +105,14 @@
      */
     InstallApplicationEventHandler(&hotKeyHandler, 1, &eventType,
                                    (__bridge void *) self, NULL);
-    // register cmd-Y global hotkey
-    RegisterEventHotKey(16, cmdKey, hotKeyID,
+    NSString* hotkeystring = [[NSUserDefaults standardUserDefaults]
+             stringForKey:@"hotKeyKey"];
+    int keycode = (unichar)[hotkeystring characterAtIndex:0];
+    // http://www.learn-cocos2d.com/2011/09/polling-mac-keyboard
+    NSLog(@"The ASCII value of %@ is %d.", hotkeystring, keycode);
+    RegisterEventHotKey(keycode, cmdKey, hotKeyID,
                         GetApplicationEventTarget(), 0,
-                        &hotKeyRef);
-}
-
--(void)notify:(NSString *)msg {
-    notification.title = msg;
-    [[NSUserNotificationCenter defaultUserNotificationCenter]
-     deliverNotification:notification];
+                        &(hotKeyRef));
 }
 
 OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,

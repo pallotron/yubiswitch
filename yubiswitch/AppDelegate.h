@@ -27,13 +27,14 @@
 #import "PreferencesController.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
-    IBOutlet NSMenu *statusMenu;
-    NSStatusItem * statusItem;
+    IBOutlet NSMenu* statusMenu;
+    NSStatusItem* statusItem;
     bool isEnabled;
     YubiKey* yk;
-    NSUserNotification *notification;
+    NSUserNotification* usernotification;
     AboutWindowController* aboutwc;
     PreferencesController* prefwc;
+    EventHotKeyRef hotKeyRef;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -42,5 +43,5 @@
 -(IBAction)about:(id)sender;
 -(IBAction)pref:(id)sender;
 -(void)notify:(NSString *)msg;
-
+-(void)notificationReloadHandler:(NSNotification *)notification;
 @end
