@@ -82,12 +82,13 @@ IOServiceAddMatchingNotification in IOKit?)
 - [ ] Convert release process using [github's Release APIS]
 (https://github.com/blog/1645-releases-api-preview)
 
+- [ ] Add "Start at login" feature
+
 How to create DMG for distribution
 ==================================
 
 Note that this will change soon to be integrated with [github's Release APIS]
 (https://github.com/blog/1645-releases-api-preview)
-
 
 When you want to create a release:
 * Tag repo with vx.y, ie `git tag -a -m 'comment' v0.2`
