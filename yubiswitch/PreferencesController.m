@@ -26,22 +26,25 @@
 @end
 
 @implementation PreferencesController
-
-- (id)initWithWindow:(NSWindow *)window
 {
-    self = [super initWithWindow:window];
-    if (self) {
-        controller = [NSUserDefaultsController sharedUserDefaultsController];
-        NSString *defaultPrefsFile = [[NSBundle mainBundle]
-                                      pathForResource:@"DefaultPreferences"
-                                      ofType:@"plist"];
-        NSDictionary *defaultPrefs = [NSDictionary
-                                dictionaryWithContentsOfFile:defaultPrefsFile];
-        
-        [controller setInitialValues:defaultPrefs];
-        [controller setAppliesImmediately:FALSE];
-    }
-    return self;
+    SRValidator *_validator;
+}
+
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    controller = [NSUserDefaultsController sharedUserDefaultsController];
+    NSString *defaultPrefsFile = [[NSBundle mainBundle]
+                                  pathForResource:@"DefaultPreferences"
+                                  ofType:@"plist"];
+    NSDictionary *defaultPrefs = [NSDictionary
+                                  dictionaryWithContentsOfFile:defaultPrefsFile];
+    [controller setInitialValues:defaultPrefs];
+    [controller setAppliesImmediately:FALSE];
+    [self.hotkeyrecorder bind:NSValueBinding
+                     toObject:controller
+                  withKeyPath:@"values.hotkey"
+                      options:nil];
 }
 
 -(IBAction)SetDefaultsButton:(id)sender {
@@ -63,12 +66,5 @@
     [[self window] close];
 }
 
-- (void)windowDidLoad
-{
-    [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window
-    // controller's window has been loaded from its nib file.
-}
 
 @end

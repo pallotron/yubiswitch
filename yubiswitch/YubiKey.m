@@ -54,7 +54,6 @@
 
 -(void)notificationReloadHandler:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"changeDefaultsPrefs"]) {
-        NSLog(@"reloading USB preferences");
         if (usbDevice != NULL) {
             (*usbDevice)->USBDeviceClose(usbDevice);
             usbDevice = NULL;

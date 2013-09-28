@@ -21,6 +21,8 @@
 
 #import "AppDelegate.h"
 #import "AboutWindowController.h"
+#import <PTHotKey/PTHotKeyCenter.h>
+#import <PTHotKey/PTHotKey+ShortcutRecorder.h>
 
 // This is the main class, responsible for the status bar icon and general
 // application behavior
@@ -41,13 +43,6 @@
                              dictionaryWithContentsOfFile:defaultPrefsFile];
         
         [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPrefs];
-        // Listen to notifications with name "changeDefaultsPrefs" and associate
-        // notificationReloadHandler to it, this is the mechanism used to
-        // communicate to this that UserDefaults preferences have changed,
-        // typically when user hits the OK button in the Preference window.
-        [[NSNotificationCenter defaultCenter]
-         addObserver:self selector:@selector(notificationReloadHandler:)
-         name:@"changeDefaultsPrefs" object:nil];
     }
     return self;
 }
@@ -73,56 +68,42 @@
     [statusItem setToolTip:@"YubiKey disabled"];
     
     isEnabled = false;
-    
-    [self registerGlobalHotKey];
+
+    // setup observer method, when the global hotkey is changed in the
+    // preference controller this method gets notified.
+    NSUserDefaultsController *defaults = [NSUserDefaultsController
+                                          sharedUserDefaultsController];
+    [defaults addObserver:self forKeyPath:@"values.hotkey"
+                  options:NSKeyValueObservingOptionInitial context:NULL];
+}
+
+-(void)observeValueForKeyPath:(NSString *)aKeyPath ofObject:(id)anObject
+                        change:(NSDictionary *)aChange context:(void *)aContext
+{
+    if ([aKeyPath isEqualToString:@"values.hotkey"]) {
+        PTHotKeyCenter *hotKeyCenter = [PTHotKeyCenter sharedCenter];
+        PTHotKey *oldHotKey = [hotKeyCenter hotKeyWithIdentifier:aKeyPath];
+        [hotKeyCenter unregisterHotKey:oldHotKey];
+        
+        NSDictionary *newShortcut = [anObject valueForKeyPath:aKeyPath];
+        
+        if (newShortcut && (NSNull *)newShortcut != [NSNull null]) {
+            PTHotKey *newHotKey = [PTHotKey hotKeyWithIdentifier:aKeyPath
+                                                    keyCombo:newShortcut
+                                                    target:self
+                                                    action:@selector(toggle:)];
+            [hotKeyCenter registerHotKey:newHotKey];
+        }
+    }
+    else
+        [super observeValueForKeyPath:aKeyPath ofObject:anObject change:aChange
+                              context:aContext];
 }
 
 -(void)notify:(NSString *)msg {
     usernotification.title = msg;
     [[NSUserNotificationCenter defaultUserNotificationCenter]
      deliverNotification:usernotification];
-}
-
--(void)notificationReloadHandler:(NSNotification *)notification {
-    if ([[notification name] isEqualToString:@"changeDefaultsPrefs"]) {
-        NSLog(@"reloading Global Hot Key");
-        //UnregisterEventHotKey(hotKeyRef);
-        [self registerGlobalHotKey];
-    }
-}
-
--(void)registerGlobalHotKey {
-    EventHotKeyID hotKeyID;
-    EventTypeSpec eventType;
-    eventType.eventClass = kEventClassKeyboard;
-    eventType.eventKind = kEventHotKeyPressed;
-    hotKeyID.signature = 'ybk1';
-    hotKeyID.id = 1;
-    /* Given that hotKeyHandler is a C function in the Carbon domain and
-     Objective-C is a superset of C we need to cast self using __bridge so
-     that we can then use the AppDelegate object from within the handler
-     function...
-     */
-    InstallApplicationEventHandler(&hotKeyHandler, 1, &eventType,
-                                   (__bridge void *) self, NULL);
-    NSString* hotkeystring = [[NSUserDefaults standardUserDefaults]
-             stringForKey:@"hotKeyKey"];
-    int keycode = (unichar)[hotkeystring characterAtIndex:0];
-    // http://www.learn-cocos2d.com/2011/09/polling-mac-keyboard
-    NSLog(@"The ASCII value of %@ is %d.", hotkeystring, keycode);
-    RegisterEventHotKey(keycode, cmdKey, hotKeyID,
-                        GetApplicationEventTarget(), 0,
-                        &(hotKeyRef));
-}
-
-OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,
-                       EventRef anEvent, void *userData) {
-    AppDelegate *a;
-    // convert void pointer to AppDelegate pointer and then use the
-    // Objective-C method
-    a = (__bridge AppDelegate *) userData;
-    [a toggle:NULL];
-    return noErr;
 }
 
 -(IBAction)toggle:(id)sender {

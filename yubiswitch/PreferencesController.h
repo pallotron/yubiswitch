@@ -22,12 +22,16 @@
 #import <Cocoa/Cocoa.h>
 #import "ShortcutRecorder/ShortcutRecorder.h"
 
-@interface PreferencesController : NSWindowController {
+@interface PreferencesController : NSWindowController
+    <SRRecorderControlDelegate, SRValidatorDelegate>
+{
     NSUserDefaultsController *controller;
 }
 
 -(IBAction)OKButton:(id)sender;
 -(IBAction)CancelButton:(id)sender;
 -(IBAction)SetDefaultsButton:(id)sender;
+
+@property (assign) IBOutlet SRRecorderControl *hotkeyrecorder;
 
 @end

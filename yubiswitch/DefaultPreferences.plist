@@ -2,16 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>hotKeyCmd</key>
-	<true/>
-	<key>hotKeyControl</key>
-	<false/>
-	<key>hotKeyShift</key>
-	<false/>
-	<key>hotKeyOption</key>
-	<false/>
-	<key>hotKeyKey</key>
-	<string>y</string>
 	<key>hotKeyProductID</key>
 	<string>0x0010</string>
 	<key>hotKeyVendorID</key>
