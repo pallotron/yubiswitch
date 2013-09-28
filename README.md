@@ -53,11 +53,15 @@ TODO and future plans
 
 [ ] Feature: lock computer when yubikey is removed (use
 IOServiceAddMatchingNotification in IOKit?)
+
 [x] Make hotkey configurable via configuration window, currently it's static and
 it is cmd-Y
+
 [ ] Support more yubikeys nano on multiple USB slots
+
 [x] Use NSNotificationCenter to notify other classes (ie AppDelegate and YubiKey)
 when user preferences are changed
+
 [ ] Better support for plug and unplug events
 
 How to create DMG for distribution
