@@ -66,25 +66,36 @@ Notification Centre. OSX 10.8.x and above would do it. Sorry about that.
 TODO and future plans
 =====================
 
-[ ] Feature: lock computer when yubikey is removed (use
+- [x] Make hotkey configurable via configuration window, currently it's static
+and it is cmd-Y. (This is done via ShortcutRecorder now)
+
+- [x] Use NSNotificationCenter to notify other classes (ie AppDelegate and
+YubiKey) when user preferences are changed
+
+- [ ] Feature: lock computer when yubikey is removed (use
 IOServiceAddMatchingNotification in IOKit?)
 
-[x] Make hotkey configurable via configuration window, currently it's static and
-it is cmd-Y
+- [ ] Support more yubikeys nano on multiple USB slots
 
-[ ] Support more yubikeys nano on multiple USB slots
+- [ ] Better support for plug and unplug events
 
-[x] Use NSNotificationCenter to notify other classes (ie AppDelegate and YubiKey)
-when user preferences are changed
-
-[ ] Better support for plug and unplug events
+- [ ] Convert release process using [github's Release APIS]
+(https://github.com/blog/1645-releases-api-preview)
 
 How to create DMG for distribution
 ==================================
 
+Note that this will change soon to be integrated with [github's Release APIS]
+(https://github.com/blog/1645-releases-api-preview)
+
+
+When you want to create a release:
+* Tag repo with vx.y, ie `git tag -a -m 'comment' v0.2`
 * Compile release app bundle in Xcode
-* `cd dmg/ && bash createdmg.sh`
-* Get the file at `/tmp/yubiswitch_$VERSION.dmg` and distribute on the internetz.
+* Run script: `cd dmg/ && bash createdmg.sh`
+* Get the file at `/tmp/yubiswitch\_$VERSION.dmg` and distribute via release
+page as explained in
+[the github blog](https://github.com/blog/1547-release-your-software)
 
 Dependencies
 ============
