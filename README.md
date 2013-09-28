@@ -1,8 +1,6 @@
 yubiswitch
 ==========
 
-Author: Angelo "pallotron" Failla <pallotron@freaknet.org>
-
 `yubiswitch` is an OSX status bar application to enable/disable a
 [Yubikey Nano](http://www.yubico.com/products/yubikey-hardware/yubikey-nano)
 from Yubico.
@@ -35,6 +33,23 @@ asking WTF I've been writing :P
 This status bar app avoid you to send those accidental OTP passwords by allowing
 you to enable or disable the yubikey using a convenient global keyboard hot key
 that you can configure yourself.
+
+Download
+========
+
+Download the latest version in DMG format
+[here](http://www.pallotron.net/software/yubiswitch-0.1.dmg).
+
+Screenshots
+===========
+
+Menu items in the status bar:
+
+![Menu items screenshot](/images/screenshot-menuitems.png)
+
+Preference window:
+
+![Menu items screenshot](/images/screenshot-prefs.png)
 
 Known Issues
 ============
