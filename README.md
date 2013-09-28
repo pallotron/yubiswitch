@@ -37,8 +37,8 @@ that you can configure yourself.
 Download
 ========
 
-Download the latest version in DMG format
-[here](http://www.pallotron.net/software/yubiswitch-0.1.dmg).
+Download the latest version in DMG format from
+[github release page here](https://github.com/pallotron/yubiswitch/releases/).
 
 Screenshots
 ===========
