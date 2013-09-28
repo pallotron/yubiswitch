@@ -1,7 +1,17 @@
 #!/bin/bash
 
-VERSION=$(grep CFBundleShortVersionString yubiswitch/yubiswitch-Info.plist -A1 \
-  | tail -1 | perl -lne 'print $1 if /<string>(.*)<\/string>/')
+set -e
+
+if [ ! -e ../yubiswitch/yubiswitch-Info.plist ]; then
+  echo "Can't extrapolate bundle version."
+  echo "Are you executing this from whiting the dmg/ dir?"
+  exit
+fi
+
+VERSION=$(grep CFBundleShortVersionString ../yubiswitch/yubiswitch-Info.plist \
+  -A1 | tail -1 | perl -lne 'print $1 if /<string>(.*)<\/string>/')
+
+echo "Version: $VERSION"
 SRC_BINARY=$(find ~/Library/Developer/Xcode/DerivedData/ \
   -name "yubiswitch.app" \
   | grep "Build/Products/Release/")
@@ -10,10 +20,16 @@ OUTPUT=/tmp/yubiswitch_$VERSION.dmg
 tmpdir=$(mktemp -d -t yubiswitch)
 echo "Tempdir: $tmpdir"
 
+if [ ! -e skeleton.dmg ]; then
+  echo "Can't find skeleton.dmg."
+  echo "Are you executing this from whiting the dmg/ dir?"
+  exit
+fi
+
 cp skeleton.dmg $tmpdir/
-hdiutil attach -autoopen -readwrite $tmpdir/skeleton.dmg
-echo "Copuing $SRC_BINARY to /Volumes/yubiswitch/"
-cp -a $SRC_BINARY /Volumes/yubiswitch/
+hdiutil attach -readwrite $tmpdir/skeleton.dmg
+echo "Copying $SRC_BINARY to /Volumes/yubiswitch/"
+rsync -av $SRC_BINARY/ /Volumes/yubiswitch/yubiswitch.app/
 echo "Detach /Volumes/yubiswitch/"
 hdiutil detach /Volumes/yubiswitch/
 sync

@@ -50,8 +50,8 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		59013C8A17F5709E00005A7E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
+			buildActionMask = 12;
+			dstPath = Frameworks;
 			dstSubfolderSpec = 10;
 			files = (
 				59013C8B17F570B400005A7E /* ShortcutRecorder.framework in CopyFiles */,
