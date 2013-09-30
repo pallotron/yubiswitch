@@ -72,6 +72,8 @@ and it is cmd-Y. (This is done via ShortcutRecorder now)
 - [x] Use NSNotificationCenter to notify other classes (ie AppDelegate and
 YubiKey) when user preferences are changed
 
+- [x] Add "Start at login" feature
+
 - [ ] Feature: lock computer when yubikey is removed (use
 IOServiceAddMatchingNotification in IOKit?)
 
@@ -81,8 +83,6 @@ IOServiceAddMatchingNotification in IOKit?)
 
 - [ ] Convert release process using [github's Release APIS]
 (https://github.com/blog/1645-releases-api-preview)
-
-- [ ] Add "Start at login" feature
 
 How to create DMG for distribution
 ==================================
