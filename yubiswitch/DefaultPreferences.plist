@@ -6,5 +6,7 @@
 	<string>0x0010</string>
 	<key>hotKeyVendorID</key>
 	<string>0x1050</string>
+	<key>startAtLogin</key>
+	<false/>
 </dict>
 </plist>

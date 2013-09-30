@@ -26,6 +26,7 @@
     <SRRecorderControlDelegate, SRValidatorDelegate>
 {
     NSUserDefaultsController *controller;
+    IBOutlet NSButton *buttonOpenAtLogin;
 }
 
 -(IBAction)OKButton:(id)sender;
