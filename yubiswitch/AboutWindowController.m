@@ -40,7 +40,9 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-
+    [versionLabel
+     setStringValue:[[NSBundle mainBundle]
+                     objectForInfoDictionaryKey:@"CFBundleVersion"]];
 }
 
 @end

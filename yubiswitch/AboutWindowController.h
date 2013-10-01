@@ -22,6 +22,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AboutWindowController : NSWindowController
+@interface AboutWindowController : NSWindowController {
+    IBOutlet NSTextField* versionLabel;
+}
+
+
 
 @end
