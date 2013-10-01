@@ -45,13 +45,27 @@
 			remoteGlobalIDString = E273122E1349EC9000A84433;
 			remoteInfo = PTHotKey.framework;
 		};
+		590FB31017FB120F00148522 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59013C7F17F56F0F00005A7E /* ShortcutRecorder.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9398377F0DA42965007F53F3;
+			remoteInfo = ShortcutRecorder.framework;
+		};
+		590FB31217FB120F00148522 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59013C7F17F56F0F00005A7E /* ShortcutRecorder.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E273122D1349EC9000A84433;
+			remoteInfo = PTHotKey.framework;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		59013C8A17F5709E00005A7E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
-			dstPath = Frameworks;
+			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
 				59013C8B17F570B400005A7E /* ShortcutRecorder.framework in CopyFiles */,
@@ -217,6 +231,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				590FB31117FB120F00148522 /* PBXTargetDependency */,
+				590FB31317FB120F00148522 /* PBXTargetDependency */,
 			);
 			name = yubiswitch;
 			productName = yubiswitch;
@@ -331,6 +347,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		590FB31117FB120F00148522 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ShortcutRecorder.framework;
+			targetProxy = 590FB31017FB120F00148522 /* PBXContainerItemProxy */;
+		};
+		590FB31317FB120F00148522 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PTHotKey.framework;
+			targetProxy = 590FB31217FB120F00148522 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		59E5CF1717EC2A9000898135 /* InfoPlist.strings */ = {

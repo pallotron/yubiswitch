@@ -25,7 +25,7 @@ jhgkhrubrnuchhhbhrugvbenrhkcvich
 ```
 
 Whooops! You see? I brought my laptop (lid opened) with me for a walk to a
-meeting room holding it with my right hand right touching the golden stripe and
+meeting room holding it with my right hand touching the golden stripe and
 this caused the Nano to start sending random OTP passwords to my Vim session,
 and to the FB chat window I had opened with my wife, and right now she's been
 asking WTF I've been writing :P
@@ -82,7 +82,8 @@ IOServiceAddMatchingNotification in IOKit?)
 - [ ] Better support for plug and unplug events
 
 - [ ] Convert release process using [github's Release APIS]
-(https://github.com/blog/1645-releases-api-preview)
+(https://github.com/blog/1645-releases-api-preview) and
+[ChocTop] http://drnic.github.io/choctop/
 
 How to create DMG for distribution
 ==================================
