@@ -29,6 +29,7 @@ fi
 cp skeleton.dmg $tmpdir/
 hdiutil attach -readwrite $tmpdir/skeleton.dmg
 echo "Copying $SRC_BINARY to /Volumes/yubiswitch/"
+rm -rf /Volumes/yubiswitch/yubiswitch.app
 rsync -av $SRC_BINARY/ /Volumes/yubiswitch/yubiswitch.app/
 echo "Detach /Volumes/yubiswitch/"
 hdiutil detach /Volumes/yubiswitch/
