@@ -5,8 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+        <customObject id="-2" userLabel="File's Owner" customClass="AppDelegate">
             <connections>
+                <outlet property="controller" destination="BET-T9-5EC" id="Ada-jI-c1J"/>
                 <outlet property="delegate" destination="494" id="495"/>
             </connections>
         </customObject>
@@ -28,6 +29,20 @@
                 </menuItem>
                 <menuItem title="Unplugging YubiKey locks computer" enabled="NO" id="JMl-Ij-uOI">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Automatically switch off YubiKey" toolTip="Automatically switch off the YubiKey after number of seconds specified in preference window." id="bbU-bX-p6O">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <accessibility help="Automatically switch off the YubiKey after number of seconds specified in preference window."/>
+                    <connections>
+                        <action selector="toggleSwitchOffDelay:" target="494" id="2rs-2f-GAW"/>
+                        <binding destination="W0R-qr-9Af" name="value" keyPath="selection.enabled" id="kdF-k5-M9l">
+                            <dictionary key="options">
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </menuItem>
                 <menuItem title="Preferences..." id="ZbY-4K-DDd">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -51,5 +66,16 @@
                 </menuItem>
             </items>
         </menu>
+        <objectController automaticallyPreparesContent="YES" id="W0R-qr-9Af">
+            <connections>
+                <binding destination="BET-T9-5EC" name="editable" keyPath="values.seconds" id="8iY-8h-6pO"/>
+                <binding destination="BET-T9-5EC" name="contentObject" keyPath="values.switchOffDelay" id="KPu-8m-Lhl">
+                    <dictionary key="options">
+                        <bool key="NSHandlesContentAsCompoundValue" value="YES"/>
+                    </dictionary>
+                </binding>
+            </connections>
+        </objectController>
+        <userDefaultsController representsSharedInstance="YES" id="BET-T9-5EC"/>
     </objects>
 </document>

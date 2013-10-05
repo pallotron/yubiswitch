@@ -16,14 +16,14 @@
         <customObject id="-3" userLabel="Application"/>
         <window title="YubiSwitch Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="1">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="196" y="240" width="514" height="193"/>
+            <rect key="contentRect" x="196" y="240" width="514" height="219"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="514" height="193"/>
+                <rect key="frame" x="0.0" y="0.0" width="514" height="219"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8K1-Qm-In7">
-                        <rect key="frame" x="248" y="16" width="59" height="32"/>
+                        <rect key="frame" x="248" y="12" width="59" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="j6d-6b-gbg">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -37,7 +37,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TpH-Yf-rMz">
-                        <rect key="frame" x="418" y="16" width="82" height="32"/>
+                        <rect key="frame" x="418" y="12" width="82" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Vc-Z1-S0x">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -51,7 +51,7 @@ Gw
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mzq-aw-KMQ">
-                        <rect key="frame" x="53" y="156" width="217" height="17"/>
+                        <rect key="frame" x="53" y="182" width="217" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Global HotKey keyboard shortcut:" id="qWY-wE-Q0J">
                             <font key="font" metaFont="system"/>
@@ -60,7 +60,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ik2-BF-06q">
-                        <rect key="frame" x="145" y="125" width="125" height="17"/>
+                        <rect key="frame" x="145" y="151" width="125" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="YubiKey ProductID:" id="JqF-Nz-7rF">
                             <font key="font" metaFont="system"/>
@@ -69,7 +69,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ZM-dd-V5f">
-                        <rect key="frame" x="148" y="95" width="122" height="17"/>
+                        <rect key="frame" x="148" y="121" width="122" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="YubiKey VendorID:" id="ajm-np-6nm">
                             <font key="font" metaFont="system"/>
@@ -77,8 +77,26 @@ Gw
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yT7-g1-jJf">
+                        <rect key="frame" x="211" y="91" width="154" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Switch off YubiKey after" id="NHr-UM-aIn">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VVA-Ez-52n">
+                        <rect key="frame" x="441" y="91" width="56" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="seconds" id="0ZM-eu-nfB">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ngy-lT-sbn">
-                        <rect key="frame" x="278" y="122" width="216" height="22"/>
+                        <rect key="frame" x="278" y="148" width="216" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="productID" placeholderString="" drawsBackground="YES" id="ZgX-Bs-98c">
                             <font key="font" metaFont="system"/>
@@ -94,7 +112,7 @@ Gw
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p0F-cs-KId">
-                        <rect key="frame" x="278" y="92" width="216" height="22"/>
+                        <rect key="frame" x="278" y="118" width="216" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="vendorID" placeholderString="" drawsBackground="YES" id="prY-22-1rc">
                             <font key="font" metaFont="system"/>
@@ -109,13 +127,29 @@ Gw
                             <binding destination="eUL-Mx-8k1" name="value" keyPath="values.hotKeyVendorID" id="Xnp-mE-Jsj"/>
                         </connections>
                     </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ab-aE-x0m">
+                        <rect key="frame" x="370" y="88" width="66" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="seconds" placeholderString="" drawsBackground="YES" id="bih-XH-0a2">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <binding destination="MI1-le-Drb" name="value" keyPath="selection.interval" id="FEN-C7-Yui"/>
+                            </connections>
+                        </textFieldCell>
+                        <connections>
+                            <accessibilityConnection property="title" destination="yT7-g1-jJf" id="G0c-lr-ukB"/>
+                            <binding destination="MI1-le-Drb" name="value" keyPath="selection.interval" id="KyW-Ry-QbO"/>
+                        </connections>
+                    </textField>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eno-sK-r9M">
-                        <rect key="frame" x="20" y="9" width="48" height="48"/>
+                        <rect key="frame" x="20" y="35" width="48" height="48"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="appicon-32" id="gdz-QY-yLb"/>
                     </imageView>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ccf-Nc-Jjz">
-                        <rect key="frame" x="307" y="16" width="114" height="32"/>
+                        <rect key="frame" x="307" y="12" width="114" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Set defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZXm-ZJ-1gR">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -126,14 +160,14 @@ Gw
                         </connections>
                     </button>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PBl-j6-JnA" customClass="SRRecorderControl">
-                        <rect key="frame" x="278" y="152" width="216" height="25"/>
+                        <rect key="frame" x="278" y="178" width="216" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <connections>
                             <outlet property="delegate" destination="-2" id="xZm-I3-fJG"/>
                         </connections>
                     </customView>
                     <button toolTip="If set yubiswtich will start at login time" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afm-iG-Ff1">
-                        <rect key="frame" x="276" y="62" width="176" height="18"/>
+                        <rect key="frame" x="311" y="64" width="176" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Start Yubiswitch at login" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Adi-wS-wdB">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -151,6 +185,15 @@ Gw
                 <outlet property="window" destination="1" id="zpz-bC-Ceb"/>
             </connections>
         </userDefaultsController>
+        <objectController automaticallyPreparesContent="YES" id="MI1-le-Drb">
+            <connections>
+                <binding destination="eUL-Mx-8k1" name="contentObject" keyPath="values.switchOffDelay" id="B6C-2u-I6O">
+                    <dictionary key="options">
+                        <bool key="NSHandlesContentAsCompoundValue" value="YES"/>
+                    </dictionary>
+                </binding>
+            </connections>
+        </objectController>
     </objects>
     <resources>
         <image name="appicon-32" width="32" height="32"/>
