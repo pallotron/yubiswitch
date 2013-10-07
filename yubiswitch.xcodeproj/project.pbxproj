@@ -196,10 +196,10 @@
 				59E5CF2017EC2A9000898135 /* AppDelegate.h */,
 				59E5CF2117EC2A9000898135 /* AppDelegate.m */,
 				59E5CF2317EC2A9000898135 /* MainMenu.xib */,
-				59013C9117F6CDB900005A7E /* images */,
 				59E5CF4217EC472400898135 /* YubiKey.h */,
 				59E5CF4317EC472400898135 /* YubiKey.m */,
 				59E5CF2617EC2A9000898135 /* Images.xcassets */,
+				59013C9117F6CDB900005A7E /* images */,
 				59E5CF1517EC2A9000898135 /* Supporting Files */,
 			);
 			path = yubiswitch;
