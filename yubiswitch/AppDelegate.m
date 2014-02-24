@@ -104,6 +104,13 @@
                                                     action:@selector(toggle:)];
             [hotKeyCenter registerHotKey:newHotKey];
         }
+        NSDictionary* hotkey = [[NSUserDefaults standardUserDefaults]
+                                dictionaryForKey:@"hotkey"];
+        [[statusMenu itemAtIndex:0]
+         setKeyEquivalent:[hotkey valueForKey:@"charactersIgnoringModifiers"]];
+        [[statusMenu itemAtIndex:0]
+         setKeyEquivalentModifierMask:
+         [[hotkey valueForKey:@"modifierFlags"] unsignedIntValue]];
     }
     else
         [super observeValueForKeyPath:aKeyPath ofObject:anObject change:aChange
@@ -135,42 +142,57 @@
     }
 }
 
--(IBAction)toggle:(id)sender {
+-(void)enableYubiKey:(BOOL)enable {
     BOOL res;
-    if (isEnabled == true) {
-        res = [yk disable];
-        if (res == TRUE) {
-            [statusItem setToolTip:(@"YubiKey disabled")];
-            [statusItem setImage:[NSImage imageNamed:@"ico_disabled"]];
-            isEnabled = false;
-            [[statusMenu itemAtIndex:0] setState:0];
-            [self notify:@"YubiKey disabled"];
-        }
-    } else {
+    if (enable == TRUE) {
         res = [yk enable];
-        if (res == TRUE) {
+    } else {
+        res = [yk disable];
+    }
+    if (res == TRUE) {
+        if (enable == TRUE) {
             [statusItem setToolTip:(@"YubiKey enabled")];
             [statusItem setImage:[NSImage imageNamed:@"ico_enabled"]];
             isEnabled = true;
             [[statusMenu itemAtIndex:0] setState:1];
             [self notify:@"YubiKey enabled"];
             NSDictionary* switchOffDelayPrefs =
-                [[NSUserDefaults standardUserDefaults]
-                 dictionaryForKey:@"switchOffDelay"];
-            bool enabled = [[switchOffDelayPrefs valueForKey:@"enabled"] boolValue];
+            [[NSUserDefaults standardUserDefaults]
+             dictionaryForKey:@"switchOffDelay"];
+            bool enabled = [[switchOffDelayPrefs valueForKey:@"enabled"]
+                            boolValue];
             if (enabled == TRUE) {
                 NSNumberFormatter* f = [[NSNumberFormatter alloc] init];
                 [f setNumberStyle:NSNumberFormatterDecimalStyle];
                 NSNumber* interval = [f numberFromString:
                                       [switchOffDelayPrefs
-                                             valueForKey:@"interval"]];
-                reDisableTimer = [self createTimer:(long)[interval integerValue]];
+                                       valueForKey:@"interval"]];
+                reDisableTimer = [self createTimer:(long)[interval
+                                                          integerValue]];
             }
+        } else {
+            [statusItem setToolTip:(@"YubiKey disabled")];
+            [statusItem setImage:[NSImage imageNamed:@"ico_disabled"]];
+            isEnabled = false;
+            [[statusMenu itemAtIndex:0] setState:0];
+            [self notify:@"YubiKey disabled"];
         }
     }
 }
 
+-(IBAction)toggle:(id)sender {
+    if (isEnabled == TRUE) {
+        [self enableYubiKey:FALSE];
+    } else {
+        [self enableYubiKey:TRUE];
+    }
+}
+
 -(IBAction)toggleSwitchOffDelay:(id)sender {
+    [controller save:self];
+}
+
+-(IBAction)toggleLockWhenUnplugged:(id)sender {
     [controller save:self];
 }
 

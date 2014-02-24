@@ -40,6 +40,24 @@ Download
 Download the latest version in DMG format from
 [github release page here](https://github.com/pallotron/yubiswitch/releases/).
 
+Integration with shell
+======================
+
+The application supports two basic AppleScript commands:
+
+* KeyOn
+* KeyOff
+
+You can switch your yubikey on and off using this basic osacript commands:
+
+```
+$ osascript -e 'tell application "yubiswitch" to KeyOn'
+```
+
+```
+$ osascript -e 'tell application "yubiswitch" to KeyOff'
+```
+
 Screenshots
 ===========
 
@@ -74,8 +92,13 @@ YubiKey) when user preferences are changed
 
 - [x] Add "Start at login" feature
 
+- [x] Support for basic AppleScript comomands: KeyOn/KeyOff
+
 - [ ] Feature: lock computer when yubikey is removed (use
 IOServiceAddMatchingNotification in IOKit?)
+
+- [ ] Feature: check update features, check if current version is the latest.
+Connect to github somehow
 
 - [ ] Support more yubikeys nano on multiple USB slots
 

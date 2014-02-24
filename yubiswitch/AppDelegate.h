@@ -40,12 +40,13 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSUserDefaultsController *controller;
 
-
 -(IBAction)toggleSwitchOffDelay:(id)sender;
+-(IBAction)toggleLockWhenUnplugged:(id)sender;
 -(IBAction)toggle:(id)sender;
 -(IBAction)quit:(id)sender;
 -(IBAction)about:(id)sender;
 -(IBAction)pref:(id)sender;
+-(void)enableYubiKey:(BOOL)enable;
 -(void)notify:(NSString *)msg;
 -(void)reDisableYK;
 -(NSTimer*)createTimer:(NSInteger)interval;

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+<dictionary title="YubiSwitch Terminology">
+    <suite name="YubiSwitch Suite" code="Yubi"
+        description="YubiSwitch app scripting support">
+        <command name="KeyOn" code="yubicmOn" description="Enables yubikey">
+            <cocoa class="YubiKeyScript"/>
+        </command>
+        <command name="KeyOff" code="yubicOff" description="Disables yubikey">
+            <cocoa class="YubiKeyScript"/>
+        </command>
+    </suite>
+</dictionary>

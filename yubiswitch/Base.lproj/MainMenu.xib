@@ -27,8 +27,18 @@
                         <action selector="toggle:" target="494" id="LLD-CQ-Jz5"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Unplugging YubiKey locks computer" enabled="NO" id="JMl-Ij-uOI">
+                <menuItem title="Unplugging YubiKey locks computer" id="JMl-Ij-uOI">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="toggleLockWhenUnplugged:" target="494" id="Qmm-V7-wjt"/>
+                        <binding destination="BET-T9-5EC" name="value" keyPath="values.lockWhenUnplugged" id="4FX-6R-f2F">
+                            <dictionary key="options">
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </menuItem>
                 <menuItem title="Automatically switch off YubiKey" toolTip="Automatically switch off the YubiKey after number of seconds specified in preference window." id="bbU-bX-p6O">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -51,6 +61,9 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="aPh-QD-f9O"/>
+                <menuItem title="Check for updates" id="XaQ-BT-Dgg">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
                 <menuItem title="About YubiSwitch" id="5yW-Sr-JES">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -66,7 +79,7 @@
                 </menuItem>
             </items>
         </menu>
-        <objectController automaticallyPreparesContent="YES" id="W0R-qr-9Af">
+        <objectController automaticallyPreparesContent="YES" id="W0R-qr-9Af" userLabel="Object ControllerSwitchOff">
             <connections>
                 <binding destination="BET-T9-5EC" name="editable" keyPath="values.seconds" id="8iY-8h-6pO"/>
                 <binding destination="BET-T9-5EC" name="contentObject" keyPath="values.switchOffDelay" id="KPu-8m-Lhl">
