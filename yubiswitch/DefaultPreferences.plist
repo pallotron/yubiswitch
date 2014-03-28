@@ -2,6 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>hotkey</key>
+	<dict>
+		<key>charactersIgnoringModifiers</key>
+		<string>y</string>
+		<key>keyCode</key>
+		<integer>16</integer>
+		<key>characters</key>
+		<string>\U00a5</string>
+		<key>modifierFlags</key>
+		<integer>1572864</integer>
+	</dict>
 	<key>lockWhenUnplugged</key>
 	<true/>
 	<key>hotKeyProductID</key>

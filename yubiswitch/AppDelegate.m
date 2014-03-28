@@ -82,7 +82,7 @@
                                   pathForResource:@"DefaultPreferences"
                                   ofType:@"plist"];
     NSDictionary *defaultPrefs =
-    [NSDictionary dictionaryWithContentsOfFile:defaultPrefsFile];
+        [NSDictionary dictionaryWithContentsOfFile:defaultPrefsFile];
     [controller setInitialValues:defaultPrefs];
     [controller setAppliesImmediately:NO];
 }
