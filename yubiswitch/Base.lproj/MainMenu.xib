@@ -54,6 +54,13 @@
                         </binding>
                     </connections>
                 </menuItem>
+                <menuItem title="Display notifications" id="zaa-1a-4ru">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="toggleDisplayNotications:" target="494" id="X9f-ho-1Em"/>
+                        <binding destination="BET-T9-5EC" name="value" keyPath="values.displayNotifications" id="42y-ke-7fE"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Preferences..." id="ZbY-4K-DDd">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>

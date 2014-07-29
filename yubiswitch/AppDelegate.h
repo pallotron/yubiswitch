@@ -42,6 +42,7 @@
 
 -(IBAction)toggleSwitchOffDelay:(id)sender;
 -(IBAction)toggleLockWhenUnplugged:(id)sender;
+-(IBAction)toggleDisplayNotications:(id)sender;
 -(IBAction)toggle:(id)sender;
 -(IBAction)quit:(id)sender;
 -(IBAction)about:(id)sender;

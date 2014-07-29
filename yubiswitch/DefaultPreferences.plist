@@ -28,5 +28,7 @@
 	</dict>
 	<key>startAtLogin</key>
 	<false/>
+	<key>displayNotifications</key>
+	<true/>
 </dict>
 </plist>

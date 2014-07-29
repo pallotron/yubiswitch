@@ -118,6 +118,9 @@
 }
 
 -(void)notify:(NSString *)msg {
+    BOOL displayNotifications = [[NSUserDefaults standardUserDefaults]
+                                 boolForKey:@"displayNotifications"];
+    if (!displayNotifications) return;
     usernotification.title = msg;
     [[NSUserNotificationCenter defaultUserNotificationCenter]
      deliverNotification:usernotification];
@@ -193,6 +196,10 @@
 }
 
 -(IBAction)toggleLockWhenUnplugged:(id)sender {
+    [controller save:self];
+}
+
+- (IBAction)toggleDisplayNotications:(id)sender {
     [controller save:self];
 }
 
