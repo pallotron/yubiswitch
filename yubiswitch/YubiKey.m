@@ -124,7 +124,7 @@
         } else if ( ret == kIOReturnExclusiveAccess) {}
         else {
             [self raiseAlertWindow:@"Can't open Yubikey device! Check if"
-             " it's pluggin then retry."];
+             " it's plugged in then retry."];
             (*usbDevice)->USBDeviceClose(usbDevice);
             usbDevice = NULL;
             return FALSE;
