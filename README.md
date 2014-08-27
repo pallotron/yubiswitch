@@ -105,8 +105,7 @@ Connect to github somehow
 - [ ] Better support for plug and unplug events
 
 - [ ] Convert release process using [github's Release APIS]
-(https://github.com/blog/1645-releases-api-preview) and
-[ChocTop] http://drnic.github.io/choctop/
+(https://github.com/blog/1645-releases-api-preview) and [ChocTop](http://drnic.github.io/choctop/)
 
 How to create DMG for distribution
 ==================================
