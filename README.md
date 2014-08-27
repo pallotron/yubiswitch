@@ -30,7 +30,7 @@ this caused the Nano to start sending random OTP passwords to my Vim session,
 and to the FB chat window I had opened with my wife, and right now she's been
 asking WTF I've been writing :P
 
-This status bar app avoid you to send those accidental OTP passwords by allowing
+This status bar app allows you to avoid sending those accidental OTP passwords by allowing
 you to enable or disable the yubikey using a convenient global keyboard hot key
 that you can configure yourself.
 
