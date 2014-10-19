@@ -3,11 +3,16 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "appicon-32.png"
+      "filename" : "YubikeyDisabled@0.5x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "YubikeyDisabled.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

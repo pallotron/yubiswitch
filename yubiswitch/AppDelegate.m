@@ -65,7 +65,7 @@
                   statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setMenu:statusMenu];
     [statusItem setHighlightMode:YES];
-    [statusItem setImage:[NSImage imageNamed:@"ico_disabled"]];
+    [statusItem setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
     [statusItem setToolTip:@"YubiKey disabled"];
     
     isEnabled = false;
@@ -138,7 +138,7 @@
     res = [yk disable];
     if (res == TRUE) {
         [statusItem setToolTip:(@"YubiKey disabled")];
-        [statusItem setImage:[NSImage imageNamed:@"ico_disabled"]];
+        [statusItem setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
         isEnabled = false;
         [[statusMenu itemAtIndex:0] setState:0];
         [self notify:@"YubiKey disabled"];
@@ -155,7 +155,7 @@
     if (res == TRUE) {
         if (enable == TRUE) {
             [statusItem setToolTip:(@"YubiKey enabled")];
-            [statusItem setImage:[NSImage imageNamed:@"ico_enabled"]];
+            [statusItem setImage:[NSImage imageNamed:@"YubikeyEnabled"]];
             isEnabled = true;
             [[statusMenu itemAtIndex:0] setState:1];
             [self notify:@"YubiKey enabled"];
@@ -175,7 +175,7 @@
             }
         } else {
             [statusItem setToolTip:(@"YubiKey disabled")];
-            [statusItem setImage:[NSImage imageNamed:@"ico_disabled"]];
+            [statusItem setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
             isEnabled = false;
             [[statusMenu itemAtIndex:0] setState:0];
             [self notify:@"YubiKey disabled"];

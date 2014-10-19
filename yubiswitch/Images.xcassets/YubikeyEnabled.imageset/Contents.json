@@ -3,11 +3,16 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "ico_enabled.png"
+      "filename" : "YubikeyEnabled@0.5x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "YubikeyEnabled.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
