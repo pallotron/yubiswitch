@@ -146,7 +146,7 @@ Gw
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eno-sK-r9M">
                         <rect key="frame" x="20" y="35" width="48" height="48"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="appicon-32" id="gdz-QY-yLb"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon" id="gdz-QY-yLb"/>
                     </imageView>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ccf-Nc-Jjz">
                         <rect key="frame" x="307" y="12" width="114" height="32"/>
@@ -196,6 +196,6 @@ Gw
         </objectController>
     </objects>
     <resources>
-        <image name="appicon-32" width="32" height="32"/>
+        <image name="AppIcon" width="32" height="32"/>
     </resources>
 </document>
