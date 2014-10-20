@@ -3,29 +3,30 @@
     {
       "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "appicon-16.png",
+      "filename" : "YubikeyDisabled@0.5x.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "mac",
       "size" : "16x16",
+      "idiom" : "mac",
+      "filename" : "YubikeyDisabled-1.png",
       "scale" : "2x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "appicon-32.png",
+      "filename" : "YubikeyDisabled.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "mac",
       "size" : "32x32",
+      "idiom" : "mac",
+      "filename" : "YubikeyDisabled@2x.png",
       "scale" : "2x"
     },
     {
-      "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "appicon-128.png",
+      "size" : "128x128",
       "scale" : "1x"
     },
     {
@@ -34,9 +35,8 @@
       "scale" : "2x"
     },
     {
+      "idiom" : "mac",
       "size" : "256x256",
-      "idiom" : "mac",
-      "filename" : "appicon-256.png",
       "scale" : "1x"
     },
     {
@@ -47,7 +47,7 @@
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "appicon-512.png",
+      "filename" : "AppIcon-2.png",
       "scale" : "1x"
     },
     {

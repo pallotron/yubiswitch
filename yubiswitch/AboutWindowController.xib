@@ -40,7 +40,7 @@ http://github.com/pallotron/yubiswitch</string>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wPQ-RI-T3e">
                         <rect key="frame" x="176" y="115" width="48" height="48"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="appicon-32" id="83S-gz-IrG"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon" id="83S-gz-IrG"/>
                     </imageView>
                     <textField identifier="version" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jqy-bb-T5J">
                         <rect key="frame" x="295" y="126" width="38" height="17"/>
@@ -56,6 +56,6 @@ http://github.com/pallotron/yubiswitch</string>
         </window>
     </objects>
     <resources>
-        <image name="appicon-32" width="32" height="32"/>
+        <image name="AppIcon" width="32" height="32"/>
     </resources>
 </document>
