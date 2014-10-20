@@ -30,21 +30,18 @@
       "scale" : "1x"
     },
     {
-      "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "AppIcon@0.5x-1.png",
+      "size" : "128x128",
       "scale" : "2x"
     },
     {
-      "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "AppIcon@0.5x.png",
+      "size" : "256x256",
       "scale" : "1x"
     },
     {
-      "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "AppIcon-3.png",
+      "size" : "256x256",
       "scale" : "2x"
     },
     {
