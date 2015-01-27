@@ -34,6 +34,7 @@
     if (self = [super init]) {
         hidDevice = NULL;
         [self suspendDevice];
+        suspend = TRUE;
         // Listen to notifications with name "changeDefaultsPrefs" and associate
         // notificationReloadHandler to it, this is the mechanism used to
         // communicate to this that UserDefaults preferences have changed,
@@ -128,6 +129,7 @@ static CFDictionaryRef matching_dictionary_create(int vendorID,
         IOHIDDeviceClose(hidDevice, kIOHIDOptionsTypeNone);
     }
     hidDevice = dev;
+    suspend = (hidDevice != NULL);
 }
 
 -(uint8_t *)getScratch { return scratch; }
@@ -158,14 +160,16 @@ static CFDictionaryRef matching_dictionary_create(int vendorID,
 -(BOOL)action:(NSString *)action {
     BOOL oldSuspend = suspend;
     if ([action isEqualToString:@"enable"]) {
-        suspend = FALSE;
+        if(oldSuspend == FALSE) return TRUE;
         [self setHID:NULL];
     } else if ([action isEqualToString:@"disable"]) {
-        suspend = TRUE;
+        if(oldSuspend == TRUE) return TRUE;
         [self suspendDevice];
-        if(hidDevice == NULL) suspend = FALSE;
     }
-    if(oldSuspend == suspend) return FALSE;
+    if(oldSuspend == suspend) {
+        NSLog(@"Suspension change hasn't happened yet...");
+        return FALSE;
+    }
     return TRUE;
 }
 
