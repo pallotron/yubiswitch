@@ -25,13 +25,19 @@
 #include <IOKit/IOCFPlugIn.h>
 #include <IOKit/usb/IOUSBLib.h>
 #include <IOKit/usb/USBSpec.h>
+#include <IOKit/hid/IOHIDManager.h>
+#include <IOKit/hid/IOHIDKeys.h>
 
 @interface YubiKey : NSObject {
-    IOUSBDeviceInterface** usbDevice;
+    IOHIDDeviceRef hidDevice;
+    uint8_t scratch[1024];
+    BOOL suspend;
 }
 
--(void)findDevice;
+-(void)setHID:(IOHIDDeviceRef)dev;
+-(void)suspendDevice;
 -(id)init;
+-(uint8_t *)getScratch;
 -(BOOL)action:(NSString *)action;
 -(BOOL)enable;
 -(BOOL)disable;

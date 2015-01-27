@@ -22,6 +22,7 @@
 
 
 #import "YubiKey.h"
+#include <IOKit/hid/IOHIDDevice.h>
 
 // This class is responsible for communicating with the USB device.
 
@@ -31,8 +32,8 @@
 
 -(id)init {
     if (self = [super init]) {
-        usbDevice = NULL;
-        [self findDevice];
+        hidDevice = NULL;
+        [self suspendDevice];
         // Listen to notifications with name "changeDefaultsPrefs" and associate
         // notificationReloadHandler to it, this is the mechanism used to
         // communicate to this that UserDefaults preferences have changed,
@@ -54,17 +55,84 @@
 
 -(void)notificationReloadHandler:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"changeDefaultsPrefs"]) {
-        if (usbDevice != NULL) {
-            (*usbDevice)->USBDeviceClose(usbDevice);
-            usbDevice = NULL;
-        }
-        [self findDevice];
+        [self setHID:NULL];
     }
 }
 
--(void)findDevice {
+/*
+static void got_hid_report(void *context, IOReturn result, void *sender,
+                           IOHIDReportType type, uint32_t reportID, uint8_t *report,
+                           CFIndex reportLength)
+{
+}
+*/
+
+static void match_callback(void *context, IOReturn result,
+                           void *sender, IOHIDDeviceRef device)
+{
+    YubiKey *self = (__bridge YubiKey *)context;
     
-    CFMutableDictionaryRef matchingDictionary = NULL;
+    IOReturn r = IOHIDDeviceOpen(device, kIOHIDOptionsTypeSeizeDevice);
+    if (r == kIOReturnSuccess) {
+        NSLog(@"Openned HID device: %p", device);
+        [self setHID:device];
+        /*
+        IOHIDDeviceRegisterInputReportCallback(
+                                               device,
+                                               [self getScratch],
+                                               1024,
+                                               got_hid_report,
+                                               (void*)context);
+         */
+    }
+    else {
+        NSLog(@"Failed to open HID device: %08x", r);
+    }
+}
+    
+static void match_set(CFMutableDictionaryRef dict, CFStringRef key, int value) {
+    CFNumberRef number = CFNumberCreate(
+                                        kCFAllocatorDefault, kCFNumberIntType, &value);
+    CFDictionarySetValue(dict, key, number);
+    CFRelease(number);
+}
+
+static CFDictionaryRef matching_dictionary_create(int vendorID,
+                                                  int productID,
+                                                  int usagePage,
+                                                  int usage)
+{
+    CFMutableDictionaryRef match = CFDictionaryCreateMutable(
+                                                             kCFAllocatorDefault, 0,
+                                                             &kCFTypeDictionaryKeyCallBacks,
+                                                             &kCFTypeDictionaryValueCallBacks);
+    
+    if (vendorID) {
+        match_set(match, CFSTR(kIOHIDVendorIDKey), vendorID);
+    }
+    if (productID) {
+        match_set(match, CFSTR(kIOHIDProductIDKey), productID);
+    }
+    if (usagePage) {
+        match_set(match, CFSTR(kIOHIDDeviceUsagePageKey), usagePage);
+    }
+    if (usage) {
+        match_set(match, CFSTR(kIOHIDDeviceUsageKey), usage);
+    }
+    
+    return match;
+}
+
+-(void)setHID:(IOHIDDeviceRef)dev {
+    if(hidDevice != NULL) {
+        IOHIDDeviceClose(hidDevice, kIOHIDOptionsTypeNone);
+    }
+    hidDevice = dev;
+}
+
+-(uint8_t *)getScratch { return scratch; }
+
+-(void)suspendDevice {
     NSString* value = [[NSUserDefaults standardUserDefaults]
                        stringForKey:@"hotKeyVendorID"];
     unsigned int idVendor = 0;
@@ -73,73 +141,31 @@
     value = [[NSUserDefaults standardUserDefaults]
              stringForKey:@"hotKeyProductID"];
     [[NSScanner scannerWithString:value] scanHexInt:&idProduct];
-    io_iterator_t iterator = 0;
-    io_service_t usbRef;
-    SInt32 score;
-    IOCFPlugInInterface** plugin;
+
+    IOHIDManagerRef hidManager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
     
-    // search for device in the I/O registry, look for given Vendor ID
-    // and Product ID.
-    matchingDictionary = IOServiceMatching(kIOUSBDeviceClassName);
-    CFDictionaryAddValue(matchingDictionary,
-                         CFSTR(kUSBVendorID),
-                         CFNumberCreate(kCFAllocatorDefault,
-                                        kCFNumberSInt32Type, &idVendor));
-    CFDictionaryAddValue(matchingDictionary,
-                         CFSTR(kUSBProductID),
-                         CFNumberCreate(kCFAllocatorDefault,
-                                        kCFNumberSInt32Type, &idProduct));
-    IOServiceGetMatchingServices(kIOMasterPortDefault,
-                                 matchingDictionary, &iterator);
-    usbRef = IOIteratorNext(iterator);
-    if (usbRef == 0) {
-        [self raiseAlertWindow:@"Can't find YubiKey. "
-         "Check if it's plugged in then retry."];
-        usbDevice = NULL;
-        return;
-    }
-    // TODO: deal with multiple retries?
-    IOObjectRelease(iterator);
+    IOHIDManagerRegisterDeviceMatchingCallback(hidManager, match_callback, (__bridge void *)(self));
     
-    // Get device interface
-    IOCreatePlugInInterfaceForService(usbRef, kIOUSBDeviceUserClientTypeID,
-                                      kIOCFPlugInInterfaceID, &plugin, &score);
-    IOObjectRelease(usbRef);
-    // now hat we have intermediate interface, specify type of device
-    (*plugin)->QueryInterface(plugin,
-                              CFUUIDGetUUIDBytes(kIOUSBDeviceInterfaceID),
-                              (LPVOID)&usbDevice);
-    (*plugin)->Release(plugin);
+    IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetMain(), kCFRunLoopCommonModes);
+    
+    // all keyboards
+    CFDictionaryRef match = matching_dictionary_create(idVendor, idProduct, 1, 6);
+
+    IOHIDManagerSetDeviceMatching(hidManager, match);
+    CFRelease(match);
 }
 
 -(BOOL)action:(NSString *)action {
-    if (usbDevice == NULL) {
-        [self findDevice];
+    BOOL oldSuspend = suspend;
+    if ([action isEqualToString:@"enable"]) {
+        suspend = FALSE;
+        [self setHID:NULL];
+    } else if ([action isEqualToString:@"disable"]) {
+        suspend = TRUE;
+        [self suspendDevice];
+        if(hidDevice == NULL) suspend = FALSE;
     }
-    if (usbDevice != NULL) {
-        IOReturn ret;
-        ret = (*usbDevice)->USBDeviceOpen(usbDevice);
-        if (ret == kIOReturnSuccess) {
-            
-        } else if ( ret == kIOReturnExclusiveAccess) {}
-        else {
-            [self raiseAlertWindow:@"Can't open Yubikey device! Check if"
-             " it's plugged in then retry."];
-            (*usbDevice)->USBDeviceClose(usbDevice);
-            usbDevice = NULL;
-            return FALSE;
-        }
-        UInt8 config = 0;
-        if ([action isEqualToString:@"enable"]) {
-            config = 1;
-        } else if ([action isEqualToString:@"disable"]) {
-            config = 0;
-        }
-        (*usbDevice)->SetConfiguration(usbDevice, config);
-        (*usbDevice)->USBDeviceClose(usbDevice);
-    } else {
-        return FALSE;
-    }
+    if(oldSuspend == suspend) return FALSE;
     return TRUE;
 }
 
