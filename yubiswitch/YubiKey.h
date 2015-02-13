@@ -30,15 +30,14 @@
 
 @interface YubiKey : NSObject {
     IOHIDDeviceRef hidDevice;
-    uint8_t scratch[1024];
     BOOL suspend;
 }
 
 -(void)setHID:(IOHIDDeviceRef)dev;
 -(void)suspendDevice;
 -(id)init;
--(uint8_t *)getScratch;
 -(BOOL)action:(NSString *)action;
+-(BOOL)state;
 -(BOOL)enable;
 -(BOOL)disable;
 -(void)notificationReloadHandler:(NSNotification *)notification;

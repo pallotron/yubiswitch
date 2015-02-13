@@ -42,6 +42,7 @@
         [[NSNotificationCenter defaultCenter]
          addObserver:self selector:@selector(notificationReloadHandler:)
          name:@"changeDefaultsPrefs" object:nil];
+        
     }
     return self;
 }
@@ -60,14 +61,6 @@
     }
 }
 
-/*
-static void got_hid_report(void *context, IOReturn result, void *sender,
-                           IOHIDReportType type, uint32_t reportID, uint8_t *report,
-                           CFIndex reportLength)
-{
-}
-*/
-
 static void match_callback(void *context, IOReturn result,
                            void *sender, IOHIDDeviceRef device)
 {
@@ -77,14 +70,6 @@ static void match_callback(void *context, IOReturn result,
     if (r == kIOReturnSuccess) {
         NSLog(@"Openned HID device: %p", device);
         [self setHID:device];
-        /*
-        IOHIDDeviceRegisterInputReportCallback(
-                                               device,
-                                               [self getScratch],
-                                               1024,
-                                               got_hid_report,
-                                               (void*)context);
-         */
     }
     else {
         NSLog(@"Failed to open HID device: %08x", r);
@@ -132,8 +117,6 @@ static CFDictionaryRef matching_dictionary_create(int vendorID,
     suspend = (hidDevice != NULL);
 }
 
--(uint8_t *)getScratch { return scratch; }
-
 -(void)suspendDevice {
     NSString* value = [[NSUserDefaults standardUserDefaults]
                        stringForKey:@"hotKeyVendorID"];
@@ -173,6 +156,9 @@ static CFDictionaryRef matching_dictionary_create(int vendorID,
     return TRUE;
 }
 
+-(BOOL)state {
+    return suspend;
+}
 -(BOOL)enable {
     return [self action:@"enable"];
 }
