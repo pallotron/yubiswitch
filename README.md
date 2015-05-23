@@ -2,7 +2,7 @@ yubiswitch
 ==========
 
 `yubiswitch` is an OSX status bar application to enable/disable a
-[Yubikey Nano](http://www.yubico.com/products/yubikey-hardware/yubikey-nano)
+[Yubikey Nano or Neo](http://www.yubico.com/products/yubikey-hardware/yubikey-nano)
 from Yubico.
 
 Yubikey is the producer of the Yubikeys: an hardware  authentication device,
@@ -72,11 +72,10 @@ Preference window:
 Known Issues
 ============
 
-* This applicaiton only works with a single model of yubikey,
-the *YubiKey Nano*. There is no need to deal with other yubikeys because their
-form factor doesn't encourage the users to leave it always plugged in.
-The nano is the only the model that fits cleanly into your usb port. It has
-idVendor 0x1050 and idProduct 0x0010.
+* This applicaiton works with two models of yubikey,
+the *YubiKey Nano* and the *Yubikey Neo*. The Nano and the Neo both fit cleanly into your USB port. 
+
+* The app's default settings support the Nano. If you have the neo, go into the app's `Preferences` by clicking on the menu icon, then set the the `Product ID` to `0x0114`. 
 
 * This app only works with recent version of OSX because it relies on the
 Notification Centre. OSX 10.8.x and above would do it. Sorry about that.
