@@ -2,7 +2,7 @@ yubiswitch
 ==========
 
 `yubiswitch` is an OSX status bar application to enable/disable a
-[Yubikey Nano or Neo](http://www.yubico.com/products/yubikey-hardware/yubikey-nano)
+[Yubikey Nano or Neo](https://www.yubico.com/products/yubikey-hardware/)
 from Yubico.
 
 Yubikey is the producer of the Yubikeys: an hardware  authentication device,
