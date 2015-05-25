@@ -93,7 +93,6 @@
 		593B4E0617F09362003195DE /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWindowController.h; sourceTree = "<group>"; };
 		593B4E0717F09362003195DE /* AboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutWindowController.m; sourceTree = "<group>"; };
 		593B4E0817F09362003195DE /* AboutWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutWindowController.xib; sourceTree = "<group>"; };
-		593B4E0B17F0A2BD003195DE /* ShortcutRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShortcutRecorder.h; path = /Users/jesus/src/yubiswitch/ShortcutRecorder/Library/ShortcutRecorder.h; sourceTree = "<absolute>"; };
 		593B4E0C17F0A2BD003195DE /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		593B4E0D17F0A2BD003195DE /* PreferencesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesController.xib; sourceTree = "<group>"; };
 		594DCCE617EF99D400D9C2E2 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -116,7 +115,6 @@
 		59E5CF2117EC2A9000898135 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		59E5CF2417EC2A9000898135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		59E5CF2617EC2A9000898135 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		59E5CF2D17EC2A9000898135 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		59E5CF4217EC472400898135 /* YubiKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YubiKey.h; sourceTree = "<group>"; };
 		59E5CF4317EC472400898135 /* YubiKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YubiKey.m; sourceTree = "<group>"; };
 		59EC128917ECFAFD00B3C3A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 				59C0616B17EED6AB00D3EE79 /* Carbon.framework */,
 				59EC128B17ECFEFE00B3C3A6 /* IOKit.framework */,
 				59E5CF0E17EC2A9000898135 /* Cocoa.framework */,
-				59E5CF2D17EC2A9000898135 /* XCTest.framework */,
 				5970C8D418B3A48100CDE1BB /* Foundation.framework */,
 				59E5CF1017EC2A9000898135 /* Other Frameworks */,
 			);
@@ -213,7 +210,6 @@
 				593B4E0617F09362003195DE /* AboutWindowController.h */,
 				593B4E0717F09362003195DE /* AboutWindowController.m */,
 				593B4E0817F09362003195DE /* AboutWindowController.xib */,
-				593B4E0B17F0A2BD003195DE /* ShortcutRecorder.h */,
 				593B4E0C17F0A2BD003195DE /* PreferencesController.m */,
 				593B4E0D17F0A2BD003195DE /* PreferencesController.xib */,
 				598AF34417F380C4008165C6 /* DefaultPreferences.plist */,
