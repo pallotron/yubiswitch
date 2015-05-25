@@ -1,6 +1,42 @@
 yubiswitch
 ==========
 
+Running
+=======
+
+This application needs to run with escalated privileges in order to
+exclusively grab the USB HID interface that drives the NEO-n Yubikey.
+This sucks as a normal user can't just click on the app and the app isn't
+sophisticated enough to manage this itself -- so it's on you. Here's how I
+do it:
+
+Create at file at that is executable (chmod 755) at ~/bin/yubi containing:
+
+```
+#!/bin/sh
+
+if [ -z "`pgrep yubiswitch`" ]; then
+  sudo /Applications/yubiswitch.app/Contents/MacOS/yubiswitch &
+fi
+```
+
+Add to /etc/sudoers:
+
+```
+<username>	ALL=(ALL) NOPASSWD: /Applications/yubiswitch.app/Contents/MacOS/yubiswitch
+```
+
+then add to cron (crontab -e):
+
+```
+* * * * * /Users/<username>/bin/yubi
+```
+
+(And yes, the above is a truly horrible hack... PRs welcome)
+
+Overview
+========
+
 `yubiswitch` is an OSX status bar application to enable/disable a
 [Yubikey Nano](http://www.yubico.com/products/yubikey-hardware/yubikey-nano)
 from Yubico.

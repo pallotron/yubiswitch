@@ -31,6 +31,7 @@
     NSStatusItem* statusItem;
     bool isEnabled;
     YubiKey* yk;
+    NSTimer *m_timer;
     NSUserNotification* usernotification;
     AboutWindowController* aboutwc;
     PreferencesController* prefwc;

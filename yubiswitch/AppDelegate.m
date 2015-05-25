@@ -44,10 +44,30 @@
                              dictionaryWithContentsOfFile:defaultPrefsFile];
         
         [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPrefs];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            m_timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                       target:self
+                                                     selector:@selector(updateMenuState:)
+                                                     userInfo:nil
+                                                      repeats:YES];
+        });
     }
     return self;
 }
 
+-(void)updateMenuState:(NSTimer *)foo {
+    if(yk != NULL) {
+        if(isEnabled && [yk state]) { //inverted this means change
+            NSLog(@"noticed change...");
+            [statusItem setToolTip:(@"YubiKey disabled")];
+            [statusItem setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
+            isEnabled = false;
+            [[statusMenu itemAtIndex:0] setState:0];
+            [self notify:@"YubiKey disabled"];
+        }
+    }
+}
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     yk = [[YubiKey alloc] init];
     [yk disable];
