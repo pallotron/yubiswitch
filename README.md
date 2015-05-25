@@ -5,10 +5,13 @@ Running
 =======
 
 This application needs to run with escalated privileges in order to
-exclusively grab the USB HID interface that drives the NEO-n Yubikey.
+exclusively grab the USB HID interface that drives the NANO/NEO-n Yubikey.
+
 This sucks as a normal user can't just click on the app and the app isn't
-sophisticated enough to manage this itself -- so it's on you. Here's how I
-do it:
+sophisticated enough to manage this itself -- so it's on you. 
+
+Here's how I do itm please follow this instructions until the application will
+be redisigned to factor out the code path that requires root privileges:
 
 Create at file at that is executable (chmod 755) at ~/bin/yubi containing:
 
@@ -32,7 +35,7 @@ then add to cron (crontab -e):
 * * * * * /Users/<username>/bin/yubi
 ```
 
-(And yes, the above is a truly horrible hack... PRs welcome)
+(And yes, the above is a truly horrible hack... I'm working on a fix.)
 
 Overview
 ========
