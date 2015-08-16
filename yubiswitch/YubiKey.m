@@ -144,7 +144,7 @@
         return FALSE;
     }
     return TRUE;
-}1
+}
 
 -(BOOL)state {
     return suspend;
