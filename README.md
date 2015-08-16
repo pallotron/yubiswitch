@@ -57,11 +57,7 @@ Preference window:
   the _YubiKey Nano_ and the _Yubikey Neo_. The Nano and the Neo both fit cleanly into your USB port.
 
 - The app's default settings support the Nano. If you have the neo, go into the app's `Preferences` by clicking on the menu icon, then set the the `Product ID` to `0x0114`.
-- Currently, if you compile the application from master, the hack described above is necessary to have the application working with the HID usb interface. Fix incoming. (This is not needed if you are using the 0.8 dmg).
-- NEO keys are only supported if you compile the app from master, working on a fix, then will release the dmg.
-- This app only works with recent version of OSX because it relies on the
-
-  Notification Centre. OSX 10.8.x and above would do it. Sorry about that.
+- This app only works with recent version of OSX because it relies on the Notification Centre. OSX 10.8.x and above would do it. Sorry about that.
 
 # TODO and future plans
 - [x] Make hotkey configurable via configuration window, currently it's static
@@ -114,4 +110,8 @@ git submodule add git://github.com/Kentzo/ShortcutRecorder.git
 - problem.
 
 # Credits
-Credits to Anton Tolchanov (@knyar), he originally wrote this in Python using PyObjC bridge. I decided to port this into Objective-C to learn the language when I found out that Carbon Event Manager libs have been removed from Python3. See [http://docs.python.org/2/library/carbon.html](http://docs.python.org/2/library/carbon.html)
+Credits:
+
+*  Anton Tolchanov (@knyar), he originally wrote this in Python using PyObjC bridge. I decided to port this into Objective-C to learn the language when I found out that Carbon Event Manager libs have been removed from Python3. See [http://docs.python.org/2/library/carbon.html](http://docs.python.org/2/library/carbon.html)
+
+* @postwait for the USD HID device code
