@@ -60,29 +60,14 @@ Preference window:
 - This app only works with recent version of OSX because it relies on the Notification Centre. OSX 10.8.x and above would do it. Sorry about that.
 
 # TODO and future plans
-- [x] Make hotkey configurable via configuration window, currently it's static
-
-  and it is cmd-Y. (This is done via ShortcutRecorder now)
-
-- [x] Use NSNotificationCenter to notify other classes (ie AppDelegate and
-
-  YubiKey) when user preferences are changed
-
+- [x] Make hotkey configurable via configuration window, currently it's static and it is cmd-Y. (This is done via ShortcutRecorder now)
+- [x] Use NSNotificationCenter to notify other classes (ie AppDelegate and YubiKey) when user preferences are changed
 - [x] Add "Start at login" feature
 - [x] Support for basic AppleScript comomands: KeyOn/KeyOff
-- [ ] Feature: lock computer when yubikey is removed (use
-
-  IOServiceAddMatchingNotification in IOKit?)
-
-- [ ] Feature: check update features, check if current version is the latest.
-
-  Connect to github somehow
-
+- [ ] Feature: lock computer when yubikey is removed (use IOServiceAddMatchingNotification in IOKit?)
 - [x] Support more yubikeys nano on multiple USB slots
-- [x ] Better support for plug and unplug events (fixed with HID interface, dmg not published yet)
-- [ ] Convert release process using [github's Release APIS]
-
-  ([https://github.com/blog/1645-releases-api-preview](https://github.com/blog/1645-releases-api-preview)) and [ChocTop](http://drnic.github.io/choctop/)
+- [x] Better support for plug and unplug events (fixed with HID interface, dmg not published yet)
+- [ ] Convert release process using [github's Release APIS]([https://github.com/blog/1645-releases-api-preview](https://github.com/blog/1645-releases-api-preview)) and [ChocTop](http://drnic.github.io/choctop/)
 
 # How to create DMG for distribution
 Note that this will change soon to be integrated with [github's Release APIS] ([https://github.com/blog/1645-releases-api-preview](https://github.com/blog/1645-releases-api-preview))
