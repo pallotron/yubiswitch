@@ -14,10 +14,25 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>test.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>yubiswitch 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>yubiswitch-service.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>5</integer>
+		</dict>
+		<key>yubiswitch.helper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>yubiswitch.xcscheme</key>
 		<dict>
@@ -27,6 +42,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>593AE4501B13711E00FCA848</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>593AE45C1B1371B700FCA848</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5970C8D218B3A48100CDE1BB</key>
 		<dict>
 			<key>primary</key>
@@ -38,6 +63,11 @@
 			<true/>
 		</dict>
 		<key>59E5CF2B17EC2A9000898135</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>59EF40711B13DFB70000BB5F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

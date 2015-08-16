@@ -9,11 +9,11 @@
 	<key>CFBundleIconFile</key>
 	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>pallotron.c1d406f.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>com.pallotron.yubiswitch</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>yubiswitch</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -31,12 +31,17 @@
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright (C) 2013-present  Angelo "pallotron" Failla &lt;pallotron@freaknet.org&gt; -- GNUGPL v3</string>
+	<string>Copyright (C) 2013-present  Angelo &quot;pallotron&quot; Failla &lt;pallotron@freaknet.org&gt; -- GNUGPL v3</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>OSAScriptingDefinition</key>
 	<string>YubiSwitch.sdef</string>
+	<key>SMPrivilegedExecutables</key>
+	<dict>
+		<key>com.pallotron.yubiswitch.helper</key>
+		<string>identifier &quot;com.pallotron.yubiswitch.helper&quot; and anchor apple generic and certificate leaf[subject.CN] = &quot;Mac Developer: Angelo Failla (22Y3UXV6J8)&quot; and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+	</dict>
 </dict>
 </plist>
