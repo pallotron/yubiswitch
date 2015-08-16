@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.8</string>
+	<string>0.9</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.8</string>
+	<string>0.9</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -31,7 +31,7 @@
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright (C) 2013-present  Angelo &quot;pallotron&quot; Failla &lt;pallotron@freaknet.org&gt; -- GNUGPL v3</string>
+	<string>Copyright (C) 2013-present  Angelo "pallotron" Failla &lt;pallotron@freaknet.org&gt; -- GNUGPL v3</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -41,7 +41,7 @@
 	<key>SMPrivilegedExecutables</key>
 	<dict>
 		<key>com.pallotron.yubiswitch.helper</key>
-		<string>identifier &quot;com.pallotron.yubiswitch.helper&quot; and anchor apple generic and certificate leaf[subject.CN] = &quot;Mac Developer: Angelo Failla (22Y3UXV6J8)&quot; and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+		<string>identifier "com.pallotron.yubiswitch.helper" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Angelo Failla (22Y3UXV6J8)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
 	</dict>
 </dict>
 </plist>

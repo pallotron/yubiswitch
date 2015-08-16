@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AppDelegate">
@@ -12,7 +12,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="494" customClass="AppDelegate">
             <connections>
                 <outlet property="statusMenu" destination="q3r-KV-BX4" id="hxh-t1-MPX"/>
@@ -27,19 +27,6 @@
                         <action selector="toggle:" target="494" id="LLD-CQ-Jz5"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Unplugging YubiKey locks computer" id="JMl-Ij-uOI">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="toggleLockWhenUnplugged:" target="494" id="Qmm-V7-wjt"/>
-                        <binding destination="BET-T9-5EC" name="value" keyPath="values.lockWhenUnplugged" id="4FX-6R-f2F">
-                            <dictionary key="options">
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                <bool key="NSConditionallySetsEnabled" value="NO"/>
-                                <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </menuItem>
                 <menuItem title="Automatically switch off YubiKey" toolTip="Automatically switch off the YubiKey after number of seconds specified in preference window." id="bbU-bX-p6O">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <accessibility help="Automatically switch off the YubiKey after number of seconds specified in preference window."/>
@@ -47,9 +34,9 @@
                         <action selector="toggleSwitchOffDelay:" target="494" id="2rs-2f-GAW"/>
                         <binding destination="W0R-qr-9Af" name="value" keyPath="selection.enabled" id="kdF-k5-M9l">
                             <dictionary key="options">
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                <bool key="NSConditionallySetsEnabled" value="NO"/>
                                 <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                             </dictionary>
                         </binding>
                     </connections>
@@ -68,9 +55,6 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="aPh-QD-f9O"/>
-                <menuItem title="Check for updates" id="XaQ-BT-Dgg">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
                 <menuItem title="About YubiSwitch" id="5yW-Sr-JES">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>

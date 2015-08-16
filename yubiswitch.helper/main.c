@@ -15,6 +15,7 @@ IOHIDDeviceRef hidDevice;
 
 void setHID(IOHIDDeviceRef dev) {
   if (hidDevice != NULL) {
+    syslog(LOG_NOTICE, "releasing device");
     IOHIDDeviceClose(hidDevice, kIOHIDOptionsTypeNone);
   }
   hidDevice = dev;
@@ -86,7 +87,6 @@ static void __XPC_Peer_Event_Handler(xpc_connection_t connection,
       setHID(NULL);
     } else if (event == XPC_ERROR_TERMINATION_IMMINENT) {
       // Handle per-connection termination cleanup.
-      // TODO: renable device
       setHID(NULL);
     }
 
@@ -119,7 +119,7 @@ static void __XPC_Connection_Handler(xpc_connection_t connection) {
 }
 
 int main(int argc, const char *argv[]) {
-  hidDevice = NULL;
+  setHID(NULL);
   xpc_connection_t service = xpc_connection_create_mach_service(
       "com.pallotron.yubiswitch.helper", dispatch_get_main_queue(),
       XPC_CONNECTION_MACH_SERVICE_LISTENER);
