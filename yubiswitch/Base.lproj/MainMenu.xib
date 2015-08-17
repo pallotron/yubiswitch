@@ -62,7 +62,7 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="N9q-X6-4OB"/>
-                <menuItem title="Quit YubiSwitch" id="Qnx-jI-LPb">
+                <menuItem title="Quit" id="Qnx-jI-LPb">
                     <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                     <connections>
                         <action selector="quit:" target="494" id="kFN-Da-mfL"/>

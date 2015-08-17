@@ -142,6 +142,7 @@ void signalHandler(int signum) {
 
 int main(int argc, const char *argv[]) {
   signal(SIGINT, signalHandler);
+  signal(SIGTERM, signalHandler);
   xpc_connection_t service = xpc_connection_create_mach_service(
       "com.pallotron.yubiswitch.helper", dispatch_get_main_queue(),
       XPC_CONNECTION_MACH_SERVICE_LISTENER);

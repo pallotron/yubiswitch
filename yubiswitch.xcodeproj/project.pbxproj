@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		59013C8817F56F5300005A7E /* PTHotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59013C8717F56F0F00005A7E /* PTHotKey.framework */; };
 		59013C8917F56F5300005A7E /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59013C8517F56F0F00005A7E /* ShortcutRecorder.framework */; };
-		59013C8D17F571CE00005A7E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59E5CF2317EC2A9000898135 /* MainMenu.xib */; };
 		59013C8E17F5750E00005A7E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C0616B17EED6AB00D3EE79 /* Carbon.framework */; };
 		59013C9317F6CDB900005A7E /* nano.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 59013C9217F6CDB900005A7E /* nano.jpg */; };
 		593929681B21058600905E94 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 59013C8517F56F0F00005A7E /* ShortcutRecorder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -38,6 +37,7 @@
 		59EF406A1B13D19A0000BB5F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59EF40691B13D19A0000BB5F /* Security.framework */; };
 		59EF406C1B13D1A60000BB5F /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59EF406B1B13D1A60000BB5F /* ServiceManagement.framework */; };
 		59EF407D1B13E1490000BB5F /* yubiswitch-helper-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59EF407C1B13E1490000BB5F /* yubiswitch-helper-Info.plist */; };
+		59F627E41B8218C50000FEB3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59E5CF2317EC2A9000898135 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -445,6 +445,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59F627E41B8218C50000FEB3 /* MainMenu.xib in Resources */,
 				594DCCE717EF99D400D9C2E2 /* LICENSE in Resources */,
 				598AF34517F380C4008165C6 /* DefaultPreferences.plist in Resources */,
 				59E5CF1917EC2A9000898135 /* InfoPlist.strings in Resources */,
@@ -453,7 +454,6 @@
 				59EECB3D180440950091AF5E /* screenshot-menuitems.png in Resources */,
 				59EECB3C180440950091AF5E /* screenshot-prefs.png in Resources */,
 				59013C9317F6CDB900005A7E /* nano.jpg in Resources */,
-				59013C8D17F571CE00005A7E /* MainMenu.xib in Resources */,
 				59E5CF2717EC2A9000898135 /* Images.xcassets in Resources */,
 				59EECB441804422C0091AF5E /* createdmg.sh in Resources */,
 				593B4E0F17F0A2BD003195DE /* PreferencesController.xib in Resources */,
