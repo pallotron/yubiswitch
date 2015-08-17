@@ -1,7 +1,5 @@
 #include <syslog.h>
 #include <xpc/xpc.h>
-#import <ServiceManagement/ServiceManagement.h>
-#import <Security/Authorization.h>
 #include <CoreFoundation/CoreFoundation.h>
 #include <IOKit/IOKitLib.h>
 #include <IOKit/IOCFPlugIn.h>
@@ -10,16 +8,13 @@
 #include <IOKit/hid/IOHIDManager.h>
 #include <IOKit/hid/IOHIDKeys.h>
 #include <IOKit/hid/IOHIDDevice.h>
+#include <signal.h>
 
+#import <ServiceManagement/ServiceManagement.h>
+#import <Security/Authorization.h>
+
+IOHIDManagerRef hidManager;
 IOHIDDeviceRef hidDevice;
-
-void setHID(IOHIDDeviceRef dev) {
-  if (hidDevice != NULL) {
-    syslog(LOG_NOTICE, "releasing device");
-    IOHIDDeviceClose(hidDevice, kIOHIDOptionsTypeNone);
-  }
-  hidDevice = dev;
-}
 
 static void match_set(CFMutableDictionaryRef dict, CFStringRef key, int value) {
   CFNumberRef number =
@@ -28,12 +23,24 @@ static void match_set(CFMutableDictionaryRef dict, CFStringRef key, int value) {
   CFRelease(number);
 }
 
+static void handle_removal_callback(void *context, IOReturn result,
+                                    void *sender, IOHIDDeviceRef device) {
+  if (hidDevice != NULL) {
+    IOHIDDeviceClose(hidDevice, kIOHIDOptionsTypeSeizeDevice);
+    hidDevice = NULL;
+  }
+  if (hidManager != NULL) {
+    IOHIDManagerClose(hidManager, kIOHIDOptionsTypeNone);
+    hidManager = NULL;
+  }
+}
+
 static void match_callback(void *context, IOReturn result, void *sender,
                            IOHIDDeviceRef device) {
   IOReturn r = IOHIDDeviceOpen(device, kIOHIDOptionsTypeSeizeDevice);
   if (r == kIOReturnSuccess) {
     syslog(LOG_NOTICE, "Open'ed HID device");
-    setHID(device);
+    hidDevice = device;
   } else {
     syslog(LOG_ALERT, "Failed to open HID device");
   }
@@ -61,18 +68,6 @@ static CFDictionaryRef matching_dictionary_create(int vendorID, int productID,
   return match;
 }
 
-void suspendDevice(int idVendor, int idProduct) {
-  IOHIDManagerRef hidManager =
-      IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
-  IOHIDManagerRegisterDeviceMatchingCallback(hidManager, match_callback, NULL);
-  IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetMain(),
-                                  kCFRunLoopCommonModes);
-  // all keyboards
-  CFDictionaryRef match = matching_dictionary_create(idVendor, idProduct, 1, 6);
-  IOHIDManagerSetDeviceMatching(hidManager, match);
-  CFRelease(match);
-}
-
 static void __XPC_Peer_Event_Handler(xpc_connection_t connection,
                                      xpc_object_t event) {
   xpc_type_t type = xpc_get_type(event);
@@ -84,23 +79,38 @@ static void __XPC_Peer_Event_Handler(xpc_connection_t connection,
       // the connection is in an invalid state, and you do not need to
       // call xpc_connection_cancel(). Just tear down any associated state
       // here.
-      setHID(NULL);
     } else if (event == XPC_ERROR_TERMINATION_IMMINENT) {
       // Handle per-connection termination cleanup.
-      setHID(NULL);
     }
 
   } else {
     uint64_t idProduct = xpc_dictionary_get_int64(event, "idProduct");
     uint64_t idVendor = xpc_dictionary_get_int64(event, "idVendor");
     uint64_t action = xpc_dictionary_get_int64(event, "request");
-    syslog(LOG_NOTICE, "Received message. idProduct: %llu, idVendor: %llu, action: %llu", idProduct, idVendor, action);
+    syslog(LOG_NOTICE,
+           "Received message. idProduct: %llu, idVendor: %llu, action: %llu",
+           idProduct, idVendor, action);
     if (action == 1) {
       // enable
-      setHID(NULL);
+      if (hidDevice != NULL) {
+        IOHIDDeviceClose(hidDevice, kIOHIDOptionsTypeSeizeDevice);
+        hidDevice = NULL;
+      }
+      if (hidManager != NULL) {
+        IOHIDManagerClose(hidManager, kIOHIDOptionsTypeNone);
+        hidManager = NULL;
+      }
     } else {
       // disable
-      suspendDevice((int)idVendor, (int)idProduct);
+      if (hidManager == NULL) {
+        hidManager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
+        IOHIDManagerRegisterDeviceMatchingCallback(hidManager, match_callback, NULL);
+        IOHIDManagerRegisterDeviceRemovalCallback(hidManager, handle_removal_callback, NULL);
+      }
+      IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetMain(), kCFRunLoopCommonModes);
+      CFDictionaryRef match = matching_dictionary_create(idVendor, idProduct, 1, 6);
+      IOHIDManagerSetDeviceMatching(hidManager, match);
+      CFRelease(match);
     }
     xpc_connection_t remote = xpc_dictionary_get_remote_connection(event);
     xpc_object_t reply = xpc_dictionary_create_reply(event);
@@ -118,8 +128,20 @@ static void __XPC_Connection_Handler(xpc_connection_t connection) {
   xpc_connection_resume(connection);
 }
 
+void signalHandler(int signum) {
+  syslog(LOG_NOTICE, "Received signal %d. Cleaning up...", signum);
+  if (hidDevice != NULL) {
+    IOHIDDeviceClose(hidDevice, kIOHIDOptionsTypeSeizeDevice);
+    hidDevice = NULL;
+  }
+  if (hidManager != NULL) {
+    IOHIDManagerClose(hidManager, kIOHIDOptionsTypeNone);
+    hidManager = NULL;
+  }
+}
+
 int main(int argc, const char *argv[]) {
-  setHID(NULL);
+  signal(SIGINT, signalHandler);
   xpc_connection_t service = xpc_connection_create_mach_service(
       "com.pallotron.yubiswitch.helper", dispatch_get_main_queue(),
       XPC_CONNECTION_MACH_SERVICE_LISTENER);
