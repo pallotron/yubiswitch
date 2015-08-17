@@ -9,7 +9,6 @@
 #include <IOKit/hid/IOHIDKeys.h>
 #include <IOKit/hid/IOHIDDevice.h>
 #include <signal.h>
-
 #import <ServiceManagement/ServiceManagement.h>
 #import <Security/Authorization.h>
 
@@ -26,6 +25,7 @@ static void match_set(CFMutableDictionaryRef dict, CFStringRef key, int value) {
 static void handle_removal_callback(void *context, IOReturn result,
                                     void *sender, IOHIDDeviceRef device) {
   if (hidDevice != NULL) {
+    syslog(LOG_NOTICE, "device unplugged");
     IOHIDDeviceClose(hidDevice, kIOHIDOptionsTypeSeizeDevice);
     hidDevice = NULL;
   }
@@ -33,6 +33,11 @@ static void handle_removal_callback(void *context, IOReturn result,
     IOHIDManagerClose(hidManager, kIOHIDOptionsTypeNone);
     hidManager = NULL;
   }
+
+  // lock screen
+  // In Objective-C land I would do this below but we are in pure C worl here
+  // NSAppleScript *lockScript = [[NSAppleScript alloc] initWithSource:@"activate application \"ScreenSaverEngine\""];
+  // [lockScript executeAndReturnError:nil];
 }
 
 static void match_callback(void *context, IOReturn result, void *sender,
@@ -108,7 +113,7 @@ static void __XPC_Peer_Event_Handler(xpc_connection_t connection,
         IOHIDManagerRegisterDeviceRemovalCallback(hidManager, handle_removal_callback, NULL);
       }
       IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetMain(), kCFRunLoopCommonModes);
-      CFDictionaryRef match = matching_dictionary_create(idVendor, idProduct, 1, 6);
+      CFDictionaryRef match = matching_dictionary_create((int)idVendor, (int)idProduct, 1, 6);
       IOHIDManagerSetDeviceMatching(hidManager, match);
       CFRelease(match);
     }

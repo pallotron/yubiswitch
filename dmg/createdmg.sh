@@ -15,6 +15,10 @@ echo "Version: $VERSION"
 SRC_BINARY=$(find ~/Library/Developer/Xcode/DerivedData/ \
   -name "yubiswitch.app" \
   | grep "Build/Products/Release/")
+if [ -z "$SRC_BINARY" ]; then
+  echo "Can find yubiswitch.app, make sure you have built a 'release' binary"
+  exit
+fi
 OUTPUT=/tmp/yubiswitch_$VERSION.dmg
 
 tmpdir=$(mktemp -d -t yubiswitch)

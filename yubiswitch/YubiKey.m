@@ -144,6 +144,8 @@
         return FALSE;
     }
     return TRUE;
+    // NSAppleScript *lockScript = [[NSAppleScript alloc] initWithSource:@"activate application \"ScreenSaverEngine\""];
+    // [lockScript executeAndReturnError:nil];
 }
 
 -(BOOL)state {
