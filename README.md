@@ -76,9 +76,7 @@ When you want to create a release:
 - Tag repo with vx.y, ie `git tag -a -m 'comment' v0.2`
 - Compile release app bundle in Xcode
 - Run script: `cd dmg/ && bash createdmg.sh`
-- Get the file at `/tmp/yubiswitch\_$VERSION.dmg` and distribute via release
-- page as explained in
-- [the github blog](https://github.com/blog/1547-release-your-software)
+- Get the file at `/tmp/yubiswitch\_$VERSION.dmg` and distribute via release page as explained in [the github blog](https://github.com/blog/1547-release-your-software)
 
 # Dependencies
 `yubiswitch` uses ShortcutRecoder to implement global hot key and shortcuts recording in the the preference window.
@@ -90,13 +88,9 @@ When you want to create a release:
 git submodule add git://github.com/Kentzo/ShortcutRecorder.git
 ```
 
-- See [this helpful page](https://github.com/Kentzo/ShortcutRecorder) for
-- instructions on how to set up your Xcode environment should you have any
-- problem.
+See [this helpful page](https://github.com/Kentzo/ShortcutRecorder) for instructions on how to set up your Xcode environment should you have any problem.
 
 # Credits
 Credits:
-
-*  Anton Tolchanov (@knyar), he originally wrote this in Python using PyObjC bridge. I decided to port this into Objective-C to learn the language when I found out that Carbon Event Manager libs have been removed from Python3. See [http://docs.python.org/2/library/carbon.html](http://docs.python.org/2/library/carbon.html)
-
-* @postwait for the USD HID device code
+- Anton Tolchanov (@knyar), he originally wrote this in Python using PyObjC bridge. I decided to port this into Objective-C to learn the language when I found out that Carbon Event Manager libs have been removed from Python3. See [http://docs.python.org/2/library/carbon.html](http://docs.python.org/2/library/carbon.html)
+- @postwait for the USD HID device code
