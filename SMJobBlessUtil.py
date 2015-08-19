@@ -77,12 +77,13 @@ class CheckException (Exception):
 def checkCodeSignature(programPath, programType):
     """Checks the code signature of the referenced program."""
 
-    # Use the codesign tool to check the signature.  The second "-v" is required to enable
-    # verbose mode, which causes codesign to do more checking.  By default it does the minimum
-    # amount of checking ("Is the program properly signed?").  If you enabled verbose mode it
-    # does other sanity checks, which we definitely want.  The specific thing I'd like to
-    # detect is "Does the code satisfy its own designated requirement?" and I need to enable
-    # verbose mode to get that.
+    # Use the codesign tool to check the signature.  The second "-v" is required
+    # to enable verbose mode, which causes codesign to do more checking.
+    # By default it does the minimum amount of checking ("Is the program
+    # properly signed?").  If you enabled verbose mode it does other sanity
+    # checks, which we definitely want.  The specific thing I'd like to
+    # detect is "Does the code satisfy its own designated requirement?" and I
+    # need to enable verbose mode to get that.
 
     args = [
         # "false",
@@ -94,7 +95,8 @@ def checkCodeSignature(programPath, programType):
     try:
         subprocess.check_call(args, stderr=open("/dev/null"))
     except subprocess.CalledProcessError, e:
-        raise CheckException("%s code signature invalid" % programType, programPath)
+        raise CheckException("%s code signature invalid" % programType,
+                             programPath)
 
 def readDesignatedRequirement(programPath, programType):
     """Returns the designated requirement of the program as a string."""
@@ -109,11 +111,13 @@ def readDesignatedRequirement(programPath, programType):
     try:
         req = subprocess.check_output(args, stderr=open("/dev/null"))
     except subprocess.CalledProcessError, e:
-        raise CheckException("%s designated requirement unreadable" % programType, programPath)
+        raise CheckException("%s designated requirement unreadable" %
+                             programType, programPath)
 
     reqLines = req.splitlines()
     if len(reqLines) != 1 or not req.startswith("designated => "):
-        raise CheckException("%s designated requirement malformed" % programType, programPath)
+        raise CheckException("%s designated requirement malformed" %
+                             programType, programPath)
     return reqLines[0][len("designated => "):]
 
 def readInfoPlistFromPath(infoPath):
@@ -127,7 +131,8 @@ def readInfoPlistFromPath(infoPath):
     return info
 
 def readPlistFromToolSection(toolPath, segmentName, sectionName):
-    """Reads a dictionary property list from the specified section within the specified executable."""
+    """Reads a dictionary property list from the specified section
+    within the specified executable."""
 
     # Run otool -s to get a hex dump of the section.
 
@@ -142,13 +147,16 @@ def readPlistFromToolSection(toolPath, segmentName, sectionName):
     try:
         plistDump = subprocess.check_output(args)
     except subprocess.CalledProcessError, e:
-        raise CheckException("tool %s / %s section unreadable" % (segmentName, sectionName), toolPath)
+        raise CheckException("tool %s / %s section unreadable" % (
+                             segmentName, sectionName), toolPath)
 
-#Convert that hex dump to an property list.
+    # Convert that hex dump to an property list.
 
     plistLines = plistDump.splitlines()
-    if len(plistLines) < 3 or plistLines[1] != ("Contents of (%s,%s) section" % (segmentName, sectionName)):
-        raise CheckException("tool %s / %s section dump malformed (1)" % (segmentName, sectionName), toolPath)
+    if len(plistLines) < 3 or plistLines[1] != ("Contents of (%s,%s) section" %
+                                                (segmentName, sectionName)):
+        raise CheckException("tool %s / %s section dump malformed (1)" %
+                             (segmentName, sectionName), toolPath)
     del plistLines[0:2]
 
     try:
@@ -163,13 +171,15 @@ def readPlistFromToolSection(toolPath, segmentName, sectionName):
                 bytes.append(int(hexStr, 16))
         plist = plistlib.readPlistFromString(bytearray(bytes))
     except:
-        raise CheckException("tool %s / %s section dump malformed (2)" % (segmentName, sectionName), toolPath)
+        raise CheckException("tool %s / %s section dump malformed (2)" %
+                             (segmentName, sectionName), toolPath)
 
     # Check the root of the property list.
 
     if not isinstance(plist, dict):
         raise CheckException(
-            "tool %s / %s property list root must be a dictionary" % (segmentName, sectionName), toolPath)
+            "tool %s / %s property list root must be a dictionary" %
+            (segmentName, sectionName), toolPath)
 
     return plist
 
@@ -196,7 +206,8 @@ def checkStep1(appPath):
         if toolName != ".DS_Store":
             toolPath = os.path.join(toolDirPath, toolName)
             if not os.path.isfile(toolPath):
-                raise CheckException("tool directory contains a directory", toolPath)
+                raise CheckException("tool directory contains a directory",
+                                     toolPath)
             checkCodeSignature(toolPath, "tool")
             toolPathList.append(toolPath)
 
@@ -217,7 +228,8 @@ def checkStep2(appPath, toolPathList):
         req = readDesignatedRequirement(toolPath, "tool")
         toolNameToReqMap[os.path.basename(toolPath)] = req
 
-    # Read the Info.plist for the app and extract the SMPrivilegedExecutables value.
+    # Read the Info.plist for the app and extract the SMPrivilegedExecutables
+    # value.
 
     infoPath = os.path.join(appPath, "Contents", "Info.plist")
     info = readInfoPlistFromPath(infoPath)
@@ -225,15 +237,19 @@ def checkStep2(appPath, toolPathList):
         raise CheckException("'SMPrivilegedExecutables' not found", infoPath)
     infoToolDict = info["SMPrivilegedExecutables"]
     if not isinstance(infoToolDict, dict):
-        raise CheckException("'SMPrivilegedExecutables' must be a dictionary", infoPath)
+        raise CheckException("'SMPrivilegedExecutables' must be a dictionary",
+                             infoPath)
 
-    # Check that the list of tools matches the list of SMPrivilegedExecutables entries.
+    # Check that the list of tools matches the list of SMPrivilegedExecutables
+    # entries.
 
     print(infoToolDict.keys())
     print(toolNameToReqMap.keys())
 
     if sorted(infoToolDict.keys()) != sorted(toolNameToReqMap.keys()):
-        raise CheckException("'SMPrivilegedExecutables' and tools in 'Contents/Library/LaunchServices' don't match")
+        raise CheckException(
+            "'SMPrivilegedExecutables' and tools in "
+            "'Contents/Library/LaunchServices' don't match")
 
     # Check that all the requirements match.
 

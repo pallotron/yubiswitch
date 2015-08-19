@@ -36,7 +36,8 @@ static void handle_removal_callback(void *context, IOReturn result,
 
   // lock screen
   // In Objective-C land I would do this below but we are in pure C worl here
-  // NSAppleScript *lockScript = [[NSAppleScript alloc] initWithSource:@"activate application \"ScreenSaverEngine\""];
+  // NSAppleScript *lockScript = [[NSAppleScript alloc]
+  // initWithSource:@"activate application \"ScreenSaverEngine\""];
   // [lockScript executeAndReturnError:nil];
 }
 
@@ -108,12 +109,17 @@ static void __XPC_Peer_Event_Handler(xpc_connection_t connection,
     } else {
       // disable
       if (hidManager == NULL) {
-        hidManager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
-        IOHIDManagerRegisterDeviceMatchingCallback(hidManager, match_callback, NULL);
-        IOHIDManagerRegisterDeviceRemovalCallback(hidManager, handle_removal_callback, NULL);
+        hidManager =
+            IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
+        IOHIDManagerRegisterDeviceMatchingCallback(hidManager, match_callback,
+                                                   NULL);
+        IOHIDManagerRegisterDeviceRemovalCallback(
+            hidManager, handle_removal_callback, NULL);
       }
-      IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetMain(), kCFRunLoopCommonModes);
-      CFDictionaryRef match = matching_dictionary_create((int)idVendor, (int)idProduct, 1, 6);
+      IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetMain(),
+                                      kCFRunLoopCommonModes);
+      CFDictionaryRef match =
+          matching_dictionary_create((int)idVendor, (int)idProduct, 1, 6);
       IOHIDManagerSetDeviceMatching(hidManager, match);
       CFRelease(match);
     }
