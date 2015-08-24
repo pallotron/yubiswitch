@@ -56,7 +56,7 @@ Preference window:
 
   the _YubiKey Nano_ and the _Yubikey Neo_. The Nano and the Neo both fit cleanly into your USB port.
 
-- The app's default settings support the Nano. If you have the neo, go into the app's `Preferences` by clicking on the menu icon, then set the the `Product ID` to `0x0114`.
+- The app's default settings support the Nano. If you have the neo, go into the app's `Preferences` by clicking on the menu icon, then set the the `Product ID` to `0x0114` (or whatever your ProductID is).
 - This app only works with recent version of OSX because it relies on the Notification Centre. OSX 10.8.x and above would do it. Sorry about that.
 
 # TODO and future plans
@@ -67,16 +67,14 @@ Preference window:
 - [ ] Feature: lock computer when yubikey is removed (use IOServiceAddMatchingNotification in IOKit?)
 - [x] Support more yubikeys nano on multiple USB slots
 - [x] Better support for plug and unplug events (fixed with HID interface, dmg not published yet)
-- [ ] Convert release process using [github's Release APIS]([https://github.com/blog/1645-releases-api-preview](https://github.com/blog/1645-releases-api-preview)) and [ChocTop](http://drnic.github.io/choctop/)
 
 # How to create DMG for distribution
-Note that this will change soon to be integrated with [github's Release APIS] ([https://github.com/blog/1645-releases-api-preview](https://github.com/blog/1645-releases-api-preview))
 
 When you want to create a release:
-- Tag repo with vx.y, ie `git tag -a -m 'comment' v0.2`
+- Tag repo with vx.y, ie `git tag -a -m 'comment that describe the changes' v0.2`
 - Compile release app bundle in Xcode
 - Run script: `cd dmg/ && bash createdmg.sh`
-- Get the file at `/tmp/yubiswitch\_$VERSION.dmg` and distribute via release page as explained in [the github blog](https://github.com/blog/1547-release-your-software)
+- Get the file at `/tmp/yubiswitch\_$VERSION.dmg` and attach the binary to the release in the new release in [the github page](https://github.com/pallotron/yubiswitch/releases/) 
 
 # Dependencies
 `yubiswitch` uses ShortcutRecoder to implement global hot key and shortcuts recording in the the preference window.
