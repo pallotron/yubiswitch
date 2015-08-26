@@ -43,5 +43,7 @@
 -(BOOL)disable;
 -(void)notificationReloadHandler:(NSNotification *)notification;
 -(BOOL)blessHelperWithLabel:(NSString *)label error:(NSError **)error;
+-(BOOL)needToInstallHelper:(NSString *)label;
+
 
 @end
