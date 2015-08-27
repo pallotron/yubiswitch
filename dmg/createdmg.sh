@@ -5,7 +5,7 @@ set -e
 if [ ! -e ../yubiswitch/yubiswitch-Info.plist ]; then
   echo "Can't extrapolate bundle version."
   echo "Are you executing this from whiting the dmg/ dir?"
-  exit
+  exit 1
 fi
 
 VERSION=$(grep CFBundleShortVersionString ../yubiswitch/yubiswitch-Info.plist \
@@ -17,7 +17,7 @@ SRC_BINARY=$(find ~/Library/Developer/Xcode/DerivedData/ \
   | grep "Build/Products/Release/")
 if [ -z "$SRC_BINARY" ]; then
   echo "Can find yubiswitch.app, make sure you have built a 'release' binary"
-  exit
+  exit 1
 fi
 OUTPUT=/tmp/yubiswitch_$VERSION.dmg
 
@@ -27,7 +27,7 @@ echo "Tempdir: $tmpdir"
 if [ ! -e skeleton.dmg ]; then
   echo "Can't find skeleton.dmg."
   echo "Are you executing this from whiting the dmg/ dir?"
-  exit
+  exit 1
 fi
 
 cp skeleton.dmg $tmpdir/
@@ -43,6 +43,13 @@ sync
 echo "Converting DMG to compressed/ro, and write to $OUTPUT"
 rm -f $OUTPUT
 hdiutil convert -format UDZO -o $OUTPUT $tmpdir/skeleton.dmg
+
+if [ ! $OUTPUT ]; then
+  echo "can't find $OUTPUT!"
+  exit 1
+fi
+
+codesign -s "Mac Developer: Angelo Failla (22Y3UXV6J8)" $OUTPUT
 
 echo "Removing tmpdir"
 rm -rf $tmpdir
