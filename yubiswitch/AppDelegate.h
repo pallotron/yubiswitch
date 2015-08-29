@@ -3,8 +3,8 @@
 
 /*
  yubiswitch - enable/disable yubikey
- Copyright (C) 2013  Angelo "pallotron" Failla <pallotron@freaknet.org>
- 
+ Copyright (C) 2013-2015  Angelo "pallotron" Failla <pallotron@freaknet.org>
+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation, either version 3 of the License, or
@@ -25,6 +25,7 @@
 #import "YubiKey.h"
 #import "AboutWindowController.h"
 #import "PreferencesController.h"
+#import "ComputerStateMonitor.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet NSMenu* statusMenu;
@@ -36,6 +37,7 @@
     AboutWindowController* aboutwc;
     PreferencesController* prefwc;
     NSTimer* reDisableTimer;
+    ComputerStateMonitor* state_monitor;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -48,6 +50,7 @@
 -(IBAction)quit:(id)sender;
 -(IBAction)about:(id)sender;
 -(IBAction)pref:(id)sender;
+-(IBAction)toggleDisableSleepLock:(id)sender;
 -(void)enableYubiKey:(BOOL)enable;
 -(void)notify:(NSString *)msg;
 -(void)reDisableYK;

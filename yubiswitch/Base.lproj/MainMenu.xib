@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
@@ -27,12 +26,20 @@
                         <action selector="toggle:" target="494" id="LLD-CQ-Jz5"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Automatically switch off YubiKey" toolTip="Automatically switch off the YubiKey after number of seconds specified in preference window." id="bbU-bX-p6O">
+                <menuItem title="Enable Yubikey when system locks/sleeps" toolTip="Re-enables the yubiky when you put your computer to sleep or lock the screen" id="bbU-bX-p6O">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <accessibility help="Re-enables the yubiky when you put your computer to sleep or lock the screen"/>
+                    <connections>
+                        <action selector="toggleDisableSleepLock:" target="494" id="2X9-dd-sDf"/>
+                        <binding destination="BET-T9-5EC" name="value" keyPath="values.disableAtLockSleep" id="KTY-EX-ccj"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Automatically switch off YubiKey" toolTip="Automatically switch off the YubiKey after number of seconds specified in preference window." id="VfM-vs-NmT">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <accessibility help="Automatically switch off the YubiKey after number of seconds specified in preference window."/>
                     <connections>
-                        <action selector="toggleSwitchOffDelay:" target="494" id="2rs-2f-GAW"/>
-                        <binding destination="W0R-qr-9Af" name="value" keyPath="selection.enabled" id="kdF-k5-M9l">
+                        <action selector="toggleSwitchOffDelay:" target="494" id="9qU-If-nqh"/>
+                        <binding destination="W0R-qr-9Af" name="value" keyPath="selection.enabled" id="MLc-vP-gIn">
                             <dictionary key="options">
                                 <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                 <bool key="NSConditionallySetsEnabled" value="NO"/>
@@ -69,6 +76,7 @@
                     </connections>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="104" y="132.5"/>
         </menu>
         <objectController automaticallyPreparesContent="YES" id="W0R-qr-9Af" userLabel="Object ControllerSwitchOff">
             <connections>

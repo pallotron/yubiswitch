@@ -11,6 +11,7 @@
 		59013C8917F56F5300005A7E /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59013C8517F56F0F00005A7E /* ShortcutRecorder.framework */; };
 		59013C8E17F5750E00005A7E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C0616B17EED6AB00D3EE79 /* Carbon.framework */; };
 		59013C9317F6CDB900005A7E /* nano.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 59013C9217F6CDB900005A7E /* nano.jpg */; };
+		591B90A91B91A62900D1C1A7 /* ComputerStateMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 591B90A81B91A62900D1C1A7 /* ComputerStateMonitor.m */; };
 		593929681B21058600905E94 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 59013C8517F56F0F00005A7E /* ShortcutRecorder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		593929691B21058700905E94 /* PTHotKey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 59013C8717F56F0F00005A7E /* PTHotKey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5939296C1B2108DC00905E94 /* com.pallotron.yubiswitch.helper in CopyFiles */ = {isa = PBXBuildFile; fileRef = 593AE45D1B1371B700FCA848 /* com.pallotron.yubiswitch.helper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -121,6 +122,8 @@
 /* Begin PBXFileReference section */
 		59013C7F17F56F0F00005A7E /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = ShortcutRecorder/ShortcutRecorder.xcodeproj; sourceTree = "<group>"; };
 		59013C9217F6CDB900005A7E /* nano.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nano.jpg; sourceTree = "<group>"; };
+		591B90A71B91A62900D1C1A7 /* ComputerStateMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComputerStateMonitor.h; sourceTree = "<group>"; };
+		591B90A81B91A62900D1C1A7 /* ComputerStateMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComputerStateMonitor.m; sourceTree = "<group>"; };
 		593AE45D1B1371B700FCA848 /* com.pallotron.yubiswitch.helper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = com.pallotron.yubiswitch.helper; sourceTree = BUILT_PRODUCTS_DIR; };
 		593AE45F1B1371B700FCA848 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		593B4E0617F09362003195DE /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWindowController.h; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 				598AF34417F380C4008165C6 /* DefaultPreferences.plist */,
 				59E5CF2117EC2A9000898135 /* AppDelegate.m */,
 				59E5CF2017EC2A9000898135 /* AppDelegate.h */,
+				591B90A71B91A62900D1C1A7 /* ComputerStateMonitor.h */,
+				591B90A81B91A62900D1C1A7 /* ComputerStateMonitor.m */,
 				59E5CF2317EC2A9000898135 /* MainMenu.xib */,
 				59882B5B18BA7735001B9389 /* YubiKeyScript.h */,
 				59882B5C18BA7735001B9389 /* YubiKeyScript.m */,
@@ -478,6 +483,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				59EF40661B13C4A60000BB5F /* main.m in Sources */,
+				591B90A91B91A62900D1C1A7 /* ComputerStateMonitor.m in Sources */,
 				593B4E0E17F0A2BD003195DE /* PreferencesController.m in Sources */,
 				59882B5D18BA7735001B9389 /* YubiKeyScript.m in Sources */,
 				59E5CF2217EC2A9000898135 /* AppDelegate.m in Sources */,

@@ -3,7 +3,7 @@
 
 /*
  yubiswitch - enable/disable yubikey
- Copyright (C) 2013  Angelo "pallotron" Failla <pallotron@freaknet.org>
+ Copyright (C) 2013-2015  Angelo "pallotron" Failla <pallotron@freaknet.org>
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -32,219 +32,224 @@
 @synthesize controller;
 
 - (id)init {
-  self = [super init];
-  if (self) {
-    // Set default values for preferences, load it from
-    // DefaultPreferences.plist file
-    NSString *defaultPrefsFile =
+    self = [super init];
+    if (self) {
+        // Set default values for preferences, load it from
+        // DefaultPreferences.plist file
+        NSString *defaultPrefsFile =
         [[NSBundle mainBundle] pathForResource:@"DefaultPreferences"
                                         ofType:@"plist"];
-    NSDictionary *defaultPrefs =
+        NSDictionary *defaultPrefs =
         [NSDictionary dictionaryWithContentsOfFile:defaultPrefsFile];
 
-    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPrefs];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPrefs];
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-      m_timer =
-          [NSTimer scheduledTimerWithTimeInterval:1
-                                           target:self
-                                         selector:@selector(updateMenuState:)
-                                         userInfo:nil
-                                          repeats:YES];
-    });
-  }
-  return self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            m_timer =
+            [NSTimer scheduledTimerWithTimeInterval:1
+                                             target:self
+                                           selector:@selector(updateMenuState:)
+                                           userInfo:nil
+                                            repeats:YES];
+        });
+    }
+    return self;
 }
 
 - (void)updateMenuState:(NSTimer *)foo {
-  if (yk != NULL) {
-    if (isEnabled && [yk state]) { // inverted this means change
-      NSLog(@"noticed change...");
-      [statusItem setToolTip:(@"YubiKey disabled")];
-      [statusItem setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
-      isEnabled = false;
-      [[statusMenu itemAtIndex:0] setState:0];
-      [self notify:@"YubiKey disabled"];
+    if (yk != NULL) {
+        if (isEnabled && [yk state]) { // inverted this means change
+            NSLog(@"noticed change...");
+            [statusItem setToolTip:(@"YubiKey disabled")];
+            [statusItem setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
+            isEnabled = false;
+            [[statusMenu itemAtIndex:0] setState:0];
+            [self notify:@"YubiKey disabled"];
+        }
     }
-  }
 }
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-  yk = [[YubiKey alloc] init];
-  [yk disable];
-  usernotification = [[NSUserNotification alloc] init];
-  [self notify:@"YubiKey disabled"];
-  aboutwc = [[AboutWindowController alloc]
-      initWithWindowNibName:@"AboutWindowController"];
-  prefwc = [[PreferencesController alloc]
-      initWithWindowNibName:@"PreferencesController"];
+    yk = [[YubiKey alloc] init];
+    [yk disable];
+    state_monitor = [[ComputerStateMonitor alloc] initWithYubiKey:yk];
+    usernotification = [[NSUserNotification alloc] init];
+    [self notify:@"YubiKey disabled"];
+    aboutwc = [[AboutWindowController alloc]
+               initWithWindowNibName:@"AboutWindowController"];
+    prefwc = [[PreferencesController alloc]
+              initWithWindowNibName:@"PreferencesController"];
 }
 
 - (void)awakeFromNib {
 
-  statusItem = [[NSStatusBar systemStatusBar]
-      statusItemWithLength:NSVariableStatusItemLength];
-  [statusItem setMenu:statusMenu];
-  [statusItem setHighlightMode:YES];
-  [statusItem setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
-  [statusItem setToolTip:@"YubiKey disabled"];
+    statusItem = [[NSStatusBar systemStatusBar]
+                  statusItemWithLength:NSVariableStatusItemLength];
+    [statusItem setMenu:statusMenu];
+    [statusItem setHighlightMode:YES];
+    [statusItem setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
+    [statusItem setToolTip:@"YubiKey disabled"];
 
-  isEnabled = false;
+    isEnabled = false;
 
-  // setup observer method, when the global hotkey is changed in the
-  // preference controller this method gets notified.
-  NSUserDefaultsController *defaults =
-      [NSUserDefaultsController sharedUserDefaultsController];
-  [defaults addObserver:self
-             forKeyPath:@"values.hotkey"
-                options:NSKeyValueObservingOptionInitial
-                context:NULL];
+    // setup observer method, when the global hotkey is changed in the
+    // preference controller this method gets notified.
+    NSUserDefaultsController *defaults =
+    [NSUserDefaultsController sharedUserDefaultsController];
+    [defaults addObserver:self
+               forKeyPath:@"values.hotkey"
+                  options:NSKeyValueObservingOptionInitial
+                  context:NULL];
 
-  controller = [NSUserDefaultsController sharedUserDefaultsController];
-  NSString *defaultPrefsFile =
-      [[NSBundle mainBundle] pathForResource:@"DefaultPreferences"
-                                      ofType:@"plist"];
-  NSDictionary *defaultPrefs =
-      [NSDictionary dictionaryWithContentsOfFile:defaultPrefsFile];
-  [controller setInitialValues:defaultPrefs];
-  [controller setAppliesImmediately:NO];
+    controller = [NSUserDefaultsController sharedUserDefaultsController];
+    NSString *defaultPrefsFile =
+    [[NSBundle mainBundle] pathForResource:@"DefaultPreferences"
+                                    ofType:@"plist"];
+    NSDictionary *defaultPrefs =
+    [NSDictionary dictionaryWithContentsOfFile:defaultPrefsFile];
+    [controller setInitialValues:defaultPrefs];
+    [controller setAppliesImmediately:NO];
 }
 
 - (void)observeValueForKeyPath:(NSString *)aKeyPath
                       ofObject:(id)anObject
                         change:(NSDictionary *)aChange
                        context:(void *)aContext {
-  if ([aKeyPath isEqualToString:@"values.hotkey"]) {
-    PTHotKeyCenter *hotKeyCenter = [PTHotKeyCenter sharedCenter];
-    PTHotKey *oldHotKey = [hotKeyCenter hotKeyWithIdentifier:aKeyPath];
-    [hotKeyCenter unregisterHotKey:oldHotKey];
+    if ([aKeyPath isEqualToString:@"values.hotkey"]) {
+        PTHotKeyCenter *hotKeyCenter = [PTHotKeyCenter sharedCenter];
+        PTHotKey *oldHotKey = [hotKeyCenter hotKeyWithIdentifier:aKeyPath];
+        [hotKeyCenter unregisterHotKey:oldHotKey];
 
-    NSDictionary *newShortcut = [anObject valueForKeyPath:aKeyPath];
+        NSDictionary *newShortcut = [anObject valueForKeyPath:aKeyPath];
 
-    if (newShortcut && (NSNull *)newShortcut != [NSNull null]) {
-      PTHotKey *newHotKey = [PTHotKey hotKeyWithIdentifier:aKeyPath
-                                                  keyCombo:newShortcut
-                                                    target:self
-                                                    action:@selector(toggle:)];
-      [hotKeyCenter registerHotKey:newHotKey];
-    }
-    NSDictionary *hotkey =
+        if (newShortcut && (NSNull *)newShortcut != [NSNull null]) {
+            PTHotKey *newHotKey = [PTHotKey hotKeyWithIdentifier:aKeyPath
+                                                        keyCombo:newShortcut
+                                                          target:self
+                                                          action:@selector(toggle:)];
+            [hotKeyCenter registerHotKey:newHotKey];
+        }
+        NSDictionary *hotkey =
         [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"hotkey"];
-    [[statusMenu itemAtIndex:0]
-        setKeyEquivalent:[hotkey valueForKey:@"charactersIgnoringModifiers"]];
-    [[statusMenu itemAtIndex:0]
-        setKeyEquivalentModifierMask:
-            [[hotkey valueForKey:@"modifierFlags"] unsignedIntValue]];
-  } else
-    [super observeValueForKeyPath:aKeyPath
-                         ofObject:anObject
-                           change:aChange
-                          context:aContext];
+        [[statusMenu itemAtIndex:0]
+         setKeyEquivalent:[hotkey valueForKey:@"charactersIgnoringModifiers"]];
+        [[statusMenu itemAtIndex:0]
+         setKeyEquivalentModifierMask:
+         [[hotkey valueForKey:@"modifierFlags"] unsignedIntValue]];
+    } else
+        [super observeValueForKeyPath:aKeyPath
+                             ofObject:anObject
+                               change:aChange
+                              context:aContext];
 }
 
 - (void)notify:(NSString *)msg {
-  BOOL displayNotifications = [[NSUserDefaults standardUserDefaults]
-      boolForKey:@"displayNotifications"];
-  if (!displayNotifications)
-    return;
-  usernotification.title = msg;
-  [[NSUserNotificationCenter defaultUserNotificationCenter]
-      deliverNotification:usernotification];
+    BOOL displayNotifications = [[NSUserDefaults standardUserDefaults]
+                                 boolForKey:@"displayNotifications"];
+    if (!displayNotifications)
+        return;
+    usernotification.title = msg;
+    [[NSUserNotificationCenter defaultUserNotificationCenter]
+     deliverNotification:usernotification];
 }
 
 // TODO: create enable/disable methods and use them in toggle: and createTimer:
 - (NSTimer *)createTimer:(NSInteger)interval {
-  return [NSTimer scheduledTimerWithTimeInterval:interval
-                                          target:self
-                                        selector:@selector(reDisableYK)
-                                        userInfo:nil
-                                         repeats:NO];
+    return [NSTimer scheduledTimerWithTimeInterval:interval
+                                            target:self
+                                          selector:@selector(reDisableYK)
+                                          userInfo:nil
+                                           repeats:NO];
 }
 
 - (void)reDisableYK {
-  BOOL res;
-  res = [yk disable];
-  if (res == TRUE) {
-    [statusItem setToolTip:(@"YubiKey disabled")];
-    [statusItem setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
-    isEnabled = false;
-    [[statusMenu itemAtIndex:0] setState:0];
-    [self notify:@"YubiKey disabled"];
-  }
+    BOOL res;
+    res = [yk disable];
+    if (res == TRUE) {
+        [statusItem setToolTip:(@"YubiKey disabled")];
+        [statusItem setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
+        isEnabled = false;
+        [[statusMenu itemAtIndex:0] setState:0];
+        [self notify:@"YubiKey disabled"];
+    }
 }
 
 - (void)enableYubiKey:(BOOL)enable {
-  BOOL res;
-  if (enable == TRUE) {
-    res = [yk enable];
-  } else {
-    res = [yk disable];
-  }
-  if (res == TRUE) {
+    BOOL res;
     if (enable == TRUE) {
-      [statusItem setToolTip:(@"YubiKey enabled")];
-      [statusItem setImage:[NSImage imageNamed:@"YubikeyEnabled"]];
-      isEnabled = true;
-      [[statusMenu itemAtIndex:0] setState:1];
-      [self notify:@"YubiKey enabled"];
-      NSDictionary *switchOffDelayPrefs = [[NSUserDefaults standardUserDefaults]
-          dictionaryForKey:@"switchOffDelay"];
-      bool enabled = [[switchOffDelayPrefs valueForKey:@"enabled"] boolValue];
-      if (enabled == TRUE) {
-        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-        [f setNumberStyle:NSNumberFormatterDecimalStyle];
-        NSNumber *interval =
-            [f numberFromString:[switchOffDelayPrefs valueForKey:@"interval"]];
-        reDisableTimer = [self createTimer:(long)[interval integerValue]];
-      }
+        res = [yk enable];
     } else {
-      [statusItem setToolTip:(@"YubiKey disabled")];
-      [statusItem setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
-      isEnabled = false;
-      [[statusMenu itemAtIndex:0] setState:0];
-      [self notify:@"YubiKey disabled"];
+        res = [yk disable];
     }
-  }
+    if (res == TRUE) {
+        if (enable == TRUE) {
+            [statusItem setToolTip:(@"YubiKey enabled")];
+            [statusItem setImage:[NSImage imageNamed:@"YubikeyEnabled"]];
+            isEnabled = true;
+            [[statusMenu itemAtIndex:0] setState:1];
+            [self notify:@"YubiKey enabled"];
+            NSDictionary *switchOffDelayPrefs = [[NSUserDefaults standardUserDefaults]
+                                                 dictionaryForKey:@"switchOffDelay"];
+            bool enabled = [[switchOffDelayPrefs valueForKey:@"enabled"] boolValue];
+            if (enabled == TRUE) {
+                NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+                [f setNumberStyle:NSNumberFormatterDecimalStyle];
+                NSNumber *interval =
+                [f numberFromString:[switchOffDelayPrefs valueForKey:@"interval"]];
+                reDisableTimer = [self createTimer:(long)[interval integerValue]];
+            }
+        } else {
+            [statusItem setToolTip:(@"YubiKey disabled")];
+            [statusItem setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
+            isEnabled = false;
+            [[statusMenu itemAtIndex:0] setState:0];
+            [self notify:@"YubiKey disabled"];
+        }
+    }
 }
 
 - (IBAction)toggle:(id)sender {
-  if (isEnabled == TRUE) {
-    [self enableYubiKey:FALSE];
-  } else {
-    [self enableYubiKey:TRUE];
-  }
+    if (isEnabled == TRUE) {
+        [self enableYubiKey:FALSE];
+    } else {
+        [self enableYubiKey:TRUE];
+    }
 }
 
 - (IBAction)toggleSwitchOffDelay:(id)sender {
-  [controller save:self];
+    [controller save:self];
 }
 
 - (IBAction)toggleLockWhenUnplugged:(id)sender {
-  [controller save:self];
+    [controller save:self];
 }
 
 - (IBAction)toggleDisplayNotications:(id)sender {
-  [controller save:self];
+    [controller save:self];
+}
+
+- (IBAction)toggleDisableSleepLock:(id)sender {
+    [controller save:self];
 }
 
 - (IBAction)about:(id)sender {
-  [[aboutwc window] makeKeyAndOrderFront:self];
-  [[aboutwc window] setOrderedIndex:0];
-  [NSApp activateIgnoringOtherApps:YES];
-  [aboutwc showWindow:self];
+    [[aboutwc window] makeKeyAndOrderFront:self];
+    [[aboutwc window] setOrderedIndex:0];
+    [NSApp activateIgnoringOtherApps:YES];
+    [aboutwc showWindow:self];
 }
 
 - (IBAction)pref:(id)sender {
-  [[prefwc window] makeKeyAndOrderFront:self];
-  [[prefwc window] setOrderedIndex:0];
-  [NSApp activateIgnoringOtherApps:YES];
-  [prefwc showWindow:self];
+    [[prefwc window] makeKeyAndOrderFront:self];
+    [[prefwc window] setOrderedIndex:0];
+    [NSApp activateIgnoringOtherApps:YES];
+    [prefwc showWindow:self];
 }
 
 - (IBAction)quit:(id)sender {
-  [yk enable];
-  [self notify:@"YubiKey enabled"];
-  [reDisableTimer invalidate];
-  [[NSApplication sharedApplication] terminate:self];
+    [yk enable];
+    [self notify:@"YubiKey enabled"];
+    [reDisableTimer invalidate];
+    [[NSApplication sharedApplication] terminate:self];
 }
 
 @end
