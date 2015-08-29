@@ -27,6 +27,8 @@ Download the latest version in DMG format from [github release page here](https:
 # Running
 This application needs to run with escalated privileges in order to exclusively grab the USB HID interface that drives the NANO/NEO-n Yubikey. Running the main app as root is a p.i.t.a. so Yubiswitch installs an helper daemon with root privileges which contains the logic to grab the USB HID interface, the main application talks to this daemon via XPC calls. When you start Yubiswitch for the first time it will ask for your user's password, this is expected to install the helper before mentioned.
 
+If you use your Yubikey as part of [multi-factor authentication for Mac] (https://www.yubico.com/wp-content/uploads/2015/04/YubiKey-OSX-Login.pdf) then you might want to make sure that the option "Enable yubiky when sytem locks/sleeps" is enabled.
+
 # Integration with shell
 The application supports two basic AppleScript commands:
 - KeyOn
