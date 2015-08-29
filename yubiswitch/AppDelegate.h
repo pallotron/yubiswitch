@@ -55,5 +55,6 @@
 -(void)notify:(NSString *)msg;
 -(void)reDisableYK;
 -(NSTimer*)createTimer:(NSInteger)interval;
+-(void)lockComputer;
 
 @end

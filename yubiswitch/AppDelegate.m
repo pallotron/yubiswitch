@@ -252,4 +252,9 @@
     [[NSApplication sharedApplication] terminate:self];
 }
 
+- (void)lockComputer {
+    NSAppleScript *lockScript = [[NSAppleScript alloc] initWithSource:@"activate application \"ScreenSaverEngine\""];
+    [lockScript executeAndReturnError:nil];
+}
+
 @end
