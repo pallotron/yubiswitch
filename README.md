@@ -29,6 +29,10 @@ This application needs to run with escalated privileges in order to exclusively 
 
 If you use your Yubikey as part of [multi-factor authentication for Mac] (https://www.yubico.com/wp-content/uploads/2015/04/YubiKey-OSX-Login.pdf) then you might want to make sure that the option "Enable yubiky when sytem locks/sleeps" is enabled.
 
+If want `yubiswitch` to lock your computer when you unplug the key make sure that your security settings are as follow:
+
+![Security settings for screensaver](/images/screensaver-settings.png)
+
 # Integration with shell
 The application supports two basic AppleScript commands:
 - KeyOn
@@ -54,10 +58,6 @@ Preference window:
 ![Menu items screenshot](/images/screenshot-prefs.png)
 
 # Known Issues
-- This applicaiton works with two models of yubikey,
-
-  the _YubiKey Nano_ and the _Yubikey Neo_. The Nano and the Neo both fit cleanly into your USB port.
-
 - The app's default settings support the Nano. If you have the neo, go into the app's `Preferences` by clicking on the menu icon, then set the the `Product ID` to `0x0114` (or whatever your ProductID is).
 - This app only works with recent version of OSX because it relies on the Notification Centre. OSX 10.8.x and above would do it. Sorry about that.
 
