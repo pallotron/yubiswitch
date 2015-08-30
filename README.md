@@ -66,9 +66,10 @@ Preference window:
 - [x] Use NSNotificationCenter to notify other classes (ie AppDelegate and YubiKey) when user preferences are changed
 - [x] Add "Start at login" feature
 - [x] Support for basic AppleScript comomands: KeyOn/KeyOff
-- [ ] Feature: lock computer when yubikey is removed (use IOServiceAddMatchingNotification in IOKit?)
+- [x] Feature: lock computer when yubikey is removed (use IOServiceAddMatchingNotification in IOKit?)
 - [x] Support more yubikeys nano on multiple USB slots
 - [x] Better support for plug and unplug events (fixed with HID interface, dmg not published yet)
+- [ ] Feature: support all YubiCo devices without any configuration needed
 
 # How to create DMG for distribution
 
