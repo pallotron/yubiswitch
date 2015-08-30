@@ -16,7 +16,7 @@
 		<integer>1572864</integer>
 	</dict>
 	<key>lockWhenUnplugged</key>
-	<true/>
+	<false/>
 	<key>hotKeyProductID</key>
 	<string>0x0010</string>
 	<key>hotKeyVendorID</key>

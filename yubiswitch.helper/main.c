@@ -35,8 +35,7 @@ IOHIDManagerRef hidManager;
 IOHIDDeviceRef hidDevice;
 
 static void match_set(CFMutableDictionaryRef dict, CFStringRef key, int value) {
-    CFNumberRef number =
-    CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &value);
+    CFNumberRef number = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &value);
     CFDictionarySetValue(dict, key, number);
     CFRelease(number);
 }
@@ -135,8 +134,7 @@ static void __XPC_Peer_Event_Handler(xpc_connection_t connection,
                 IOHIDManagerRegisterDeviceRemovalCallback(hidManager, handle_removal_callback, NULL);
             }
             IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetMain(), kCFRunLoopCommonModes);
-            CFDictionaryRef match =
-            matching_dictionary_create((int)idVendor, (int)idProduct, 1, 6);
+            CFDictionaryRef match = matching_dictionary_create((int)idVendor, (int)idProduct, 1, 6);
             IOHIDManagerSetDeviceMatching(hidManager, match);
             CFRelease(match);
         }

@@ -4,40 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>10.7.xcscheme</key>
+		<key>debug.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>0</integer>
 		</dict>
 		<key>release.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>test.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
-		</dict>
-		<key>yubiswitch 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
-		</dict>
-		<key>yubiswitch-service.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
 		<key>yubiswitch.helper.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>8</integer>
-		</dict>
-		<key>yubiswitch.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

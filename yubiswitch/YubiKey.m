@@ -23,6 +23,8 @@
 // This class is responsible for communicating with the helper process, which
 // itself controls the USB device
 
+#include <IOKit/hid/IOHIDManager.h>
+
 @implementation YubiKey
 
 - (id)init {
@@ -48,6 +50,7 @@
             }
         }
         [self disable];
+        [self registerKeyRemoval];
     }
     return self;
 
@@ -161,13 +164,14 @@
         }
     });
 
-    NSString *value =
-    [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyVendorID"];
     unsigned int idVendor = 0;
+    NSString *value =
+        [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyVendorID"];
     [[NSScanner scannerWithString:value] scanHexInt:&idVendor];
+
     unsigned int idProduct = 0;
     value =
-    [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyProductID"];
+        [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyProductID"];
     [[NSScanner scannerWithString:value] scanHexInt:&idProduct];
 
     xpc_connection_resume(connection);
@@ -204,6 +208,55 @@
 
 - (BOOL)disable {
     return [self action:@"disable"];
+}
+
+
+// deal with disconnection of device from usb port
+
+static void handle_removal_callback(void *context, IOReturn result,
+                                    void *sender, IOHIDDeviceRef device) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"lockWhenUnplugged"]) {
+        NSLog(@"YubiKey removed, locking computer");
+        NSAppleScript *lockScript =
+        [[NSAppleScript alloc]
+         initWithSource:@"tell application \"System Events\" to tell current screen saver to start"];
+        [lockScript executeAndReturnError:nil];
+    }
+}
+
+static void match_set(CFMutableDictionaryRef dict, CFStringRef key, int value) {
+    CFNumberRef number = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &value);
+    CFDictionarySetValue(dict, key, number);
+    CFRelease(number);
+}
+
+- (void)registerKeyRemoval {
+
+    unsigned int idVendor = 0;
+    unsigned int idProduct = 0;
+
+    NSString *value = [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyVendorID"];
+    [[NSScanner scannerWithString:value] scanHexInt:&idVendor];
+
+    value = [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyProductID"];
+    [[NSScanner scannerWithString:value] scanHexInt:&idProduct];
+
+    IOHIDManagerRef hidManager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
+
+    CFMutableDictionaryRef match = CFDictionaryCreateMutable(kCFAllocatorDefault,
+                                                             0,
+                                                             &kCFTypeDictionaryKeyCallBacks,
+                                                             &kCFTypeDictionaryValueCallBacks);
+    match_set(match, CFSTR(kIOHIDVendorIDKey), idVendor);
+    match_set(match, CFSTR(kIOHIDProductIDKey), idProduct);
+    match_set(match, CFSTR(kIOHIDDeviceUsagePageKey), 1);
+    match_set(match, CFSTR(kIOHIDDeviceUsageKey), 6);
+
+    IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetMain(), kCFRunLoopCommonModes);
+    IOHIDManagerSetDeviceMatching(hidManager, match);
+    IOHIDManagerRegisterDeviceRemovalCallback(hidManager, handle_removal_callback, NULL);
+
+    CFRelease(match);
 }
 
 @end
