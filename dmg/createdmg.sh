@@ -49,7 +49,7 @@ if [ ! $OUTPUT ]; then
   exit 1
 fi
 
-codesign -s "Mac Developer: Angelo Failla (22Y3UXV6J8)" $OUTPUT
+codesign -s "Developer ID Application: Angelo Failla (T8ZNNBVE9Z" $OUTPUT
 
 echo "Removing tmpdir"
 rm -rf $tmpdir
