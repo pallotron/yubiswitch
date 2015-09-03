@@ -27,7 +27,7 @@ Download the latest version in DMG format from [github release page here](https:
 # Running
 This application needs to run with escalated privileges in order to exclusively grab the USB HID interface that drives the NANO/NEO-n Yubikey. Running the main app as root is a p.i.t.a. so Yubiswitch installs an helper daemon with root privileges which contains the logic to grab the USB HID interface, the main application talks to this daemon via XPC calls. When you start Yubiswitch for the first time it will ask for your user's password, this is expected to install the helper before mentioned.
 
-If you use your Yubikey as part of [multi-factor authentication for Mac] (https://www.yubico.com/wp-content/uploads/2015/04/YubiKey-OSX-Login.pdf) then you might want to make sure that the option "Enable yubiky when sytem locks/sleeps" is enabled.
+If you use your Yubikey as part of [multi-factor authentication for Mac] ([https://www.yubico.com/wp-content/uploads/2015/04/YubiKey-OSX-Login.pdf](https://www.yubico.com/wp-content/uploads/2015/04/YubiKey-OSX-Login.pdf)) then you might want to make sure that the option "Enable yubiky when sytem locks/sleeps" is enabled.
 
 If want `yubiswitch` to lock your computer when you unplug the key make sure that your security settings are as follow:
 
@@ -46,6 +46,27 @@ $ osascript -e 'tell application "yubiswitch" to KeyOn'
 
 ```
 $ osascript -e 'tell application "yubiswitch" to KeyOff'
+```
+
+# How to find ProductID and VendorID
+Also, some instructions to help find the Product ID. Can type this in a terminal:
+
+```
+$ ioreg -p IOUSB -l -w 0 -x | grep Yubikey -A10 | grep Product
+          "idProduct" = 0x116
+          "USB Product Name" = "Yubikey NEO OTP+U2F+CCID"
+          "iProduct" = 0x2
+```
+
+> **note:** the `-x` for ioreg is important for displaying the idProduct field in hexadecimal.
+
+If you have brew installed and [prefer lsusb-style output](http://stackoverflow.com/questions/17058134/is-there-an-equivalent-of-lsusb-for-os-x):
+
+```
+$ brew update && brew tap jlhonora/lsusb && brew install lsusb
+
+$ lsusb | grep Yubikey
+Bus 020 Device 022: ID 1050:0116 1050 Yubikey NEO OTP+U2F+CCID
 ```
 
 # Screenshots
@@ -72,15 +93,13 @@ Preference window:
 - [ ] Feature: support all YubiCo devices without any configuration needed
 
 # How to create DMG for distribution
-
-You need to make sure that you sign all applications and frameworks, also you need to make sure the `dmg` file is signed (the bash script `createdmg.sh` does this for you).
-You need to sign the app with an official Mac deevloper profile.
+You need to make sure that you sign all applications and frameworks, also you need to make sure the `dmg` file is signed (the bash script `createdmg.sh` does this for you). You need to sign the app with an official Mac deevloper profile.
 
 When you want to create a release:
 - Tag repo with vx.y, ie `git tag -a -m 'comment that describe the changes' v0.2`
 - Compile release app bundle in Xcode
 - Run script: `cd dmg/ && bash createdmg.sh`
-- Get the file at `/tmp/yubiswitch\_$VERSION.dmg` and attach the binary to the release in the new release in [the github page](https://github.com/pallotron/yubiswitch/releases/) 
+- Get the file at `/tmp/yubiswitch\_$VERSION.dmg` and attach the binary to the release in the new release in [the github page](https://github.com/pallotron/yubiswitch/releases/)
 
 # Dependencies
 `yubiswitch` uses ShortcutRecoder to implement global hot key and shortcuts recording in the the preference window.
