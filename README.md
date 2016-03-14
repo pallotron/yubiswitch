@@ -113,6 +113,34 @@ git submodule add git://github.com/Kentzo/ShortcutRecorder.git
 
 See [this helpful page](https://github.com/Kentzo/ShortcutRecorder) for instructions on how to set up your Xcode environment should you have any problem.
 
+# How to uninstall
+
+Uninstallation process is pretty manual. Execute this as root:
+
+
+Kill all processes:
+```
+# pkill -f com.pallotron.yubiswitch.helper
+```
+
+Tell `launchctl` to stop the helper daemon:
+```
+# launchctl stop com.pallotron.yubiswitch.helper
+# launchctl remove com.pallotron.yubiswitch.helper
+```
+
+Check that `launchctl` service is no longer there:
+```
+# launchctl list | grep -i yubi
+```
+
+Remove files from filesystem:
+```
+# rm /Library/PrivilegedHelperTools/com.pallotron.yubiswitch.helper
+# rm /Applications/yubiswitch.app/
+```
+Maybe one day I will provide a script to do this.
+
 # Credits
 Credits:
 - Anton Tolchanov (@knyar), he originally wrote this in Python using PyObjC bridge. I decided to port this into Objective-C to learn the language when I found out that Carbon Event Manager libs have been removed from Python3. See [http://docs.python.org/2/library/carbon.html](http://docs.python.org/2/library/carbon.html)
