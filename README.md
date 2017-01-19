@@ -93,7 +93,7 @@ Preference window:
 - [ ] Feature: support all YubiCo devices without any configuration needed
 
 # How to create DMG for distribution
-You need to make sure that you sign all applications and frameworks, also you need to make sure the `dmg` file is signed (the bash script `createdmg.sh` does this for you). You need to sign the app with an official Mac deevloper profile.
+You need to make sure that you sign all applications and frameworks, also you need to make sure the `dmg` file is signed (the bash script `createdmg.sh` does this for you). You need to sign the app with an official Mac developer profile.
 
 When you want to create a release:
 - Tag repo with vx.y, ie `git tag -a -m 'comment that describe the changes' v0.2`
