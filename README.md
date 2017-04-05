@@ -49,13 +49,14 @@ $ osascript -e 'tell application "yubiswitch" to KeyOff'
 ```
 
 # How to find ProductID and VendorID
-Also, some instructions to help find the Product ID. Can type this in a terminal:
+
+To find the product and vendor ids, do the following in the terminal:
 
 ```
-$ ioreg -p IOUSB -l -w 0 -x | grep Yubikey -A10 | grep Product
+$ ioreg -p IOUSB -l -w 0 -x | grep Yubikey -A10 | grep idProduct
           "idProduct" = 0x116
-          "USB Product Name" = "Yubikey NEO OTP+U2F+CCID"
-          "iProduct" = 0x2
+$ ioreg -p IOUSB -l -w 0 -x | grep Yubikey -A10 | grep idVendor
+          "idVendor" = 0x1050
 ```
 
 > **note:** the `-x` for ioreg is important for displaying the idProduct field in hexadecimal.
