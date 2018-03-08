@@ -56,5 +56,7 @@
 -(void)reDisableYK;
 -(NSTimer*)createTimer:(NSInteger)interval;
 -(void)lockComputer;
+-(bool)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key;
+-(bool)status;
 
 @end
