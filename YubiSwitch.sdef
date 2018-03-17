@@ -9,5 +9,9 @@
         <command name="KeyOff" code="yubicOff" description="Disables yubikey">
             <cocoa class="YubiKeyScript"/>
         </command>
+        <class name="yubikey" code="yubi" description="Yubikey">
+            <cocoa class="NSApplication"/>
+            <property name="status" code="stat" type="boolean" description="Is the yubikey enabled?"/>
+        </class>
     </suite>
 </dictionary>

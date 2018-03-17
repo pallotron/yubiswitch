@@ -207,6 +207,14 @@
     }
 }
 
+-(bool)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key {
+    return [key isEqualToString:@"status"]; 
+}
+
+- (bool)status {
+    return isEnabled;
+}
+
 - (IBAction)toggle:(id)sender {
     if (isEnabled == TRUE) {
         [self enableYubiKey:FALSE];
