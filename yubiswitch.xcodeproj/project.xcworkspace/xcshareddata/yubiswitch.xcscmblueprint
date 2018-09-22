@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F95E0BFEC000EAA40F6E9CADEF269FC58F885B07",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F95E0BFEC000EAA40F6E9CADEF269FC58F885B07" : 0,
+    "97641889692A69A4B270231FB25F4B84FB93CA0B" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "55D5FB88-E8BD-4A66-8543-EB11ED3D74DC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F95E0BFEC000EAA40F6E9CADEF269FC58F885B07" : "yubiswitch\/",
+    "97641889692A69A4B270231FB25F4B84FB93CA0B" : "yubiswitch\/ShortcutRecorder\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "yubiswitch",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "yubiswitch.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Kentzo\/ShortcutRecorder.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "97641889692A69A4B270231FB25F4B84FB93CA0B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:pallotron\/yubiswitch.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F95E0BFEC000EAA40F6E9CADEF269FC58F885B07"
+    }
+  ]
+}
