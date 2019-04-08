@@ -53,9 +53,8 @@ $ osascript -e 'tell application "yubiswitch" to KeyOff'
 To find the product and vendor ids, do the following in the terminal:
 
 ```
-$ ioreg -p IOUSB -l -w 0 -x | grep Yubikey -A10 | grep idProduct
+$ ioreg -p IOUSB -l -w 0 -x | grep Yubikey -A10 | grep 'idProduct\|idVendor'
           "idProduct" = 0x116
-$ ioreg -p IOUSB -l -w 0 -x | grep Yubikey -A10 | grep idVendor
           "idVendor" = 0x1050
 ```
 
