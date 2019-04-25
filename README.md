@@ -53,7 +53,7 @@ $ osascript -e 'tell application "yubiswitch" to KeyOff'
 To find the product and vendor ids, do the following in the terminal:
 
 ```
-$ ioreg -p IOUSB -l -w 0 -x | grep Yubikey -A10 | grep 'idProduct\|idVendor'
+$ ioreg -p IOUSB -l -w 0 -x | grep -i Yubikey -A10 | grep 'idProduct\|idVendor'
           "idProduct" = 0x116
           "idVendor" = 0x1050
 ```
@@ -65,7 +65,7 @@ If you have brew installed and [prefer lsusb-style output](http://stackoverflow.
 ```
 $ brew update && brew tap jlhonora/lsusb && brew install lsusb
 
-$ lsusb | grep Yubikey
+$ lsusb | grep -i Yubikey
 Bus 020 Device 022: ID 1050:0116 1050 Yubikey NEO OTP+U2F+CCID
 ```
 
