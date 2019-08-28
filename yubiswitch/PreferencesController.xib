@@ -155,7 +155,7 @@ Gw
                     </customView>
                     <button toolTip="If set yubiswtich will start at login time" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afm-iG-Ff1">
                         <rect key="frame" x="311" y="64" width="176" height="18"/>
-                        <buttonCell key="cell" type="check" title="Start Yubiswitch at login" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Adi-wS-wdB">
+                        <buttonCell key="cell" type="check" title="Start YubiSwitch at login" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Adi-wS-wdB">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
