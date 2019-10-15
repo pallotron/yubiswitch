@@ -2,7 +2,7 @@
 # Overview
 `yubiswitch` is an OSX status bar application to enable/disable a [Yubikey Nano or Neo](https://www.yubico.com/products/yubikey-hardware/) from Yubico.
 
-Yubico is the producer of the Yubikeys: an hardware  authentication device, designed to provide an easy to use and secure compliment to the traditional username and password.
+Yubico is the producer of the Yubikeys: a hardware authentication device, designed to provide an easy to use and secure compliment to the traditional username and password.
 
 By touching the exposed gold edge, a YubiKey Nano emits a One Time Password (OTP) as if it was typed in from a keyboard. The unique passcode is verified by a YubiKey compliant application.
 
@@ -27,7 +27,7 @@ Download the latest version in DMG format from [github release page here](https:
 # Running
 This application needs to run with escalated privileges in order to exclusively grab the USB HID interface that drives the NANO/NEO-n Yubikey. Running the main app as root is a p.i.t.a. so YubiSwitch installs an helper daemon with root privileges which contains the logic to grab the USB HID interface, the main application talks to this daemon via XPC calls. When you start YubiSwitch for the first time it will ask for your user's password, this is expected to install the helper before mentioned.
 
-If you use your Yubikey as part of [multi-factor authentication for Mac](https://www.yubico.com/wp-content/uploads/2015/04/YubiKey-OSX-Login.pdf) then you might want to make sure that the option "Enable yubiky when sytem locks/sleeps" is enabled.
+If you use your Yubikey as part of [multi-factor authentication for Mac](https://www.yubico.com/wp-content/uploads/2015/04/YubiKey-OSX-Login.pdf) then you might want to make sure that the option "Enable yubikey when system locks/sleeps" is enabled.
 
 If want `yubiswitch` to lock your computer when you unplug the key make sure that your security settings are as follow:
 
