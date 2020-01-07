@@ -94,8 +94,8 @@ Preference window:
 
 # Known Issues
 
-- The app's default settings support the Nano. If you have the neo, go into the app's `Preferences` by clicking on the menu icon, then set the the `Product ID` to `0x0114` (or whatever your ProductID is) see: [How to find ProductID and VendorID](#how-to-find-productid-and-vendorid).
-- If your Nano is not working, you might want to confirm the `Product ID` and `Vendor ID` follow the how to find your ProductID and VendorID steps below
+- The app's default settings support the Nano. If you have a different model, go into the app's `Preferences` by clicking on the menu icon, then set the the `Product ID` to `0x0114` (or whatever your ProductID is) see: [How to find ProductID and VendorID](#how-to-find-productid-and-vendorid).
+- If your YubiKey is not working, you might want to confirm the `Product ID` and `Vendor ID` follow the how to find your ProductID and VendorID steps below
 - This app only works with recent version of OSX because it relies on the Notification Centre. OSX 10.8.x and above would do it. Sorry about that.
 
 
