@@ -56,7 +56,14 @@ $ osascript -e 'tell application "yubiswitch" to KeyOff'
 
 # How to find ProductID and VendorID
 
-To find the product and vendor ids, do the following in the terminal:
+To find the product and vendor IDs you can use any of the following methods:
+
+1. Use the GUI:
+- Open the System Information app (`CMD + Space`) type `System Information`
+- On the left sidebar click on USB -> Find your OTP/FIDO/CCID
+  ![System Information app Screenshot](/images/screenshot-system-prefs.png)
+
+2. Do the following in the terminal:
 
 ```
 $ ioreg -p IOUSB -l -w 0 -x | grep -i Yubikey -A10 | grep 'idProduct\|idVendor'
@@ -66,7 +73,7 @@ $ ioreg -p IOUSB -l -w 0 -x | grep -i Yubikey -A10 | grep 'idProduct\|idVendor'
 
 > **note:** the `-x` for ioreg is important for displaying the idProduct field in hexadecimal.
 
-If you have brew installed and [prefer lsusb-style output](http://stackoverflow.com/questions/17058134/is-there-an-equivalent-of-lsusb-for-os-x):
+3. If you have brew installed and [prefer lsusb-style output](http://stackoverflow.com/questions/17058134/is-there-an-equivalent-of-lsusb-for-os-x):
 
 ```
 $ brew update && brew tap jlhonora/lsusb && brew install lsusb
@@ -87,15 +94,10 @@ Preference window:
 
 # Known Issues
 
-- The app's default settings support the Nano. If you have the neo, go into the app's `Preferences` by clicking on the menu icon, then set the the `Product ID` to `0x0114` (or whatever your ProductID is).
+- The app's default settings support the Nano. If you have the neo, go into the app's `Preferences` by clicking on the menu icon, then set the the `Product ID` to `0x0114` (or whatever your ProductID is) see: [How to find ProductID and VendorID](#how-to-find-productid-and-vendorid).
 - If your Nano is not working, you might want to confirm the `Product ID` and `Vendor ID` follow the how to find your ProductID and VendorID steps below
 - This app only works with recent version of OSX because it relies on the Notification Centre. OSX 10.8.x and above would do it. Sorry about that.
 
-## How to find your ProductID and VendorID
-
-- Open the System Information app (`CMD + Space`) type `System Information`
-- On the left sidebar click on USB -> Find your OTP/FIDO/CCID
-  ![System Information app Screenshot](/images/screenshot-system-prefs.png)
 
 # TODO and future plans
 
