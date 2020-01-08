@@ -374,12 +374,11 @@
 			};
 			buildConfigurationList = 59E5CF0617EC2A9000898135 /* Build configuration list for PBXProject "yubiswitch" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
-				English,
 				ca,
 				cs,
 				da,

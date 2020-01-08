@@ -1,63 +1,66 @@
 {
   "images" : [
     {
-      "size" : "16x16",
+      "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "YubikeyDisabled@0.5x.png",
+      "filename" : "icon-128.png",
       "scale" : "1x"
     },
     {
-      "size" : "16x16",
+      "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "YubikeyDisabled-1.png",
+      "filename" : "icon-256.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "128x128",
+      "idiom" : "mac",
+      "filename" : "icon-256.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "256x256",
+      "idiom" : "mac",
+      "filename" : "icon-512.png",
       "scale" : "2x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "YubikeyDisabled.png",
+      "filename" : "icon-32.png",
       "scale" : "1x"
+    },
+    {
+      "size" : "512x512",
+      "idiom" : "mac",
+      "filename" : "icon-512.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "16x16",
+      "idiom" : "mac",
+      "filename" : "icon-16.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "16x16",
+      "idiom" : "mac",
+      "filename" : "icon-32.png",
+      "scale" : "2x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "YubikeyDisabled@2x.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "mac",
-      "size" : "128x128",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "mac",
-      "size" : "128x128",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "mac",
-      "size" : "256x256",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "mac",
-      "size" : "256x256",
+      "filename" : "icon-64.png",
       "scale" : "2x"
     },
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "AppIcon-2.png",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "mac",
-      "size" : "512x512",
+      "filename" : "icon-1024.png",
       "scale" : "2x"
     }
   ],
-  "info" : {
-    "version" : 1,
-    "author" : "xcode"
-  }
+  "author" : "Iconizer",
+  "version" : "3.0.0"
 }
