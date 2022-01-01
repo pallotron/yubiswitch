@@ -90,7 +90,6 @@
         return (currentVersion != installedVersion);
     }
     return YES;
-    
 }
 
 - (BOOL)blessHelperWithLabel:(NSString *)label error:(NSError **)error {
@@ -185,11 +184,9 @@
         xpc_dictionary_set_int64(message, "request", 0);
         suspend = TRUE;
     }
-    __block const char *response;
-    xpc_connection_send_message_with_reply(
-                                           connection, message, dispatch_get_main_queue(), ^(xpc_object_t event) {
-                                               response = xpc_dictionary_get_string(event, "reply");
-                                           });
+    const char *response = NULL;
+    xpc_object_t event = xpc_connection_send_message_with_reply_sync(connection, message);
+    response = xpc_dictionary_get_string(event, "reply");
     if (response == NULL) {
         return FALSE;
     }
