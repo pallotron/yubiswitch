@@ -66,7 +66,7 @@ static void match_callback(void *context, IOReturn result, void *sender,
         syslog(LOG_NOTICE, "Open'ed HID device");
         hidDevice = device;
     } else {
-        syslog(LOG_ALERT, "Failed to open HID device");
+        syslog(LOG_ALERT, "Failed to open HID device, error: %d", r);
     }
 }
 
