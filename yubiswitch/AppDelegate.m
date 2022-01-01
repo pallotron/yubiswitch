@@ -86,8 +86,8 @@
                   statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setMenu:statusMenu];
     [statusItem setHighlightMode:YES];
-    [statusItem setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
-    [statusItem setToolTip:@"YubiKey disabled"];
+    [statusItem.button setImage:[NSImage imageNamed:@"YubikeyDisabled"]];
+    [statusItem.button setToolTip:@"YubiKey disabled"];
 
     isEnabled = false;
 
