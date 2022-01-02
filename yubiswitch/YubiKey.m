@@ -38,6 +38,11 @@
          selector:@selector(notificationReloadHandler:)
          name:@"changeDefaultsPrefs"
          object:nil];
+        if (!AXIsProcessTrusted()) {
+            [self raiseAlertWindow:@"yubiswitch requires accessibility access to function. Please enable it in the Security and Privacy prefpane. Taking you there now."];
+            NSString* prefPage = @"x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility";
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:prefPage]];
+        }
 
         if ([self needToInstallHelper:@"com.pallotron.yubiswitch.helper"]) {
             NSError *error = nil;
