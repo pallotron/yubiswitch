@@ -66,7 +66,7 @@ static void match_callback(void *context, IOReturn result, void *sender,
         syslog(LOG_NOTICE, "Open'ed HID device");
         hidDevice = device;
     } else {
-        syslog(LOG_ALERT, "Failed to open HID device");
+        syslog(LOG_ALERT, "Failed to open HID device, error: %d", r);
     }
 }
 
@@ -99,16 +99,8 @@ static void __XPC_Peer_Event_Handler(xpc_connection_t connection,
     xpc_type_t type = xpc_get_type(event);
 
     if (type == XPC_TYPE_ERROR) {
-        if (event == XPC_ERROR_CONNECTION_INVALID) {
-            // The client process on the other end of the connection has either
-            // crashed or cancelled the connection. After receiving this error,
-            // the connection is in an invalid state, and you do not need to
-            // call xpc_connection_cancel(). Just tear down any associated state
-            // here.
-        } else if (event == XPC_ERROR_TERMINATION_IMMINENT) {
-            // Handle per-connection termination cleanup.
-        }
-
+        const char *description = xpc_dictionary_get_string(event, XPC_ERROR_KEY_DESCRIPTION);
+        syslog(LOG_ALERT, "XPC error: %s", description);
     } else {
         uint64_t idProduct = xpc_dictionary_get_int64(event, "idProduct");
         uint64_t idVendor = xpc_dictionary_get_int64(event, "idVendor");
@@ -132,8 +124,8 @@ static void __XPC_Peer_Event_Handler(xpc_connection_t connection,
                 hidManager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
                 IOHIDManagerRegisterDeviceMatchingCallback(hidManager, match_callback, NULL);
                 IOHIDManagerRegisterDeviceRemovalCallback(hidManager, handle_removal_callback, NULL);
+                IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetMain(), kCFRunLoopCommonModes);
             }
-            IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetMain(), kCFRunLoopCommonModes);
             CFDictionaryRef match = matching_dictionary_create((int)idVendor, (int)idProduct, 1, 6);
             IOHIDManagerSetDeviceMatching(hidManager, match);
             CFRelease(match);
