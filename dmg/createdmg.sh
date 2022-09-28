@@ -25,10 +25,10 @@ tmpdir=$(mktemp -d -t yubiswitch)
 echo "Tempdir: $tmpdir"
 
 echo "Copying skeleton contents to $tmpdir"
-cp -R skeleton $tmpdir
+cp -R skeleton/ $tmpdir
 
 echo "Copying $SRC_BINARY to $tmpdir"
-rsync -a $SRC_BINARY/ $tmpdir
+rsync -a $SRC_BINARY $tmpdir/
 
 echo "Creating new disk image at $OUTPUT"
 hdiutil create -volName yubiswitch -srcfolder $tmpdir $OUTPUT
