@@ -366,9 +366,11 @@
 				TargetAttributes = {
 					593AE45C1B1371B700FCA848 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = YX97W249KL;
+						ProvisioningStyle = Automatic;
 					};
 					59E5CF0A17EC2A9000898135 = {
-						DevelopmentTeam = T8ZNNBVE9Z;
+						DevelopmentTeam = YX97W249KL;
 					};
 				};
 			};
@@ -536,8 +538,10 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Angelo Failla (T8ZNNBVE9Z)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YX97W249KL;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -559,6 +563,7 @@
 					"yubiswitch.helper/yubiswitch-helper-launchd.plist",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -567,8 +572,10 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Angelo Failla (T8ZNNBVE9Z)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = YX97W249KL;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -586,6 +593,7 @@
 					"yubiswitch.helper/yubiswitch-helper-launchd.plist",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -665,7 +673,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = T8ZNNBVE9Z;
+				DEVELOPMENT_TEAM = YX97W249KL;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "yubiswitch/yubiswitch-Prefix.pch";
 				INFOPLIST_FILE = "yubiswitch/yubiswitch-Info.plist";
@@ -683,7 +691,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = T8ZNNBVE9Z;
+				DEVELOPMENT_TEAM = YX97W249KL;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "yubiswitch/yubiswitch-Prefix.pch";
 				INFOPLIST_FILE = "yubiswitch/yubiswitch-Info.plist";
