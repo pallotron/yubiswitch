@@ -24,32 +24,23 @@ OUTPUT=/tmp/yubiswitch_$VERSION.dmg
 tmpdir=$(mktemp -d -t yubiswitch)
 echo "Tempdir: $tmpdir"
 
-if [ ! -e skeleton.dmg ]; then
-  echo "Can't find skeleton.dmg."
-  echo "Are you executing this from whiting the dmg/ dir?"
-  exit 1
-fi
+echo "Copying skeleton contents to $tmpdir"
+cp -R skeleton $tmpdir
 
-cp skeleton.dmg $tmpdir/
-hdiutil attach -readwrite $tmpdir/skeleton.dmg
-echo "Copying $SRC_BINARY to /Volumes/yubiswitch/"
-rm -rf /Volumes/yubiswitch/yubiswitch.app
-rsync -av $SRC_BINARY/ /Volumes/yubiswitch/yubiswitch.app/
-echo "Detach /Volumes/yubiswitch/"
-hdiutil detach /Volumes/yubiswitch/
+echo "Copying $SRC_BINARY to $tmpdir"
+rsync -a $SRC_BINARY/ $tmpdir
+
+echo "Creating new disk image at $OUTPUT"
+hdiutil create -volName yubiswitch -srcfolder $tmpdir $OUTPUT
 sync
 sync
-
-echo "Converting DMG to compressed/ro, and write to $OUTPUT"
-rm -f $OUTPUT
-hdiutil convert -format UDZO -o $OUTPUT $tmpdir/skeleton.dmg
 
 if [ ! $OUTPUT ]; then
   echo "can't find $OUTPUT!"
   exit 1
 fi
 
-codesign -s "Developer ID Application: Angelo Failla (T8ZNNBVE9Z)" $OUTPUT
+codesign -s "Apple Development: David Rothera (G54X79V8CR)" $OUTPUT
 
 echo "Removing tmpdir"
 rm -rf $tmpdir
