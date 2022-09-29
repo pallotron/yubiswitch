@@ -162,6 +162,8 @@
 		59EF40691B13D19A0000BB5F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		59EF406B1B13D1A60000BB5F /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		59EF407C1B13E1490000BB5F /* yubiswitch-helper-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "yubiswitch-helper-Info.plist"; sourceTree = "<group>"; };
+		63AE428128E63FB00058E8B4 /* yubiswitch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = yubiswitch.entitlements; sourceTree = "<group>"; };
+		63AE428328E63FB50058E8B4 /* com.pallotron.yubiswitch.helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = com.pallotron.yubiswitch.helper.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 		593AE45E1B1371B700FCA848 /* yubiswitch.helper */ = {
 			isa = PBXGroup;
 			children = (
+				63AE428328E63FB50058E8B4 /* com.pallotron.yubiswitch.helper.entitlements */,
 				59EF407C1B13E1490000BB5F /* yubiswitch-helper-Info.plist */,
 				593AE45F1B1371B700FCA848 /* main.c */,
 				59EF40681B13CDC20000BB5F /* yubiswitch-helper-launchd.plist */,
@@ -270,6 +273,7 @@
 		59E5CF1417EC2A9000898135 /* yubiswitch */ = {
 			isa = PBXGroup;
 			children = (
+				63AE428128E63FB00058E8B4 /* yubiswitch.entitlements */,
 				593B4E0617F09362003195DE /* AboutWindowController.h */,
 				593B4E0717F09362003195DE /* AboutWindowController.m */,
 				593B4E0817F09362003195DE /* AboutWindowController.xib */,
@@ -538,10 +542,12 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = yubiswitch.helper/com.pallotron.yubiswitch.helper.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = YX97W249KL;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -572,10 +578,12 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = yubiswitch.helper/com.pallotron.yubiswitch.helper.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = YX97W249KL;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -671,9 +679,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = yubiswitch/yubiswitch.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = YX97W249KL;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "yubiswitch/yubiswitch-Prefix.pch";
 				INFOPLIST_FILE = "yubiswitch/yubiswitch-Info.plist";
@@ -689,9 +699,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = yubiswitch/yubiswitch.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = YX97W249KL;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "yubiswitch/yubiswitch-Prefix.pch";
 				INFOPLIST_FILE = "yubiswitch/yubiswitch-Info.plist";
