@@ -15,11 +15,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.14</string>
+	<string>0.15</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.14</string>
+	<string>0.15</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -39,7 +39,7 @@
 	<key>SMPrivilegedExecutables</key>
 	<dict>
 		<key>com.pallotron.yubiswitch.helper</key>
-		<string>identifier &quot;com.pallotron.yubiswitch.helper&quot; and anchor apple generic and certificate leaf[subject.CN] = &quot;Apple Development: David Rothera (G54X79V8CR)&quot; and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+		<string>anchor apple generic and identifier &quot;com.pallotron.yubiswitch.helper&quot; and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = YX97W249KL)</string>
 	</dict>
 </dict>
 </plist>
