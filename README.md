@@ -167,8 +167,8 @@ Check that `launchctl` service is no longer there:
 Remove files from filesystem:
 
 ```
-# rm /Library/PrivilegedHelperTools/com.pallotron.yubiswitch.helper
-# rm /Applications/yubiswitch.app/
+# sudo rm /Library/PrivilegedHelperTools/com.pallotron.yubiswitch.helper
+# sudo rm /Applications/yubiswitch.app/
 ```
 
 Maybe one day I will provide a script to do this.
