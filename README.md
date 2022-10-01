@@ -103,6 +103,7 @@ Preference window:
 - The app's default settings support the Nano. If you have a different model, go into the app's `Preferences` by clicking on the menu icon, then set the the `Product ID` to `0x0114` (or whatever your ProductID is) see: [How to find ProductID and VendorID](#how-to-find-productid-and-vendorid).
 - If your YubiKey is not working, you might want to confirm the `Product ID` and `Vendor ID` follow the how to find your ProductID and VendorID steps below
 - This app only works with recent version of OSX because it relies on the Notification Centre. OSX 10.8.x and above would do it. Sorry about that.
+- If your `Product ID` and `Vendor ID` are correct but the app is not working then please follow the uninstall instructions and update to the latest release version.
 
 
 # TODO and future plans
@@ -132,14 +133,6 @@ When you want to create a release:
 `yubiswitch` uses ShortcutRecoder to implement global hot key and shortcuts recording in the the preference window.
 
 - ShortcutRecorder is at : [https://github.com/Kentzo/ShortcutRecorder](https://github.com/Kentzo/ShortcutRecorder)
-- I'll need to add it to your `yubiswitch` clone using git submodule using
-- command:
-
-```
-git submodule add git://github.com/Kentzo/ShortcutRecorder.git
-```
-
-See [this helpful page](https://github.com/Kentzo/ShortcutRecorder) for instructions on how to set up your Xcode environment should you have any problem.
 
 # How to uninstall
 
