@@ -161,7 +161,7 @@ Remove files from filesystem:
 
 ```
 # sudo rm /Library/PrivilegedHelperTools/com.pallotron.yubiswitch.helper
-# sudo rm /Applications/yubiswitch.app/
+# sudo rm -r /Applications/yubiswitch.app/
 ```
 
 Maybe one day I will provide a script to do this.
