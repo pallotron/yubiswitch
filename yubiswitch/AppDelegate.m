@@ -181,6 +181,8 @@
         res = [yk disable];
     }
     if (res == TRUE) {
+        [reDisableTimer invalidate];
+        reDisableTimer = nil;
         if (enable == TRUE) {
             [statusItem setToolTip:(@"YubiKey enabled")];
             [statusItem setImage:[NSImage imageNamed:@"YubikeyEnabled"]];
@@ -257,6 +259,7 @@
     [yk enable];
     [self notify:@"YubiKey enabled"];
     [reDisableTimer invalidate];
+    reDisableTimer = nil;
     [[NSApplication sharedApplication] terminate:self];
 }
 
