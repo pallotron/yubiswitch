@@ -104,7 +104,7 @@ Preference window:
 - If your YubiKey is not working, you might want to confirm the `Product ID` and `Vendor ID` follow the how to find your ProductID and VendorID steps below
 - This app only works with recent version of OSX because it relies on the Notification Centre. OSX 10.8.x and above would do it. Sorry about that.
 - If your `Product ID` and `Vendor ID` are correct but the app is not working then please follow the uninstall instructions and update to the latest release version.
-
+- Float value for time in `Switch off Yubikey after __ seconds` (under preferences) causes trouble for `Automatically switch off Yubikey` option. Converting this value to int fixes it. 
 
 # TODO and future plans
 
