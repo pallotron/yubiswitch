@@ -26,7 +26,7 @@
 @end
 
 @implementation PreferencesController {
-  SRValidator *_validator;
+  SRShortcutValidator *_validator;
 }
 
 - (void)awakeFromNib {

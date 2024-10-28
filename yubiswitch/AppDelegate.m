@@ -21,8 +21,7 @@
 
 #import "AppDelegate.h"
 #import "AboutWindowController.h"
-#import <PTHotKey/PTHotKeyCenter.h>
-#import <PTHotKey/PTHotKey+ShortcutRecorder.h>
+#import <ShortcutRecorder/ShortcutRecorder.h>
 
 // This is the main class, responsible for the status bar icon and general
 // application behavior
@@ -95,10 +94,20 @@
     // preference controller this method gets notified.
     NSUserDefaultsController *defaults =
     [NSUserDefaultsController sharedUserDefaultsController];
+    NSString *keyPath = @"values.hotkey";
     [defaults addObserver:self
-               forKeyPath:@"values.hotkey"
+               forKeyPath:keyPath
                   options:NSKeyValueObservingOptionInitial
                   context:NULL];
+
+    SRShortcutAction *hotkeyAction =
+    [SRShortcutAction shortcutActionWithKeyPath:keyPath
+                                       ofObject:defaults
+                                  actionHandler:^BOOL(SRShortcutAction *anAction) {
+        [self toggle:nil];
+        return YES;
+    }];
+    [[SRGlobalShortcutMonitor sharedMonitor] addAction:hotkeyAction forKeyEvent:SRKeyEventTypeDown];
 
     controller = [NSUserDefaultsController sharedUserDefaultsController];
     NSString *defaultPrefsFile =
@@ -115,19 +124,6 @@
                         change:(NSDictionary *)aChange
                        context:(void *)aContext {
     if ([aKeyPath isEqualToString:@"values.hotkey"]) {
-        PTHotKeyCenter *hotKeyCenter = [PTHotKeyCenter sharedCenter];
-        PTHotKey *oldHotKey = [hotKeyCenter hotKeyWithIdentifier:aKeyPath];
-        [hotKeyCenter unregisterHotKey:oldHotKey];
-
-        NSDictionary *newShortcut = [anObject valueForKeyPath:aKeyPath];
-
-        if (newShortcut && (NSNull *)newShortcut != [NSNull null]) {
-            PTHotKey *newHotKey = [PTHotKey hotKeyWithIdentifier:aKeyPath
-                                                        keyCombo:newShortcut
-                                                          target:self
-                                                          action:@selector(toggle:)];
-            [hotKeyCenter registerHotKey:newHotKey];
-        }
         NSDictionary *hotkey =
         [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"hotkey"];
         [[statusMenu itemAtIndex:0]

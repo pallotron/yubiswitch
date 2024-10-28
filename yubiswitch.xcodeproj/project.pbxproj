@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		59013C8817F56F5300005A7E /* PTHotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59013C8717F56F0F00005A7E /* PTHotKey.framework */; };
 		59013C8917F56F5300005A7E /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59013C8517F56F0F00005A7E /* ShortcutRecorder.framework */; };
 		59013C8E17F5750E00005A7E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C0616B17EED6AB00D3EE79 /* Carbon.framework */; };
 		59013C9317F6CDB900005A7E /* nano.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 59013C9217F6CDB900005A7E /* nano.jpg */; };
 		591B90A91B91A62900D1C1A7 /* ComputerStateMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 591B90A81B91A62900D1C1A7 /* ComputerStateMonitor.m */; };
 		593929681B21058600905E94 /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 59013C8517F56F0F00005A7E /* ShortcutRecorder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		593929691B21058700905E94 /* PTHotKey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 59013C8717F56F0F00005A7E /* PTHotKey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5939296C1B2108DC00905E94 /* com.pallotron.yubiswitch.helper in CopyFiles */ = {isa = PBXBuildFile; fileRef = 593AE45D1B1371B700FCA848 /* com.pallotron.yubiswitch.helper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		593AE4601B1371B700FCA848 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 593AE45F1B1371B700FCA848 /* main.c */; };
 		593B4E0917F09362003195DE /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 593B4E0717F09362003195DE /* AboutWindowController.m */; };
@@ -42,19 +40,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4DD5B5452CC88D67003E079F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59013C7F17F56F0F00005A7E /* ShortcutRecorder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BAC79C07216FCE8E00E45F23;
+			remoteInfo = Inspector;
+		};
+		4DD5B5472CC88D67003E079F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59013C7F17F56F0F00005A7E /* ShortcutRecorder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BA722EC52161619200EFF192;
+			remoteInfo = "Unit Tests";
+		};
 		59013C8417F56F0F00005A7E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 59013C7F17F56F0F00005A7E /* ShortcutRecorder.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 939837800DA42965007F53F3;
 			remoteInfo = ShortcutRecorder.framework;
-		};
-		59013C8617F56F0F00005A7E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 59013C7F17F56F0F00005A7E /* ShortcutRecorder.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E273122E1349EC9000A84433;
-			remoteInfo = PTHotKey.framework;
 		};
 		590FB31017FB120F00148522 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -63,26 +68,12 @@
 			remoteGlobalIDString = 9398377F0DA42965007F53F3;
 			remoteInfo = ShortcutRecorder.framework;
 		};
-		590FB31217FB120F00148522 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 59013C7F17F56F0F00005A7E /* ShortcutRecorder.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E273122D1349EC9000A84433;
-			remoteInfo = PTHotKey.framework;
-		};
 		59EF40611B13C3CA0000BB5F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 59E5CF0317EC2A9000898135 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 593AE45C1B1371B700FCA848;
 			remoteInfo = yubiswitch.helper;
-		};
-		EA0513DC1A76C3B50078738E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 59013C7F17F56F0F00005A7E /* ShortcutRecorder.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0D6B2468180304DE00CE1142;
-			remoteInfo = Demo;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -94,7 +85,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				593929681B21058600905E94 /* ShortcutRecorder.framework in CopyFiles */,
-				593929691B21058700905E94 /* PTHotKey.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +171,6 @@
 				59EF406C1B13D1A60000BB5F /* ServiceManagement.framework in Frameworks */,
 				59EF406A1B13D19A0000BB5F /* Security.framework in Frameworks */,
 				59013C8E17F5750E00005A7E /* Carbon.framework in Frameworks */,
-				59013C8817F56F5300005A7E /* PTHotKey.framework in Frameworks */,
 				59013C8917F56F5300005A7E /* ShortcutRecorder.framework in Frameworks */,
 				59C0616D17EED74400D3EE79 /* Cocoa.framework in Frameworks */,
 				59EC128C17ECFEFE00B3C3A6 /* IOKit.framework in Frameworks */,
@@ -194,9 +183,9 @@
 		59013C8017F56F0F00005A7E /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				4DD5B5462CC88D67003E079F /* Inspector.app */,
 				59013C8517F56F0F00005A7E /* ShortcutRecorder.framework */,
-				59013C8717F56F0F00005A7E /* PTHotKey.framework */,
-				EA0513DD1A76C3B50078738E /* Demo.app */,
+				4DD5B5482CC88D67003E079F /* Unit Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,7 +340,6 @@
 			dependencies = (
 				59EF40621B13C3CA0000BB5F /* PBXTargetDependency */,
 				590FB31117FB120F00148522 /* PBXTargetDependency */,
-				590FB31317FB120F00148522 /* PBXTargetDependency */,
 			);
 			name = yubiswitch;
 			productName = yubiswitch;
@@ -428,25 +416,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		4DD5B5462CC88D67003E079F /* Inspector.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Inspector.app;
+			remoteRef = 4DD5B5452CC88D67003E079F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4DD5B5482CC88D67003E079F /* Unit Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Unit Tests.xctest";
+			remoteRef = 4DD5B5472CC88D67003E079F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		59013C8517F56F0F00005A7E /* ShortcutRecorder.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ShortcutRecorder.framework;
 			remoteRef = 59013C8417F56F0F00005A7E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		59013C8717F56F0F00005A7E /* PTHotKey.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = PTHotKey.framework;
-			remoteRef = 59013C8617F56F0F00005A7E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		EA0513DD1A76C3B50078738E /* Demo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Demo.app;
-			remoteRef = EA0513DC1A76C3B50078738E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -505,11 +493,6 @@
 			isa = PBXTargetDependency;
 			name = ShortcutRecorder.framework;
 			targetProxy = 590FB31017FB120F00148522 /* PBXContainerItemProxy */;
-		};
-		590FB31317FB120F00148522 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PTHotKey.framework;
-			targetProxy = 590FB31217FB120F00148522 /* PBXContainerItemProxy */;
 		};
 		59EF40621B13C3CA0000BB5F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

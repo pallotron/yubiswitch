@@ -23,7 +23,7 @@
 #import "ShortcutRecorder/ShortcutRecorder.h"
 
 @interface PreferencesController : NSWindowController
-    <SRRecorderControlDelegate, SRValidatorDelegate>
+    <SRRecorderControlDelegate, SRShortcutValidatorDelegate>
 {
     NSUserDefaultsController *controller;
     IBOutlet NSButton *buttonOpenAtLogin;
