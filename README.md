@@ -37,9 +37,9 @@ If want `yubiswitch` to lock your computer when you unplug the key make sure tha
 
 ![Security settings for screensaver](/images/screensaver-settings.png)
 
-# Accessibility Access (Catalina and above)
+# Accessibility and Input Monitoring Access (Catalina and above)
 
-If you are running macOS Catalina (10.15) or later, open System Preferences and go to Security & Privacy, Privacy. Under Accessibility, click the lock to make changes and then use the + button to add `/Applications/yubiswitch.app.`.
+If you are running macOS Catalina (10.15) or later, open System Preferences and go to Security & Privacy, Privacy. Under Accessibility, click the lock to make changes and then use the + button to add `/Applications/yubiswitch.app.`. Repeat under Input Monitoring.
 
 ![Accessibility settings](/images/screenshot-accessibility.png)
 
