@@ -41,6 +41,9 @@ If want `yubiswitch` to lock your computer when you unplug the key make sure tha
 
 If you are running macOS Catalina (10.15) or later, open System Preferences and go to Security & Privacy, Privacy. Under Accessibility, click the lock to make changes and then use the + button to add `/Applications/yubiswitch.app.`. Repeat under Input Monitoring.
 
+> [!IMPORTANT]  
+> Yubiswitch is signed/notarised by the "Supratude Limited" developer account (@drothera) and so if you see this then this is expected.
+
 ![Accessibility settings](/images/screenshot-accessibility.png)
 
 # Integration with shell
