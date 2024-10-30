@@ -12,9 +12,7 @@ VERSION=$(grep CFBundleShortVersionString ../yubiswitch/yubiswitch-Info.plist \
   -A1 | tail -1 | perl -lne 'print $1 if /<string>(.*)<\/string>/')
 
 echo "Version: $VERSION"
-SRC_BINARY=$(find ~/Library/Developer/Xcode/DerivedData/ \
-  -name "yubiswitch.app" \
-  | grep "Build/Products/Release/")
+SRC_BINARY=$1
 if [ -z "$SRC_BINARY" ]; then
   echo "Can find yubiswitch.app, make sure you have built a 'release' binary"
   exit 1
@@ -28,7 +26,7 @@ echo "Copying skeleton contents to $tmpdir"
 cp -R skeleton/ $tmpdir
 
 echo "Copying $SRC_BINARY to $tmpdir"
-rsync -a $SRC_BINARY $tmpdir/
+rsync -a "$SRC_BINARY" $tmpdir/
 
 echo "Creating new disk image at $OUTPUT"
 hdiutil create -volName yubiswitch -srcfolder $tmpdir $OUTPUT
@@ -41,6 +39,8 @@ if [ ! $OUTPUT ]; then
 fi
 
 codesign -s "Apple Development: David Rothera (G54X79V8CR)" $OUTPUT
+xcrun notarytool submit $OUTPUT --keychain-profile YubiswitchNotary --wait
+xcrun stapler staple $OUTPUT
 
 echo "Removing tmpdir"
 rm -rf $tmpdir

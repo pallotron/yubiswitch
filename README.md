@@ -124,8 +124,8 @@ You need to make sure that you sign all applications and frameworks, also you ne
 When you want to create a release:
 
 - Tag repo with vx.y, ie `git tag -a -m 'comment that describe the changes' v0.2`
-- Compile release app bundle in Xcode
-- Run script: `cd dmg/ && bash createdmg.sh`
+- Archive build from Xcode and find path to binary (Yubiswitch.app)
+- Run script: `cd dmg/ && bash createdmg.sh <PATH TO APP>`
 - Get the file at `/tmp/yubiswitch\_$VERSION.dmg` and attach the binary to the release in the new release in [the github page](https://github.com/pallotron/yubiswitch/releases/)
 
 # Dependencies
