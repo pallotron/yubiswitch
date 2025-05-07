@@ -139,7 +139,19 @@ When you want to create a release:
 
 # How to uninstall
 
-Uninstallation process is pretty manual. Execute this as root:
+You can uninstall yubiswitch using the provided script or manually following the steps below.
+
+## Automated uninstall
+
+To automatically uninstall yubiswitch, run this command as root:
+
+```
+$ curl -fsSL https://raw.githubusercontent.com/pallotron/yubiswitch/master/scripts/uninstall.sh | sudo zsh
+```
+
+## Manual uninstall
+
+If you prefer to manually uninstall, execute these steps as root:
 
 Kill all processes:
 
@@ -166,8 +178,6 @@ Remove files from filesystem:
 # sudo rm /Library/PrivilegedHelperTools/com.pallotron.yubiswitch.helper
 # sudo rm -r /Applications/yubiswitch.app/
 ```
-
-Maybe one day I will provide a script to do this.
 
 # Credits
 
