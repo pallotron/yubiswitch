@@ -32,7 +32,11 @@
 
 
 IOHIDManagerRef hidManager;
-IOHIDDeviceRef hidDevice;
+// Set of currently seized IOHIDDeviceRefs. Using a set (instead of a single
+// global) lets us seize and, crucially, release every matching key when several
+// Yubico devices are plugged in at once. kCFTypeSetCallBacks retains on add and
+// releases on remove, and dedups identical device refs.
+CFMutableSetRef seizedDevices;
 
 static void match_set(CFMutableDictionaryRef dict, CFStringRef key, int value) {
     CFNumberRef number = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &value);
@@ -40,16 +44,27 @@ static void match_set(CFMutableDictionaryRef dict, CFStringRef key, int value) {
     CFRelease(number);
 }
 
+static void close_device_apply(const void *value, void *context) {
+    IOHIDDeviceClose((IOHIDDeviceRef)value, kIOHIDOptionsTypeSeizeDevice);
+}
+
+// Release every seized device and empty the set.
+static void close_all_seized(void) {
+    if (seizedDevices != NULL) {
+        CFSetApplyFunction(seizedDevices, close_device_apply, NULL);
+        CFSetRemoveAllValues(seizedDevices);
+    }
+}
+
 static void handle_removal_callback(void *context, IOReturn result,
                                     void *sender, IOHIDDeviceRef device) {
-    if (hidDevice != NULL) {
+    // Only release the device that was actually unplugged. Leave the manager and
+    // any other seized devices in place so remaining keys stay seized and a
+    // re-plug of the same product still matches.
+    if (seizedDevices != NULL && CFSetContainsValue(seizedDevices, device)) {
         syslog(LOG_NOTICE, "device unplugged");
-        IOHIDDeviceClose(hidDevice, kIOHIDOptionsTypeSeizeDevice);
-        hidDevice = NULL;
-    }
-    if (hidManager != NULL) {
-        IOHIDManagerClose(hidManager, kIOHIDOptionsTypeNone);
-        hidManager = NULL;
+        IOHIDDeviceClose(device, kIOHIDOptionsTypeSeizeDevice);
+        CFSetRemoveValue(seizedDevices, device);
     }
 
     // lock screen
@@ -64,7 +79,11 @@ static void match_callback(void *context, IOReturn result, void *sender,
     IOReturn r = IOHIDDeviceOpen(device, kIOHIDOptionsTypeSeizeDevice);
     if (r == kIOReturnSuccess) {
         syslog(LOG_NOTICE, "Open'ed HID device");
-        hidDevice = device;
+        if (seizedDevices == NULL) {
+            seizedDevices = CFSetCreateMutable(kCFAllocatorDefault, 0,
+                                               &kCFTypeSetCallBacks);
+        }
+        CFSetAddValue(seizedDevices, device);
     } else {
         syslog(LOG_ALERT, "Failed to open HID device, error: %d", r);
     }
@@ -94,6 +113,32 @@ static CFDictionaryRef matching_dictionary_create(int vendorID, int productID,
     return match;
 }
 
+// Build the array of matching dictionaries handed to
+// IOHIDManagerSetDeviceMatchingMultiple (OR semantics across the array).
+// count == 0 means "no specific product IDs": match every product for the
+// vendor (a single vendor-only dictionary). Otherwise one dictionary per
+// product ID.
+static CFArrayRef matching_dictionaries_create(int vendorID, const int *productIDs,
+                                               size_t count, int usagePage,
+                                               int usage) {
+    CFMutableArrayRef matches =
+        CFArrayCreateMutable(kCFAllocatorDefault, 0, &kCFTypeArrayCallBacks);
+    if (count == 0) {
+        CFDictionaryRef match =
+            matching_dictionary_create(vendorID, 0, usagePage, usage);
+        CFArrayAppendValue(matches, match);
+        CFRelease(match);
+    } else {
+        for (size_t i = 0; i < count; i++) {
+            CFDictionaryRef match =
+                matching_dictionary_create(vendorID, productIDs[i], usagePage, usage);
+            CFArrayAppendValue(matches, match);
+            CFRelease(match);
+        }
+    }
+    return matches;
+}
+
 static void __XPC_Peer_Event_Handler(xpc_connection_t connection,
                                      xpc_object_t event) {
     xpc_type_t type = xpc_get_type(event);
@@ -102,18 +147,33 @@ static void __XPC_Peer_Event_Handler(xpc_connection_t connection,
         const char *description = xpc_dictionary_get_string(event, XPC_ERROR_KEY_DESCRIPTION);
         syslog(LOG_ALERT, "XPC error: %s", description);
     } else {
-        uint64_t idProduct = xpc_dictionary_get_int64(event, "idProduct");
         uint64_t idVendor = xpc_dictionary_get_int64(event, "idVendor");
         uint64_t action = xpc_dictionary_get_int64(event, "request");
-        syslog(LOG_NOTICE,
-               "Received message. idProduct: %llu, idVendor: %llu, action: %llu",
-               idProduct, idVendor, action);
-        if (action == 1) {
-            // enable
-            if (hidDevice != NULL) {
-                IOHIDDeviceClose(hidDevice, kIOHIDOptionsTypeSeizeDevice);
-                hidDevice = NULL;
+
+        // Collect the requested product IDs. Prefer the "idProducts" array; fall
+        // back to the legacy single "idProduct" key so an older GUI still works.
+        // An empty list means "match all products for the vendor".
+        int products[256];
+        size_t productCount = 0;
+        xpc_object_t idProducts = xpc_dictionary_get_value(event, "idProducts");
+        if (idProducts != NULL && xpc_get_type(idProducts) == XPC_TYPE_ARRAY) {
+            size_t n = xpc_array_get_count(idProducts);
+            for (size_t i = 0; i < n && productCount < 256; i++) {
+                products[productCount++] =
+                    (int)xpc_array_get_int64(idProducts, i);
             }
+        } else {
+            uint64_t idProduct = xpc_dictionary_get_int64(event, "idProduct");
+            if (idProduct != 0) {
+                products[productCount++] = (int)idProduct;
+            }
+        }
+        syslog(LOG_NOTICE,
+               "Received message. idVendor: %llu, product count: %zu, action: %llu",
+               idVendor, productCount, action);
+        if (action == 1) {
+            // enable: release every seized device and tear down the manager
+            close_all_seized();
             if (hidManager != NULL) {
                 IOHIDManagerClose(hidManager, kIOHIDOptionsTypeNone);
                 hidManager = NULL;
@@ -126,9 +186,10 @@ static void __XPC_Peer_Event_Handler(xpc_connection_t connection,
                 IOHIDManagerRegisterDeviceRemovalCallback(hidManager, handle_removal_callback, NULL);
                 IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetMain(), kCFRunLoopCommonModes);
             }
-            CFDictionaryRef match = matching_dictionary_create((int)idVendor, (int)idProduct, 1, 6);
-            IOHIDManagerSetDeviceMatching(hidManager, match);
-            CFRelease(match);
+            CFArrayRef matches =
+                matching_dictionaries_create((int)idVendor, products, productCount, 1, 6);
+            IOHIDManagerSetDeviceMatchingMultiple(hidManager, matches);
+            CFRelease(matches);
         }
         xpc_connection_t remote = xpc_dictionary_get_remote_connection(event);
         xpc_object_t reply = xpc_dictionary_create_reply(event);
@@ -148,10 +209,7 @@ static void __XPC_Connection_Handler(xpc_connection_t connection) {
 
 void signalHandler(int signum) {
     syslog(LOG_NOTICE, "Received signal %d. Cleaning up...", signum);
-    if (hidDevice != NULL) {
-        IOHIDDeviceClose(hidDevice, kIOHIDOptionsTypeSeizeDevice);
-        hidDevice = NULL;
-    }
+    close_all_seized();
     if (hidManager != NULL) {
         IOHIDManagerClose(hidManager, kIOHIDOptionsTypeNone);
         hidManager = NULL;

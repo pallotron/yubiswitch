@@ -172,8 +172,34 @@
 
 - (void)notificationReloadHandler:(NSNotification *)notification {
     if ([[notification name] isEqualToString:@"changeDefaultsPrefs"]) {
+        // Rebuild the unplug matcher so vendor/product changes take effect
+        // without an app restart, then re-issue disable with the new IDs.
+        [self registerKeyRemoval];
         [self disable];
     }
+}
+
+// Parse the hotKeyProductID preference into a list of product IDs.
+// The field accepts a comma-separated list of hex IDs (e.g. "0x0010,0x0407").
+// An empty/blank string (or one with no valid tokens) yields an empty array,
+// which downstream means "match all products for the vendor".
+- (NSArray<NSNumber *> *)parseProductIDs:(NSString *)s {
+    NSMutableArray<NSNumber *> *result = [NSMutableArray array];
+    if (s == nil) {
+        return result;
+    }
+    for (NSString *token in [s componentsSeparatedByString:@","]) {
+        NSString *trimmed = [token stringByTrimmingCharactersInSet:
+                             [NSCharacterSet whitespaceCharacterSet]];
+        if ([trimmed length] == 0) {
+            continue;
+        }
+        unsigned int value = 0;
+        if ([[NSScanner scannerWithString:trimmed] scanHexInt:&value] && value != 0) {
+            [result addObject:@(value)];
+        }
+    }
+    return result;
 }
 
 - (BOOL)action:(NSString *)action {
@@ -207,15 +233,20 @@
         [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyVendorID"];
     [[NSScanner scannerWithString:value] scanHexInt:&idVendor];
 
-    unsigned int idProduct = 0;
-    value =
-        [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyProductID"];
-    [[NSScanner scannerWithString:value] scanHexInt:&idProduct];
+    NSArray<NSNumber *> *productIDs = [self parseProductIDs:
+        [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyProductID"]];
 
     xpc_connection_resume(connection);
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
     xpc_dictionary_set_int64(message, "idVendor", idVendor);
-    xpc_dictionary_set_int64(message, "idProduct", idProduct);
+    // Send the list of product IDs (empty = match all products for the vendor).
+    xpc_object_t products = xpc_array_create(NULL, 0);
+    for (NSNumber *pid in productIDs) {
+        xpc_array_set_int64(products, XPC_ARRAY_APPEND, [pid longLongValue]);
+    }
+    xpc_dictionary_set_value(message, "idProducts", products);
+    // Legacy single-value key, kept at 0 so an older helper stays functional.
+    xpc_dictionary_set_int64(message, "idProduct", 0);
     if ([action isEqualToString:@"enable"]) {
         xpc_dictionary_set_int64(message, "request", 1);
         suspend = FALSE;
@@ -266,33 +297,64 @@ static void match_set(CFMutableDictionaryRef dict, CFStringRef key, int value) {
     CFRelease(number);
 }
 
-- (void)registerKeyRemoval {
-
-    unsigned int idVendor = 0;
-    unsigned int idProduct = 0;
-
-    NSString *value = [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyVendorID"];
-    [[NSScanner scannerWithString:value] scanHexInt:&idVendor];
-
-    value = [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyProductID"];
-    [[NSScanner scannerWithString:value] scanHexInt:&idProduct];
-
-    IOHIDManagerRef hidManager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
-
+// Build a match dictionary for the OTP keyboard interface. A productID of 0
+// omits the product key, matching every product for the vendor.
+static CFDictionaryRef create_match_dict(int vendorID, int productID) {
     CFMutableDictionaryRef match = CFDictionaryCreateMutable(kCFAllocatorDefault,
                                                              0,
                                                              &kCFTypeDictionaryKeyCallBacks,
                                                              &kCFTypeDictionaryValueCallBacks);
-    match_set(match, CFSTR(kIOHIDVendorIDKey), idVendor);
-    match_set(match, CFSTR(kIOHIDProductIDKey), idProduct);
+    match_set(match, CFSTR(kIOHIDVendorIDKey), vendorID);
+    if (productID) {
+        match_set(match, CFSTR(kIOHIDProductIDKey), productID);
+    }
     match_set(match, CFSTR(kIOHIDDeviceUsagePageKey), 1);
     match_set(match, CFSTR(kIOHIDDeviceUsageKey), 6);
+    return match;
+}
 
-    IOHIDManagerScheduleWithRunLoop(hidManager, CFRunLoopGetMain(), kCFRunLoopCommonModes);
-    IOHIDManagerSetDeviceMatching(hidManager, match);
-    IOHIDManagerRegisterDeviceRemovalCallback(hidManager, handle_removal_callback, NULL);
+- (void)registerKeyRemoval {
 
-    CFRelease(match);
+    // Tear down any previously-created manager so preference changes don't stack
+    // duplicate removal callbacks or leak managers.
+    if (removalManager != NULL) {
+        IOHIDManagerUnscheduleFromRunLoop(removalManager, CFRunLoopGetMain(),
+                                          kCFRunLoopCommonModes);
+        IOHIDManagerClose(removalManager, kIOHIDOptionsTypeNone);
+        CFRelease(removalManager);
+        removalManager = NULL;
+    }
+
+    unsigned int idVendor = 0;
+    NSString *value = [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyVendorID"];
+    [[NSScanner scannerWithString:value] scanHexInt:&idVendor];
+
+    NSArray<NSNumber *> *productIDs = [self parseProductIDs:
+        [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyProductID"]];
+
+    removalManager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
+
+    // OR-match one dictionary per product ID, or a single vendor-only dictionary
+    // when no specific product IDs are configured (match all Yubico devices).
+    CFMutableArrayRef matches =
+        CFArrayCreateMutable(kCFAllocatorDefault, 0, &kCFTypeArrayCallBacks);
+    if ([productIDs count] == 0) {
+        CFDictionaryRef match = create_match_dict((int)idVendor, 0);
+        CFArrayAppendValue(matches, match);
+        CFRelease(match);
+    } else {
+        for (NSNumber *pid in productIDs) {
+            CFDictionaryRef match = create_match_dict((int)idVendor, [pid intValue]);
+            CFArrayAppendValue(matches, match);
+            CFRelease(match);
+        }
+    }
+
+    IOHIDManagerScheduleWithRunLoop(removalManager, CFRunLoopGetMain(), kCFRunLoopCommonModes);
+    IOHIDManagerSetDeviceMatchingMultiple(removalManager, matches);
+    IOHIDManagerRegisterDeviceRemovalCallback(removalManager, handle_removal_callback, NULL);
+
+    CFRelease(matches);
 }
 
 @end
