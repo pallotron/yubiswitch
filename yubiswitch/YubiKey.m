@@ -245,8 +245,6 @@
         xpc_array_set_int64(products, XPC_ARRAY_APPEND, [pid longLongValue]);
     }
     xpc_dictionary_set_value(message, "idProducts", products);
-    // Legacy single-value key, kept at 0 so an older helper stays functional.
-    xpc_dictionary_set_int64(message, "idProduct", 0);
     if ([action isEqualToString:@"enable"]) {
         xpc_dictionary_set_int64(message, "request", 1);
         suspend = FALSE;

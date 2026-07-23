@@ -32,11 +32,10 @@
 
 
 IOHIDManagerRef hidManager;
-// Set of currently seized IOHIDDeviceRefs. Using a set (instead of a single
-// global) lets us seize and, crucially, release every matching key when several
-// Yubico devices are plugged in at once. kCFTypeSetCallBacks retains on add and
-// releases on remove, and dedups identical device refs.
-CFMutableSetRef seizedDevices;
+// Devices currently locked. A set (not a single ref) lets us release every
+// matching key when several are plugged in at once; kCFTypeSetCallBacks
+// retains/releases refs and dedups.
+CFMutableSetRef lockedDevices;
 
 static void match_set(CFMutableDictionaryRef dict, CFStringRef key, int value) {
     CFNumberRef number = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &value);
@@ -48,23 +47,22 @@ static void close_device_apply(const void *value, void *context) {
     IOHIDDeviceClose((IOHIDDeviceRef)value, kIOHIDOptionsTypeSeizeDevice);
 }
 
-// Release every seized device and empty the set.
-static void close_all_seized(void) {
-    if (seizedDevices != NULL) {
-        CFSetApplyFunction(seizedDevices, close_device_apply, NULL);
-        CFSetRemoveAllValues(seizedDevices);
+// Release every locked device and empty the set.
+static void close_all_locked(void) {
+    if (lockedDevices != NULL) {
+        CFSetApplyFunction(lockedDevices, close_device_apply, NULL);
+        CFSetRemoveAllValues(lockedDevices);
     }
 }
 
 static void handle_removal_callback(void *context, IOReturn result,
                                     void *sender, IOHIDDeviceRef device) {
-    // Only release the device that was actually unplugged. Leave the manager and
-    // any other seized devices in place so remaining keys stay seized and a
-    // re-plug of the same product still matches.
-    if (seizedDevices != NULL && CFSetContainsValue(seizedDevices, device)) {
+    // Release only the unplugged device; leave the manager and other locked
+    // devices in place so remaining keys stay locked and re-plugs still match.
+    if (lockedDevices != NULL && CFSetContainsValue(lockedDevices, device)) {
         syslog(LOG_NOTICE, "device unplugged");
         IOHIDDeviceClose(device, kIOHIDOptionsTypeSeizeDevice);
-        CFSetRemoveValue(seizedDevices, device);
+        CFSetRemoveValue(lockedDevices, device);
     }
 
     // lock screen
@@ -79,11 +77,11 @@ static void match_callback(void *context, IOReturn result, void *sender,
     IOReturn r = IOHIDDeviceOpen(device, kIOHIDOptionsTypeSeizeDevice);
     if (r == kIOReturnSuccess) {
         syslog(LOG_NOTICE, "Open'ed HID device");
-        if (seizedDevices == NULL) {
-            seizedDevices = CFSetCreateMutable(kCFAllocatorDefault, 0,
+        if (lockedDevices == NULL) {
+            lockedDevices = CFSetCreateMutable(kCFAllocatorDefault, 0,
                                                &kCFTypeSetCallBacks);
         }
-        CFSetAddValue(seizedDevices, device);
+        CFSetAddValue(lockedDevices, device);
     } else {
         syslog(LOG_ALERT, "Failed to open HID device, error: %d", r);
     }
@@ -113,11 +111,8 @@ static CFDictionaryRef matching_dictionary_create(int vendorID, int productID,
     return match;
 }
 
-// Build the array of matching dictionaries handed to
-// IOHIDManagerSetDeviceMatchingMultiple (OR semantics across the array).
-// count == 0 means "no specific product IDs": match every product for the
-// vendor (a single vendor-only dictionary). Otherwise one dictionary per
-// product ID.
+// Matching dictionaries for IOHIDManagerSetDeviceMatchingMultiple (OR semantics).
+// count == 0 matches every product for the vendor; otherwise one dict per product.
 static CFArrayRef matching_dictionaries_create(int vendorID, const int *productIDs,
                                                size_t count, int usagePage,
                                                int usage) {
@@ -150,30 +145,22 @@ static void __XPC_Peer_Event_Handler(xpc_connection_t connection,
         uint64_t idVendor = xpc_dictionary_get_int64(event, "idVendor");
         uint64_t action = xpc_dictionary_get_int64(event, "request");
 
-        // Collect the requested product IDs. Prefer the "idProducts" array; fall
-        // back to the legacy single "idProduct" key so an older GUI still works.
-        // An empty list means "match all products for the vendor".
+        // Product IDs to control; an empty list matches all products for the vendor.
         int products[256];
         size_t productCount = 0;
         xpc_object_t idProducts = xpc_dictionary_get_value(event, "idProducts");
         if (idProducts != NULL && xpc_get_type(idProducts) == XPC_TYPE_ARRAY) {
             size_t n = xpc_array_get_count(idProducts);
             for (size_t i = 0; i < n && productCount < 256; i++) {
-                products[productCount++] =
-                    (int)xpc_array_get_int64(idProducts, i);
-            }
-        } else {
-            uint64_t idProduct = xpc_dictionary_get_int64(event, "idProduct");
-            if (idProduct != 0) {
-                products[productCount++] = (int)idProduct;
+                products[productCount++] = (int)xpc_array_get_int64(idProducts, i);
             }
         }
         syslog(LOG_NOTICE,
                "Received message. idVendor: %llu, product count: %zu, action: %llu",
                idVendor, productCount, action);
         if (action == 1) {
-            // enable: release every seized device and tear down the manager
-            close_all_seized();
+            // enable: release every locked device and tear down the manager
+            close_all_locked();
             if (hidManager != NULL) {
                 IOHIDManagerClose(hidManager, kIOHIDOptionsTypeNone);
                 hidManager = NULL;
@@ -209,7 +196,7 @@ static void __XPC_Connection_Handler(xpc_connection_t connection) {
 
 void signalHandler(int signum) {
     syslog(LOG_NOTICE, "Received signal %d. Cleaning up...", signum);
-    close_all_seized();
+    close_all_locked();
     if (hidManager != NULL) {
         IOHIDManagerClose(hidManager, kIOHIDOptionsTypeNone);
         hidManager = NULL;
