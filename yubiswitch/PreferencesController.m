@@ -24,6 +24,7 @@
 @interface PreferencesController () <NSWindowDelegate>
 
 - (BOOL)applyPreferences;
+- (IBAction)productIDChanged:(id)sender;
 
 @end
 
@@ -120,6 +121,10 @@
     return;
   }
   [[self window] close];
+}
+
+- (IBAction)productIDChanged:(id)sender {
+  [self applyPreferences];
 }
 
 - (BOOL)applyPreferences {
