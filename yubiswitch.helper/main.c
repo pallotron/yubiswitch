@@ -55,6 +55,18 @@ static void close_all_locked(void) {
     }
 }
 
+// Fully remove the current matcher so it cannot continue receiving device
+// callbacks after the configured product IDs change.
+static void destroy_hid_manager(void) {
+    if (hidManager != NULL) {
+        IOHIDManagerUnscheduleFromRunLoop(hidManager, CFRunLoopGetMain(),
+                                          kCFRunLoopCommonModes);
+        IOHIDManagerClose(hidManager, kIOHIDOptionsTypeNone);
+        CFRelease(hidManager);
+        hidManager = NULL;
+    }
+}
+
 static void handle_removal_callback(void *context, IOReturn result,
                                     void *sender, IOHIDDeviceRef device) {
     // Release only the unplugged device; leave the manager and other locked
@@ -161,10 +173,7 @@ static void __XPC_Peer_Event_Handler(xpc_connection_t connection,
         if (action == 1) {
             // enable: release every locked device and tear down the manager
             close_all_locked();
-            if (hidManager != NULL) {
-                IOHIDManagerClose(hidManager, kIOHIDOptionsTypeNone);
-                hidManager = NULL;
-            }
+            destroy_hid_manager();
         } else {
             // disable
             if (hidManager == NULL) {
@@ -197,10 +206,7 @@ static void __XPC_Connection_Handler(xpc_connection_t connection) {
 void signalHandler(int signum) {
     syslog(LOG_NOTICE, "Received signal %d. Cleaning up...", signum);
     close_all_locked();
-    if (hidManager != NULL) {
-        IOHIDManagerClose(hidManager, kIOHIDOptionsTypeNone);
-        hidManager = NULL;
-    }
+    destroy_hid_manager();
 }
 
 int main(int argc, const char *argv[]) {
