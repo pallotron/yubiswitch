@@ -172,10 +172,14 @@
 
 - (void)notificationReloadHandler:(NSNotification *)notification {
     if ([[notification name] isEqualToString:@"changeDefaultsPrefs"]) {
-        // Rebuild the unplug matcher so vendor/product changes take effect
-        // without an app restart, then re-issue disable with the new IDs.
+        // Rebuild the unplug matcher and reset the helper so devices seized by
+        // the old matcher are released before the new filter is applied.
+        BOOL wasSuspended = suspend;
         [self registerKeyRemoval];
-        [self disable];
+        [self enable];
+        if (wasSuspended) {
+            [self disable];
+        }
     }
 }
 

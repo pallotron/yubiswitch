@@ -21,7 +21,9 @@
 
 #import "PreferencesController.h"
 
-@interface PreferencesController ()
+@interface PreferencesController () <NSWindowDelegate>
+
+- (BOOL)applyPreferences;
 
 @end
 
@@ -31,6 +33,7 @@
 
 - (void)awakeFromNib {
   [super awakeFromNib];
+  [[self window] setDelegate:self];
   controller = [NSUserDefaultsController sharedUserDefaultsController];
   NSString *defaultPrefsFile =
       [[NSBundle mainBundle] pathForResource:@"DefaultPreferences"
@@ -116,6 +119,16 @@
 }
 
 - (IBAction)OKButton:(id)sender {
+  if (![self applyPreferences]) {
+    return;
+  }
+  [[self window] close];
+}
+
+- (BOOL)applyPreferences {
+  if (![[self window] makeFirstResponder:nil] || ![controller commitEditing]) {
+    return NO;
+  }
   [controller save:self];
   [[NSNotificationCenter defaultCenter]
       postNotificationName:@"changeDefaultsPrefs"
@@ -127,7 +140,11 @@
     [self deleteAppFromLoginItem];
   }
   [[NSUserDefaults standardUserDefaults] setBool:state forKey:@"startAtLogin"];
-  [[self window] close];
+  return YES;
+}
+
+- (BOOL)windowShouldClose:(NSWindow *)sender {
+  return [self applyPreferences];
 }
 
 - (IBAction)CancelButton:(id)sender {
