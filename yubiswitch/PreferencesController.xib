@@ -32,7 +32,7 @@ DQ
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="OKButton:" target="-1" id="l4P-SG-19b"/>
+                            <action selector="OKButton:" target="-2" id="l4P-SG-19b"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TpH-Yf-rMz">
@@ -45,7 +45,7 @@ Gw
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="CancelButton:" target="-1" id="6c8-y8-YcU"/>
+                            <action selector="CancelButton:" target="-2" id="6c8-y8-YcU"/>
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mzq-aw-KMQ">
@@ -144,7 +144,7 @@ Gw
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="SetDefaultsButton:" target="-1" id="h4K-jI-o4O"/>
+                            <action selector="SetDefaultsButton:" target="-2" id="h4K-jI-o4O"/>
                         </connections>
                     </button>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PBl-j6-JnA" customClass="SRRecorderControl">
