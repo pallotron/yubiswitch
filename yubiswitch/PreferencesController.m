@@ -132,9 +132,20 @@
     return NO;
   }
   [controller save:self];
+
+  // Pass the committed device filter values with the notification. Reading
+  // NSUserDefaults from the notification handler can still return the previous
+  // values while Cocoa Bindings is finishing the current UI event.
+  NSDictionary *devicePreferences = @{
+    @"hotKeyVendorID" :
+        [[controller values] valueForKey:@"hotKeyVendorID"] ?: @"",
+    @"hotKeyProductID" :
+        [[controller values] valueForKey:@"hotKeyProductID"] ?: @""
+  };
   [[NSNotificationCenter defaultCenter]
       postNotificationName:@"changeDefaultsPrefs"
-                    object:self];
+                    object:self
+                  userInfo:devicePreferences];
   bool state = [[buttonOpenAtLogin selectedCell] state];
   if (state == YES) {
     [self addAppAsLoginItem];

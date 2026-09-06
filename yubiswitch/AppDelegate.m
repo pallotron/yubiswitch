@@ -125,7 +125,8 @@
                        context:(void *)aContext {
     if ([aKeyPath isEqualToString:@"values.hotkey"]) {
         NSDictionary *hotkey =
-        [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"hotkey"];
+        [[[NSUserDefaultsController sharedUserDefaultsController] values]
+         valueForKey:@"hotkey"];
         [[statusMenu itemAtIndex:0]
          setKeyEquivalent:[hotkey valueForKey:@"charactersIgnoringModifiers"]];
         [[statusMenu itemAtIndex:0]

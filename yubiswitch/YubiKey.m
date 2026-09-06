@@ -25,6 +25,16 @@
 
 #include <IOKit/hid/IOHIDManager.h>
 
+@interface YubiKey ()
+
+- (BOOL)action:(NSString *)action
+       vendorID:(NSString *)vendorID
+     productIDs:(NSString *)productIDs;
+- (void)registerKeyRemovalWithVendorID:(NSString *)vendorID
+                            productIDs:(NSString *)productIDs;
+
+@end
+
 @implementation YubiKey
 
 - (id)init {
@@ -172,13 +182,24 @@
 
 - (void)notificationReloadHandler:(NSNotification *)notification {
     if ([[notification name] isEqualToString:@"changeDefaultsPrefs"]) {
+        NSDictionary *preferences = [notification userInfo];
+        NSString *vendorID = [preferences objectForKey:@"hotKeyVendorID"];
+        NSString *productIDs = [preferences objectForKey:@"hotKeyProductID"];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if (vendorID == nil) {
+            vendorID = [defaults stringForKey:@"hotKeyVendorID"];
+        }
+        if (productIDs == nil) {
+            productIDs = [defaults stringForKey:@"hotKeyProductID"];
+        }
+
         // Rebuild the unplug matcher and reset the helper so devices seized by
         // the old matcher are released before the new filter is applied.
         BOOL wasSuspended = suspend;
-        [self registerKeyRemoval];
-        [self enable];
+        [self registerKeyRemovalWithVendorID:vendorID productIDs:productIDs];
+        [self action:@"enable" vendorID:vendorID productIDs:productIDs];
         if (wasSuspended) {
-            [self disable];
+            [self action:@"disable" vendorID:vendorID productIDs:productIDs];
         }
     }
 }
@@ -207,9 +228,18 @@
 }
 
 - (BOOL)action:(NSString *)action {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [self action:action
+               vendorID:[defaults stringForKey:@"hotKeyVendorID"]
+             productIDs:[defaults stringForKey:@"hotKeyProductID"]];
+}
+
+- (BOOL)action:(NSString *)action
+       vendorID:(NSString *)vendorID
+     productIDs:(NSString *)productIDValues {
     xpc_connection_t connection = xpc_connection_create_mach_service(
-                                                                     "com.pallotron.yubiswitch.helper", NULL,
-                                                                     XPC_CONNECTION_MACH_SERVICE_PRIVILEGED);
+        "com.pallotron.yubiswitch.helper", NULL,
+        XPC_CONNECTION_MACH_SERVICE_PRIVILEGED);
 
     if (!connection) {
         [self raiseAlertWindow:@"Failed to create XPC connection with helper"];
@@ -233,12 +263,9 @@
     });
 
     unsigned int idVendor = 0;
-    NSString *value =
-        [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyVendorID"];
-    [[NSScanner scannerWithString:value] scanHexInt:&idVendor];
+    [[NSScanner scannerWithString:vendorID] scanHexInt:&idVendor];
 
-    NSArray<NSNumber *> *productIDs = [self parseProductIDs:
-        [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyProductID"]];
+    NSArray<NSNumber *> *productIDs = [self parseProductIDs:productIDValues];
 
     xpc_connection_resume(connection);
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
@@ -316,6 +343,13 @@ static CFDictionaryRef create_match_dict(int vendorID, int productID) {
 }
 
 - (void)registerKeyRemoval {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [self registerKeyRemovalWithVendorID:[defaults stringForKey:@"hotKeyVendorID"]
+                              productIDs:[defaults stringForKey:@"hotKeyProductID"]];
+}
+
+- (void)registerKeyRemovalWithVendorID:(NSString *)vendorID
+                            productIDs:(NSString *)productIDValues {
 
     // Tear down any previously-created manager so preference changes don't stack
     // duplicate removal callbacks or leak managers.
@@ -328,11 +362,9 @@ static CFDictionaryRef create_match_dict(int vendorID, int productID) {
     }
 
     unsigned int idVendor = 0;
-    NSString *value = [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyVendorID"];
-    [[NSScanner scannerWithString:value] scanHexInt:&idVendor];
+    [[NSScanner scannerWithString:vendorID] scanHexInt:&idVendor];
 
-    NSArray<NSNumber *> *productIDs = [self parseProductIDs:
-        [[NSUserDefaults standardUserDefaults] stringForKey:@"hotKeyProductID"]];
+    NSArray<NSNumber *> *productIDs = [self parseProductIDs:productIDValues];
 
     removalManager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
 
