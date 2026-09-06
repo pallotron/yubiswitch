@@ -16,14 +16,14 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="YubiSwitch Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="1">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="196" y="240" width="514" height="219"/>
+            <rect key="contentRect" x="196" y="240" width="614" height="219"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="514" height="219"/>
+                <rect key="frame" x="0.0" y="0.0" width="614" height="219"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8K1-Qm-In7">
-                        <rect key="frame" x="248" y="12" width="59" height="32"/>
+                        <rect key="frame" x="334" y="12" width="59" height="32"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="j6d-6b-gbg">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -36,7 +36,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TpH-Yf-rMz">
-                        <rect key="frame" x="418" y="12" width="82" height="32"/>
+                        <rect key="frame" x="518" y="12" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Vc-Z1-S0x">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -89,23 +89,24 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ngy-lT-sbn">
-                        <rect key="frame" x="278" y="148" width="216" height="22"/>
+                        <rect key="frame" x="278" y="148" width="316" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" title="" placeholderString="Blank = all Yubico; e.g. 0x0010,0x0407" drawsBackground="YES" id="ZgX-Bs-98c">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            <connections>
-                                <binding destination="eUL-Mx-8k1" name="value" keyPath="values.hotKeyProductID" id="hQc-sE-mmK"/>
-                            </connections>
                         </textFieldCell>
                         <connections>
                             <action selector="productIDChanged:" target="-2" id="RdP-iD-aP1"/>
                             <accessibilityConnection property="title" destination="Ik2-BF-06q" id="DoZ-bd-cdZ"/>
-                            <binding destination="eUL-Mx-8k1" name="value" keyPath="values.hotKeyProductID" id="MhM-mT-22o"/>
+                            <binding destination="eUL-Mx-8k1" name="value" keyPath="values.hotKeyProductID" id="MhM-mT-22o">
+                                <dictionary key="options">
+                                    <string key="NSNullPlaceholder">Blank = all Yubico; e.g. 0x0010,0x0407</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p0F-cs-KId">
-                        <rect key="frame" x="278" y="118" width="216" height="22"/>
+                        <rect key="frame" x="278" y="118" width="316" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="vendorID" placeholderString="" drawsBackground="YES" id="prY-22-1rc">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -139,7 +140,7 @@ Gw
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon" id="gdz-QY-yLb"/>
                     </imageView>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ccf-Nc-Jjz">
-                        <rect key="frame" x="307" y="12" width="114" height="32"/>
+                        <rect key="frame" x="399" y="12" width="114" height="32"/>
                         <buttonCell key="cell" type="push" title="Set defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZXm-ZJ-1gR">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -149,13 +150,13 @@ Gw
                         </connections>
                     </button>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PBl-j6-JnA" customClass="SRRecorderControl">
-                        <rect key="frame" x="278" y="178" width="216" height="25"/>
+                        <rect key="frame" x="278" y="178" width="316" height="25"/>
                         <connections>
                             <outlet property="delegate" destination="-2" id="xZm-I3-fJG"/>
                         </connections>
                     </customView>
                     <button toolTip="If set yubiswtich will start at login time" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afm-iG-Ff1">
-                        <rect key="frame" x="311" y="64" width="176" height="18"/>
+                        <rect key="frame" x="411" y="64" width="176" height="18"/>
                         <buttonCell key="cell" type="check" title="Start YubiSwitch at login" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Adi-wS-wdB">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
