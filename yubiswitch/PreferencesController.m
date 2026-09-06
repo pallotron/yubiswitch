@@ -110,12 +110,9 @@
 }
 
 - (IBAction)SetDefaultsButton:(id)sender {
-  NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-  [[NSUserDefaults standardUserDefaults]
-      removePersistentDomainForName:domainName];
-  [self.hotkeyrecorder setObjectValue:nil];
   [controller revertToInitialValues:self];
-  [controller setValue:nil forKey:@"values.hotkey"];
+  [buttonOpenAtLogin setState:
+      [[[controller values] valueForKey:@"startAtLogin"] boolValue]];
 }
 
 - (IBAction)OKButton:(id)sender {
