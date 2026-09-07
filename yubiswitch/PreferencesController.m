@@ -21,7 +21,10 @@
 
 #import "PreferencesController.h"
 
-@interface PreferencesController ()
+@interface PreferencesController () <NSWindowDelegate>
+
+- (BOOL)applyPreferences;
+- (IBAction)productIDChanged:(id)sender;
 
 @end
 
@@ -31,6 +34,7 @@
 
 - (void)awakeFromNib {
   [super awakeFromNib];
+  [[self window] setDelegate:self];
   controller = [NSUserDefaultsController sharedUserDefaultsController];
   NSString *defaultPrefsFile =
       [[NSBundle mainBundle] pathForResource:@"DefaultPreferences"
@@ -107,19 +111,41 @@
 }
 
 - (IBAction)SetDefaultsButton:(id)sender {
-  NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-  [[NSUserDefaults standardUserDefaults]
-      removePersistentDomainForName:domainName];
-  [self.hotkeyrecorder setObjectValue:nil];
   [controller revertToInitialValues:self];
-  [controller setValue:nil forKey:@"values.hotkey"];
+  [buttonOpenAtLogin setState:
+      [[[controller values] valueForKey:@"startAtLogin"] boolValue]];
 }
 
 - (IBAction)OKButton:(id)sender {
+  if (![self applyPreferences]) {
+    return;
+  }
+  [[self window] close];
+}
+
+- (IBAction)productIDChanged:(id)sender {
+  [self applyPreferences];
+}
+
+- (BOOL)applyPreferences {
+  if (![[self window] makeFirstResponder:nil] || ![controller commitEditing]) {
+    return NO;
+  }
   [controller save:self];
+
+  // Pass the committed device filter values with the notification. Reading
+  // NSUserDefaults from the notification handler can still return the previous
+  // values while Cocoa Bindings is finishing the current UI event.
+  NSDictionary *devicePreferences = @{
+    @"hotKeyVendorID" :
+        [[controller values] valueForKey:@"hotKeyVendorID"] ?: @"",
+    @"hotKeyProductID" :
+        [[controller values] valueForKey:@"hotKeyProductID"] ?: @""
+  };
   [[NSNotificationCenter defaultCenter]
       postNotificationName:@"changeDefaultsPrefs"
-                    object:self];
+                    object:self
+                  userInfo:devicePreferences];
   bool state = [[buttonOpenAtLogin selectedCell] state];
   if (state == YES) {
     [self addAppAsLoginItem];
@@ -127,7 +153,11 @@
     [self deleteAppFromLoginItem];
   }
   [[NSUserDefaults standardUserDefaults] setBool:state forKey:@"startAtLogin"];
-  [[self window] close];
+  return YES;
+}
+
+- (BOOL)windowShouldClose:(NSWindow *)sender {
+  return [self applyPreferences];
 }
 
 - (IBAction)CancelButton:(id)sender {

@@ -18,7 +18,7 @@
 	<key>lockWhenUnplugged</key>
 	<false/>
 	<key>hotKeyProductID</key>
-	<string>0x0010</string>
+	<string></string>
 	<key>hotKeyVendorID</key>
 	<string>0x1050</string>
 	<key>switchOffDelay</key>

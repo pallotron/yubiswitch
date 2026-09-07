@@ -34,6 +34,9 @@
 
 @interface YubiKey : NSObject {
     BOOL suspend;
+    // HID manager used to detect unplug of a controlled key (lock-when-unplugged).
+    // Kept so it can be torn down and rebuilt when preferences change.
+    IOHIDManagerRef removalManager;
 }
 
 -(id)init;

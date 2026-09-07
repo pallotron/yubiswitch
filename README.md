@@ -103,7 +103,7 @@ Preference window:
 
 # Known Issues
 
-- The app's default settings support the Nano. If you have a different model, go into the app's `Preferences` by clicking on the menu icon, then set the the `Product ID` to `0x0114` (or whatever your ProductID is) see: [How to find ProductID and VendorID](#how-to-find-productid-and-vendorid).
+- By default the app controls **any** Yubico device, regardless of its Product ID: leave the `Product ID` field in `Preferences` blank. To restrict control to specific models, enter a comma-separated list of hex Product IDs (e.g. `0x0010,0x0407`) — only those will be controlled. See: [How to find ProductID and VendorID](#how-to-find-productid-and-vendorid).
 - If your YubiKey is not working, you might want to confirm the `Product ID` and `Vendor ID` follow the how to find your ProductID and VendorID steps below
 - This app only works with recent version of OSX because it relies on the Notification Centre. OSX 10.8.x and above would do it. Sorry about that.
 - If your `Product ID` and `Vendor ID` are correct but the app is not working then please follow the uninstall instructions and update to the latest release version.
@@ -118,7 +118,7 @@ Preference window:
 - [x] Feature: lock computer when yubikey is removed (use IOServiceAddMatchingNotification in IOKit?)
 - [x] Support more yubikeys nano on multiple USB slots
 - [x] Better support for plug and unplug events (fixed with HID interface, dmg not published yet)
-- [ ] Feature: support all YubiCo devices without any configuration needed
+- [x] Feature: support all YubiCo devices without any configuration needed
 
 # How to create DMG for distribution
 
